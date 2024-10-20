@@ -1,0 +1,2 @@
+esta es la carpeta para las funciones que no necesiten estar en alguna clases
+por ejemplo una funcion de js para el fuscador, o una funcion para algun filtro en la busqueda
