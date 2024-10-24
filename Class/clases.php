@@ -1,36 +1,32 @@
 <?php
 include 'conexion.php'; 
-class validarUsuario {
+$conn = new Conexion();
+class ValidarUsuario {
     private $conexion;
 
     public function __construct() {
-        $this->conexion = new conexion();
+        $this->conexion = new Conexion(); 
     }
-    
-    public function registrar($nombre, $correo, $contrasena) {
+
+    public function registrar($nombre, $correo, $contrasena, $pk_rol) {
         
-        $sql = "INSERT INTO usuarios (nombre, correo, contrasena) VALUES ('$nombre', '$correo', '$contrasena')";
+        $sql = "INSERT INTO usuarios (nombre, correo, contrasena, pk_rol) VALUES ('$nombre', '$correo', '$contrasena', '$pk_rol')";
 
         if ($this->conexion->query($sql) === TRUE) {
             return true; 
         } else {
-            return false;
+            return false; 
         }
     }
-    
-   // lo saqué de chat
+
     public function iniciarSesion($correo, $contrasena) {
-        $sql = "SELECT * FROM usuarios WHERE correo = '$correo'";
+        $sql = "SELECT * FROM usuarios WHERE correo = '$correo' AND contrasena = '$contrasena'";
         $resultado = $this->conexion->query($sql);
 
         if ($resultado->num_rows > 0) {
-            $usuario = $resultado->fetch_assoc();
-            
-            if ($contrasena === $usuario['contrasena']) { // Comparar directamente
-                return $usuario; // Retornar datos del usuario
-            }
+            return $resultado->fetch_assoc(); 
         }
-        return false; // Usuario no válido
+        return false; 
     }
 }
 ?>
