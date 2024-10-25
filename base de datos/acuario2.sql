@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2024 a las 00:25:51
+-- Tiempo de generación: 25-10-2024 a las 02:33:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -108,6 +108,14 @@ CREATE TABLE `categoria` (
   `nombre` varchar(45) NOT NULL,
   `estatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`pk_categoria`, `nombre`, `estatus`) VALUES
+(1, 'Alimento', 1),
+(2, 'Medicamento', 1);
 
 -- --------------------------------------------------------
 
@@ -245,6 +253,7 @@ CREATE TABLE `inventario` (
   `codigo` varchar(20) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `stock` int(11) NOT NULL,
+  `descripcion` text NOT NULL,
   `estutus` int(11) NOT NULL,
   `alarma` tinyint(4) NOT NULL,
   `fk_categoria` smallint(6) NOT NULL
@@ -629,7 +638,7 @@ ALTER TABLE `calidad_agua`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `pk_categoria` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `pk_categoria` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `educacion`
