@@ -25,7 +25,8 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -43,5 +44,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background: grey; 
+    background: darkgrey;
 }

@@ -1,11 +1,20 @@
 <?php
-class Conexion extends mysqli {
-    function __construct() {
-        parent::__construct("localhost", "root", "", "acuario");
+class Conexion {
+    private $host = "localhost"; 
+    private $usuario = "root"; 
+    private $password = ""; 
+    private $dbname = "acuario";
+    public $conn;
 
-        if ($this->connect_error) {
-            die("Conexión fallida: " . $this->connect_error);
+    public function __construct() {
+        $this->conn = new mysqli($this->host, $this->usuario, $this->password, $this->dbname);
+        if ($this->conn->connect_error) {
+            die("Error de conexión: " . $this->conn->connect_error);
         }
+    }
+
+    public function query($sql) {
+        return $this->conn->query($sql);
     }
 }
 ?>

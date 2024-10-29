@@ -1,14 +1,10 @@
-<?php
-include 'class/clases.php';
-$conn = new Conexion();
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro de Tanques</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/estilos.css">
+    <title>Registro de Tanques</title>
 </head>
 <body>
     <div class="container">
@@ -26,12 +22,12 @@ $conn = new Conexion();
             <label for="filtracion">Filtración:</label>
             <input type="text" id="filtracion" name="filtracion" required>
 
-            <!-- Campo área como selección -->
             <label for="area">Área:</label>
             <select id="area" name="pk_area" required>
                 <?php
-                // Obtener datos para el campo 'área'
-                $resultado_areas = obtenerDatos('areas', $conn);
+                include 'conexion.php';
+                $conn = new Conexion();
+                $resultado_areas = $conn->query("SELECT pk_area, nombre FROM areas");
                 if ($resultado_areas) {
                     while ($area = $resultado_areas->fetch_assoc()) {
                         echo "<option value='{$area['pk_area']}'>{$area['nombre']}</option>";
@@ -42,12 +38,10 @@ $conn = new Conexion();
                 ?>
             </select>
 
-            <!-- Campo especie como selección -->
             <label for="especie">Especie:</label>
             <select id="especie" name="pk_especie" required>
                 <?php
-                // Obtener datos para el campo 'especie'
-                $resultado_especies = obtenerDatos('especies', $conn);
+                $resultado_especies = $conn->query("SELECT pk_especie, nombre FROM especies");
                 if ($resultado_especies) {
                     while ($especie = $resultado_especies->fetch_assoc()) {
                         echo "<option value='{$especie['pk_especie']}'>{$especie['nombre']}</option>";
