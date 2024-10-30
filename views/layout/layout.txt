@@ -1,0 +1,1 @@
+pos aqui iran cosas importates que se repetiran a lo largo del diseño, ejemplo: el header, un menu lateral y cosas asi.
