@@ -1,18 +1,22 @@
 function abrirModal(codigo, nombre, stock) {
-    console.log(codigo, nombre, stock);
-    document.getElementById('modal').style.display = 'flex';
+    const modal = document.getElementById('modal');
+    modal.style.display = 'flex';
+    modal.offsetHeight;
+    modal.classList.add('show');
+
     document.getElementById('codigo').value = codigo;
     document.getElementById('nombre').value = nombre;
     document.getElementById('stock').value = stock;
-    
 }
 
 function cerrarModal() {
-    document.getElementById('modal').style.display = 'none';
+    const modal = document.getElementById('modal');
+
+    modal.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300); 
 }
-
-
-
 
 document.querySelector('.form_modal form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -29,7 +33,9 @@ document.querySelector('.form_modal form').addEventListener('submit', function(e
         console.log(data);
         if(data.includes('correctamente')){
             cerrarModal();
-            location.reload(); 
+            setTimeout(() => {
+                location.reload();
+            }, 300);
         }
     });
 });

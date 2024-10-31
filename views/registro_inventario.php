@@ -32,10 +32,10 @@
 
 
                     <label for="codigo">Codigo: </label>
-                    <input type="text" class="input" name="codigo" placeholder="Codigo del producto.">
+                    <input type="text" class="input" name="codigo" placeholder="Codigo del producto." required>
 
                     <label for="nombre">Nombre: </label>
-                    <input type="text" class="input" name="nombre" placeholder="Nombre del producto.">
+                    <input type="text" class="input" name="nombre" placeholder="Nombre del producto." required>
 
                     <label for="">Categoria:</label>
                     <select class="input" name="categoria" id="">
@@ -51,10 +51,10 @@
                     </select>
 
                     <label for="stock">Cantidad: </label>
-                    <input type="text" class="input" name="stock" placeholder="Cantidad del producto a registrar.">
+                    <input type="text" class="input" name="stock" placeholder="Cantidad del producto a registrar." required>
 
                     <label for="">Descripcion: </label>
-                    <textarea type="text" class="input" name="descripcion" placeholder="Breve descripcion del producto."></textarea>
+                    <textarea type="text" class="input" name="descripcion" placeholder="Breve descripcion del producto." required></textarea>
 
                     <div class="btn_formulario">
                         <input type="submit" value="Guardar" class="btn" onclick="">
