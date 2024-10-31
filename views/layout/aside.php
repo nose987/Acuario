@@ -52,7 +52,7 @@
         <a href="panel_inventario.php">Inventario</a>
         <a href="">Tanques</a>
         <a href="">Control del agua</a>
-        <a href="">Especies</a>
+        <a href="panel_especies.php">Especies</a>
         <a href="">Equipos</a>
         <a href="">Empleados</a>
     </nav>

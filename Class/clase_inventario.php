@@ -11,7 +11,8 @@ class Inventario
         $this->conexion = Conexion::conectar();
     }
 
-    public function categoria(){
+    public function categoria()
+    {
         $sql = "SELECT pk_categoria, nombre FROM categoria";
         $result = $this->conexion->query($sql);
         return $result;
@@ -27,44 +28,39 @@ class Inventario
             $categoria = $_POST['categoria'];
             $stock = $_POST['stock'];
             $descripcion = $_POST['descripcion'];
+            $fecha = date('Y-m-d H:i:s');
 
-            $sql = "INSERT INTO inventario (codigo, nombre, stock, descripcion, estutus, alarma, fk_categoria) VALUES (?, ?, ?, ?, 1, 0, ?)";
+            $sql = "INSERT INTO inventario (codigo, nombre, stock, descripcion, fecha, fk_categoria, estatus ) VALUES (?, ?, ?, ?, ?, ?, 1)";
             $stmt = $this->conexion->prepare($sql);
-            $stmt->bind_param("ssisi", $codigo, $nombre, $stock, $descripcion, $categoria);
+            $stmt->bind_param("ssisdi", $codigo, $nombre, $stock, $descripcion, $fecha, $categoria);
             $stmt->execute();
             header("location:../views/registro_inventario.php");
             $stmt->close();
             exit();
-
         }
-        
     }
 
-    public function mostrar(){
-        $sql = "SELECT codigo, nombre,stock, descripcion, fk_categoria as categoria FROM inventario";
+    public function mostrar()
+    {
+        $sql = "SELECT i.codigo, i.nombre, c.nombre as categoria, i.stock, i.descripcion FROM inventario i INNER JOIN categoria c ON i.fk_categoria = c.pk_categoria ";
         $result = $this->conexion->query($sql);
         return $result;
     }
 
-    public function actualizar_stock($codigo, $nuevoStock) {
-        if(empty($codigo) || !is_numeric($nuevoStock)) {
-            return false;
-        }
-        
-        $sql = "UPDATE inventario SET stock = ? WHERE codigo = ?";
+    public function buscar($busqueda) {
+        $sql = "SELECT i.codigo, i.nombre, c.nombre AS categoria, i.stock, i.descripcion 
+                FROM inventario i 
+                INNER JOIN categoria c ON i.fk_categoria = c.pk_categoria 
+                WHERE i.codigo LIKE ? OR i.nombre LIKE ? OR c.nombre LIKE ?";
+    
         $stmt = $this->conexion->prepare($sql);
-        $stmt->bind_param("is", $nuevoStock, $codigo);
-        $result = $stmt->execute();
-        $stmt->close();
-        exit();
-        return $result;
+        $param = '%' . $busqueda . '%';
+        $stmt->bind_param("sss", $param, $param, $param);
+        $stmt->execute();
+        return $stmt->get_result();
     }
-    
-    
-
     
 }
 
 $inventario = new Inventario();
 $inventario->insertar();
-

@@ -23,10 +23,22 @@ body{
 
 }
 
+.cont-container{
+
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 85%;
+    
+}
+
 .container{
     display: flex;
     width: 85%;
     margin: 5% ;
+    margin-bottom: 1px;
     gap: 20px;
     justify-content: center;
 }

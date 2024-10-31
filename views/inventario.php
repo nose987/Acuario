@@ -18,7 +18,7 @@
         <div class="tabla">
 
             <form method="get" action="" class="buscador">
-                <input type="text" name="busqueda" id="busqueda" value="" placeholder="Buscar" class="input">
+                <input type="text" name="busqueda" id="busqueda" value="" placeholder="Buscar" class="input" onkeyup="buscarInventario()">
                 <!--<input type="submit" value="Buscar" class="btn-busqueda">-->
             </form>
 
@@ -33,7 +33,7 @@
                         <th>Añadir stock</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabla-resultados">
                     <?php
                     include("../Class/clase_inventario.php");
                     $inventario = new Inventario();
@@ -103,5 +103,6 @@
 
 </body>
 <script src="../functions/modal.js"></script>
+<script src="../functions/buscador.js"></script>
 
 </html>
