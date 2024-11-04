@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $registroExitoso = $usuario->registrar_tanque($capacidad, $temperatura, $iluminacion, $filtracion, $fk_area, $fk_especie, $fecha);
 
     if ($registroExitoso === true) {
-        header("Location: reg_tanque.html");
+        header("Location: tabla_tanques.php");
         exit;                               
     } else {
         // Muestra el error devuelto

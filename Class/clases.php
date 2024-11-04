@@ -174,5 +174,8 @@ class Tanque {
             return "Error en la consulta: " . $this->conn->error;
         }
     }
+
+   
 }
+
 ?>

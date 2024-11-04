@@ -43,5 +43,6 @@ $opcionesFormulario = new OpcionesFormulario();
             <input type="submit" value="Registrar Tanque">
         </form>
     </div>
+    
 </body>
 </html>
