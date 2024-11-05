@@ -1,14 +1,17 @@
 <?php
 include_once 'conexion.php'; // Cambiar a include_once para evitar múltiples inclusiones
 
-class OpcionesFormulario {
+class OpcionesFormulario
+{
     private $conn;
 
-    public function __construct() {
-        $this->conn = new Conexion(); 
+    public function __construct()
+    {
+        $this->conn = new Conexion();
     }
 
-    public function obtenerOpcionesAreas() {
+    public function obtenerOpcionesAreas()
+    {
         $sql = "SELECT pk_area, nombre FROM area";
         $result = $this->conn->query($sql);
         $opciones = "";
@@ -24,7 +27,8 @@ class OpcionesFormulario {
         return $opciones;
     }
 
-    public function obtenerOpcionesRoles() {
+    public function obtenerOpcionesRoles()
+    {
         $sql = "SELECT pk_roles, roles FROM roles";
         $result = $this->conn->query($sql);
         $opciones = "";
@@ -40,7 +44,8 @@ class OpcionesFormulario {
         return $opciones;
     }
 
-    public function obtenerOpcionesEspecies() {
+    public function obtenerOpcionesEspecies()
+    {
         $sql = "SELECT pk_especie, nombre FROM especie";
         $result = $this->conn->query($sql);
         $opciones = "";
@@ -55,19 +60,49 @@ class OpcionesFormulario {
 
         return $opciones;
     }
+    public function obtenerOpcionesInventario()
+    {
+        $sql = "SELECT pk_inventario, nombre FROM inventario";
+        $result = $this->conn->query($sql);
+        $opciones = "";
+
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $opciones .= "<option value='" . $row['pk_inventario'] . "'>" . $row['nombre'] . "</option>";
+            }
+        } else {
+            $opciones = "<option value=''>No se encontron alimentos</option>";
+        }
+
+        return $opciones;
+    }
 }
 
-class ValidarUsuario {
+class ValidarUsuario
+{
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         $conexion = new Conexion();
         $this->conn = $conexion->conn;
     }
 
     // Método para registrar un usuario
-    public function registrar($nombres, $apaterno, $amaterno, $fk_area, 
-        $fecha_nac, $genero, $direccion, $correo, $num_telefono, $contrasena, $edad, $fk_roles) {
+    public function registrar(
+        $nombres,
+        $apaterno,
+        $amaterno,
+        $fk_area,
+        $fecha_nac,
+        $genero,
+        $direccion,
+        $correo,
+        $num_telefono,
+        $contrasena,
+        $edad,
+        $fk_roles
+    ) {
 
         // Verifica si el correo ya existe
         if ($this->correoExistente($correo)) {
@@ -96,8 +131,21 @@ class ValidarUsuario {
         }
 
         // Enlaza los parámetros
-        $stmt->bind_param("ssssssssssss", $nombres, $apaterno, $amaterno, $correo, 
-            $fecha_nac, $num_telefono, $genero, $direccion, $contrasena, $edad, $fk_roles, $fk_area);
+        $stmt->bind_param(
+            "ssssssssssss",
+            $nombres,
+            $apaterno,
+            $amaterno,
+            $correo,
+            $fecha_nac,
+            $num_telefono,
+            $genero,
+            $direccion,
+            $contrasena,
+            $edad,
+            $fk_roles,
+            $fk_area
+        );
 
         // Ejecuta la consulta
         if ($stmt->execute()) {
@@ -108,7 +156,8 @@ class ValidarUsuario {
     }
 
     // Función para verificar si el correo ya está registrado
-    private function correoExistente($correo) {
+    private function correoExistente($correo)
+    {
         $query = "SELECT * FROM persona WHERE correo = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("s", $correo);
@@ -118,7 +167,8 @@ class ValidarUsuario {
     }
 
     // Función para verificar si el rol es válido
-    private function rolValido($fk_roles) {
+    private function rolValido($fk_roles)
+    {
         $query = "SELECT 1 FROM roles WHERE pk_roles = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $fk_roles);
@@ -128,7 +178,8 @@ class ValidarUsuario {
     }
 
     // Función para verificar si el área es válida
-    private function areaValida($fk_area) {
+    private function areaValida($fk_area)
+    {
         $query = "SELECT 1 FROM area WHERE pk_area = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $fk_area);
@@ -139,34 +190,38 @@ class ValidarUsuario {
 
 
 
-    public function validarLogin($correo, $contrasena) {
+    public function validarLogin($correo, $contrasena)
+    {
         $query = "SELECT * FROM persona WHERE correo = '$correo' AND contrasena = '$contrasena'";
         $result = $this->conn->query($query);
 
         if ($result && $result->num_rows > 0) {
-            return $result->fetch_assoc(); 
+            return $result->fetch_assoc();
         }
-        return false; 
+        return false;
     }
 }
 
-class Tanque {
+class Tanque
+{
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         $conexion = new Conexion();  // Crea una instancia de la clase Conexion
         $this->conn = $conexion->conn;  // Obtiene la conexión
     }
 
-    public function registrar_tanque($capacidad, $temperatura, $iluminacion, $filtracion, $fk_area, $fk_especie, $fecha) {
+    public function registrar_tanque($capacidad, $temperatura, $iluminacion, $filtracion, $fk_area, $fk_especie, $fecha)
+    {
         if (empty($capacidad) || empty($temperatura) || empty($iluminacion) || empty($filtracion) || empty($fk_area) || empty($fk_especie) || empty($fecha)) {
-            return false; 
+            return false;
         }
-    
+
         // Crear la consulta SQL (asegúrate de que los nombres sean correctos)
         $sql = "INSERT INTO tanque (capacidad, temperatura, iluminacion, filtracion, fk_area, fk_especie, fecha) 
                 VALUES ('$capacidad', '$temperatura', '$iluminacion', '$filtracion', '$fk_area', '$fk_especie', '$fecha')";
-    
+
         // Ejecutar la consulta
         if ($this->conn->query($sql)) {
             return true;
@@ -174,8 +229,30 @@ class Tanque {
             return "Error en la consulta: " . $this->conn->error;
         }
     }
-
-   
 }
 
-?>
+class Inventario
+{
+
+    private $conn;
+
+    public function __construct()
+    {
+        $conexion = new Conexion();  // Crea una instancia de la clase Conexion
+        $this->conn = $conexion->conn;  // Obtiene la conexión
+    }
+
+    public function registrar_alimentacion($cantidad, $descripcion, $hora, $fecha, $fk_area, $fk_especie, $fk_inventario)
+    {
+        // Consulta SQL para insertar los datos
+        $sql = "INSERT INTO alimentacion (cantidad, descripcion, hora, fecha, fk_area, fk_especie, fk_inventario) 
+                VALUES ('$cantidad', '$descripcion', '$hora', '$fecha', '$fk_area', '$fk_especie', '$fk_inventario')";
+
+        // Ejecutar la consulta y devolver el resultado
+        if ($this->conn->query($sql)) {
+            return true;
+        } else {
+            return "Error en la consulta: " . $this->conn->error;
+        }
+    }
+}
