@@ -84,7 +84,8 @@ label{
     align-items: center;
  }
 .btn{
-    width: 120px;
+    width: auto;
+    padding: 2px;
     height: 50px;
     border: none;
     border-radius: 10px;
