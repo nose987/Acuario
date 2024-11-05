@@ -58,7 +58,9 @@
 
                     <div class="btn_formulario">
                         <input type="submit" value="Guardar" class="btn" onclick="">
-                        <a href="panel_inventario.php "><button value="Cancelar" class="btn">Cancelar</button></a>
+                        <a  class="btn" type="button" onclick="window.location.href='panel_inventario.php'">
+                            cancelar
+                        </a>
                     </div>
 
 
