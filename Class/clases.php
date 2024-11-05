@@ -55,6 +55,21 @@ class OpcionesFormulario {
 
         return $opciones;
     }
+    public function obtenerOpcionesInventario() {
+        $sql = "SELECT pk_inventario, nombre FROM inventario";
+        $result = $this->conn->query($sql);
+        $opciones = "";
+
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $opciones .= "<option value='" . $row['pk_inventario'] . "'>" . $row['nombre'] . "</option>";
+            }
+        } else {
+            $opciones = "<option value=''>No se encontron alimentos</option>";
+        }
+
+        return $opciones;
+    }
 }
 
 class ValidarUsuario {
@@ -177,5 +192,30 @@ class Tanque {
 
    
 }
+
+class Inventario {
+
+    private $conn;
+
+    public function __construct() {
+        $conexion = new Conexion();  // Crea una instancia de la clase Conexion
+        $this->conn = $conexion->conn;  // Obtiene la conexión
+    }
+
+    public function registrar_alimentacion($cantidad, $descripcion, $hora, $fecha, $fk_area, $fk_especie, $fk_inventario) {
+        // Consulta SQL para insertar los datos
+        $sql = "INSERT INTO alimentacion (cantidad, descripcion, hora, fecha, fk_area, fk_especie, fk_inventario) 
+                VALUES ('$cantidad', '$descripcion', '$hora', '$fecha', '$fk_area', '$fk_especie', '$fk_inventario')";
+        
+        // Ejecutar la consulta y devolver el resultado
+        if ($this->conn->query($sql)) {
+            return true;
+        } else {
+            return "Error en la consulta: " . $this->conn->error;
+        }
+    }
+}
+
+
 
 ?>
