@@ -57,7 +57,7 @@ $opcionesFormulario = new OpcionesFormulario();
                     <div class="btn_formulario">
 
                         <input type="submit" value="Registrar Tanque" class="btn">
-                        <a  class="btn" type="button" onclick="window.location.href='panel_tanques.php'">
+                        <a  class="btn" type="button" onclick="window.location.href='panel_tanque.php'">
                             cancelar
                         </a>
 
