@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+include '../Class/conexion.php';
 
 class Tanque {
     private $conn;

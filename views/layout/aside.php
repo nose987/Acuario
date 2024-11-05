@@ -48,12 +48,12 @@
    
     <nav>
         <a href="">Inicio</a>
-        <a href="">Panel de control</a>
+        <a href="panel_alimentacion.php">Alimentacion</a>
         <a href="panel_inventario.php">Inventario</a>
-        <a href="">Tanques</a>
+        <a href="panel_tanque.php">Tanques</a>
         <a href="">Control del agua</a>
-        <a href="panel_especies.php">Especies</a>
+        <a href="panel_de_especies.php">Especies</a>
         <a href="">Equipos</a>
-        <a href="">Empleados</a>
+        <a href="panel_empleados.php">Empleados</a>
     </nav>
 </div>
