@@ -70,6 +70,23 @@ class OpcionesFormulario {
 
         return $opciones;
     }
+    
+    public function obtenerOpcionesTanques() {
+        $sql = "SELECT pk_tanque FROM tanque";
+        $result = $this->conn->query($sql);
+        $opciones = "";
+    
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $opciones .= "<option value='" . $row['pk_tanque'] . "'>" . $row['pk_tanque'] . "</option>";
+            }
+        } else {
+            $opciones = "<option value=''>No se encontraron tanques</option>";
+        }
+    
+        return $opciones;
+    }
+    
 }
 
 class ValidarUsuario {
@@ -214,8 +231,26 @@ class Inventario {
             return "Error en la consulta: " . $this->conn->error;
         }
     }
+    
 }
 
+class CalidadAgua {
+    private $conn;
 
+    public function __construct() {
+        $conexion = new Conexion();
+        $this->conn = $conexion->conn;
+    }
 
+    public function registrarCalidadAgua($ph, $amoniaco, $nitrato, $nitritos, $fk_tanque, $fecha) {
+        $sql = "INSERT INTO agua (ph, amoniaco, nitrato, nitritos, fk_tanque, fecha) 
+                VALUES ('$ph', '$amoniaco', '$nitrato', '$nitritos', '$fk_tanque', '$fecha')";
+
+if ($this->conn->query($sql)) {
+    return true;
+} else {
+    return "Error en la consulta: " . $this->conn->error;
+}
+}
+}
 ?>
