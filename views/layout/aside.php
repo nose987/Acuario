@@ -55,5 +55,6 @@
         <a href="panel_de_especies.php">Especies</a>
         <a href="">Equipos</a>
         <a href="panel_empleados.php">Empleados</a>
+        <a href="panel_salud_especies.php">Salud especies</a>
     </nav>
 </div>
