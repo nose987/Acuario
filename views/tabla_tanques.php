@@ -25,10 +25,14 @@ $tanques = $tanque->obtener_tanques(); // Llama al método y almacena el resulta
 
 
         <div class="tabla">
-        <h2>Tanques Registrados</h2>
+        <h2>REGISTRO DE TANQUES </h2><br>
+        <div>
+            <a href="../fpdf/reporte_tanques.php" target="_blank">Generar reporte</a>
+        </div>
+        <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
         <table>
         <tr>
-            <th>ID</th>
+            <th>Registro</th>
             <th>Capacidad</th>
             <th>Temperatura</th>
             <th>Iluminación</th>

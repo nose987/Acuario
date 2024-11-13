@@ -14,22 +14,25 @@
     <?php include("layout/header.php") ?>
     <div class="contenido">
         <div class="aside"><?php include("layout/aside.php") ?></div>
-
         <div class="tabla">
-
+        <H2>REGISTRO DE INVENTARIO</H2>
+            <div>
+                <a href="../fpdf/reporte_inventario.php" target="_blank">Generar reporte</a>
+            </div>
+            <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
             <form method="get" action="" class="buscador">
                 <input type="text" name="busqueda" id="busqueda" value="" placeholder="Buscar" class="input" onkeyup="buscarInventario()">
-                <!--<input type="submit" value="Buscar" class="btn-busqueda">-->
+                
             </form>
-
+            
             <table>
                 <thead>
                     <tr>
                         <th>Codigo</th>
                         <th>Nombre</th>
-                        <th>Categoria</th>
+                        <th>Categoría</th>
                         <th>Stock</th>
-                        <th>Descripcion</th>
+                        <th>Descripción</th>
                         <th>Añadir stock</th>
                     </tr>
                 </thead>

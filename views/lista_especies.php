@@ -25,8 +25,11 @@ $especies = $especie->mostrar();
             <?php include("layout/aside.php") ?>
         </div>
         <div class="tabla">
-            <h2>Lista de Especies</h2>
-
+            <h2>REGISTRO DE ESPECIES</h2><br>
+            <div>
+                <a href="../fpdf/reporte_especies.php" target="_blank">Generar reporte</a>
+            </div>
+            <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
             <table>
                 <thead>
                     <tr>

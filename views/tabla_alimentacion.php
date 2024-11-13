@@ -12,22 +12,25 @@ $programaciones = $alimentacion->obtener_alimentacion(); // Llama al método y a
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/tabla.css">
     <link rel="icon" href="../Storage/logo.jpg">
-    <title>Tabla alimentación</title>
-</head>
-
+    <title>Tabla alimentación</title>   
+</head>    
 <body>
 
     <?php include 'layout/header.php'; ?>
     <div class="contenido">
         <div class="aside">
             <?php include 'layout/aside.php'; ?>
-
         </div>
         
         <div class="tabla">
+        <h2>REGISTRO DE ALIMENTACION</h2><br>
+        <div>
+        <a href="../fpdf/reporte_alimentacion.php" target="_blank">Generar reporte</a>
+        </div>
+        <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
             <table>
                 <tr>
-                    <th>ID</th>
+                    <th>Registro</th>
                     <th>Cantidad</th>
                     <th>Descripción</th>
                     <th>Hora</th>
