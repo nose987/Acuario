@@ -40,7 +40,7 @@ class PDF extends FPDF
       $this->SetTextColor(0, 128, 200);
       $this->Cell(50);
       $this->SetFont('Arial', 'B', 15);
-      $this->Cell(175, 10, utf8_decode("REPORTE DEL REGISTRO DE ESPECIES "), 0, 1, 'C', 0);
+      $this->Cell(175, 10, utf8_decode("REPORTE DEL REGISTRO DE SALUD DE LAS ESPECIES "), 0, 1, 'C', 0);
       $this->Ln(7);
 
       /* Campos de la tabla */
@@ -48,13 +48,16 @@ class PDF extends FPDF
       $this->SetTextColor(255, 255, 255);
       $this->SetDrawColor(163, 163, 163);
       $this->SetFont('Arial', 'B', 11);
-      $this->Cell(35, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
-      $this->Cell(53, 10, utf8_decode('Descripción'), 1, 0, 'C', 1);
-      $this->Cell(40, 10, utf8_decode('Habitat'), 1, 0, 'C', 1);
-      $this->Cell(30, 10, utf8_decode('Temperatura'), 1, 0, 'C', 1);
-      $this->Cell(50, 10, utf8_decode('Cuidados'), 1, 0, 'C', 1);
-      $this->Cell(35, 10, utf8_decode('Tipo de especie'), 1, 0, 'C', 1);
-      $this->Cell(35, 10, utf8_decode('Alimento'), 1, 1, 'C', 1);
+      $this->Cell(25, 10, utf8_decode('Fecha Rev.'), 1, 0, 'C', 1);
+      $this->Cell(25, 10, utf8_decode('Especie'), 1, 0, 'C', 1);
+      $this->Cell(20, 10, utf8_decode('Peso'), 1, 0, 'C', 1);
+      $this->Cell(20, 10, utf8_decode('Longitud'), 1, 0, 'C', 1);
+      $this->Cell(25, 10, utf8_decode('Temperatura'), 1, 0, 'C', 1);
+      $this->Cell(30, 10, utf8_decode('Estado'), 1, 0, 'C', 1);
+      $this->Cell(35, 10, utf8_decode('Comportamiento'), 1, 0, 'C', 1);
+      $this->Cell(35, 10, utf8_decode('Sintomas'), 1, 0, 'C', 1);
+      $this->Cell(35, 10, utf8_decode('Observaciones'), 1, 0, 'C', 1);
+      $this->Cell(30, 10, utf8_decode('Encargado'), 1, 1, 'C', 1);
         
    }
 
@@ -83,19 +86,22 @@ $conn = new Conexion();
 $db = $conn->conectar(); // Asegúrate de que este método esté definido en tu clase de conexión
 
 // Consulta para obtener los datos de la calidad del agua
-$sql = "SELECT * FROM especie e inner join tipo_especie te on e.fk_tipo_especie=te.pk_tipo_especie"; // Cambia 'calidad_agua' a la tabla correcta si es necesario
+$sql = "SELECT * FROM salud_especie"; // Cambia 'calidad_agua' a la tabla correcta si es necesario
 $result = $db->query($sql);
 
 // Comprobar si hay resultados y mostrarlos en el PDF
 if ($result && $result->num_rows > 0) {
    while ($row = $result->fetch_assoc()) {
-      $pdf->Cell(35, 10, utf8_decode($row['nombre']), 1, 0, 'C', 0);
-      $pdf->Cell(53, 10, utf8_decode($row['descripcion']), 1, 0, 'C', 0);
-      $pdf->Cell(40, 10, utf8_decode($row['habitad']), 1, 0, 'C', 0);
-      $pdf->Cell(30, 10, utf8_decode($row['temperatura']), 1, 0, 'C', 0);
-      $pdf->Cell(50, 10, utf8_decode($row['cuidados']), 1, 0, 'C', 0);
-      $pdf->Cell(35, 10, utf8_decode($row['fk_tipo_especie']), 1, 0, 'C', 0);
-      $pdf->Cell(35, 10, utf8_decode($row['fk_alimento']), 1, 1, 'C', 0);
+      $pdf->Cell(25, 10, utf8_decode($row['fecha_revision']), 1, 0, 'C', 0);
+      $pdf->Cell(25, 10, utf8_decode($row['fk_especie']), 1, 0, 'C', 0);
+      $pdf->Cell(20, 10, utf8_decode($row['peso']), 1, 0, 'C', 0);
+      $pdf->Cell(20, 10, utf8_decode($row['longitud']), 1, 0, 'C', 0);
+      $pdf->Cell(25, 10, utf8_decode($row['temperatura']), 1, 0, 'C', 0);
+      $pdf->Cell(30, 10, utf8_decode($row['estado_general']), 1, 0, 'C', 0);
+      $pdf->Cell(35, 10, utf8_decode($row['comportamiento']), 1, 0, 'C', 0);
+      $pdf->Cell(35, 10, utf8_decode($row['sintomas']), 1, 0, 'C', 0);
+      $pdf->Cell(35, 10, utf8_decode($row['observaciones']), 1, 0, 'C', 0);
+      $pdf->Cell(30, 10, utf8_decode($row['fk_persona']), 1, 1, 'C', 0);
       
       
    }

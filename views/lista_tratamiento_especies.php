@@ -13,10 +13,14 @@
         <div class="aside"><?php include("layout/aside.php") ?></div>
 
         <div class="tabla">
+            <h2>REGISTRO DE LOS TRATAMIENTOS</h2>
             <form method="get" action="" class="buscador">
                 <input type="text" name="busqueda" id="busqueda" value="" placeholder="Buscar" class="input" onkeyup="buscarTratamiento()">
             </form>
-
+            <div>
+                <a href="../fpdf/reporte_tratamientos.php" target="_blank">Generar reporte</a>
+            </div>
+            <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
             <table>
                 <thead>
                     <tr>
