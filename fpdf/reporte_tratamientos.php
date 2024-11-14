@@ -89,7 +89,7 @@ $db = $conn->conectar(); // Asegúrate de que este método esté definido en tu 
 $sql = "SELECT * FROM salud_especie"; // Cambia 'calidad_agua' a la tabla correcta si es necesario
 $result = $db->query($sql);
 
-// Comprobar si hay resultados y mostrarlos en el PDF
+// Comprobar si hay resultados y mostrarlos en el PDF.
 if ($result && $result->num_rows > 0) {
    while ($row = $result->fetch_assoc()) {
       $pdf->Cell(25, 10, utf8_decode($row['fecha_revision']), 1, 0, 'C', 0);
