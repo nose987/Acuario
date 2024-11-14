@@ -28,6 +28,16 @@
                     </div>
                 </div>
             </a>
+            <a href="lista_usuario.php">
+                <div class="tarjeta"> 
+                    <div class="imagen">
+                        <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                    </div>
+                    <div class="cont">
+                        <h2>Lista Empleados</h2>
+                    </div>
+                </div>
+            </a>
             
             
         </div>

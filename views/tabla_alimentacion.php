@@ -1,8 +1,8 @@
 <?php
-include '../functions/mostrar_alimentacion.php'; // Asegúrate de que este archivo tenga la clase Alimentacion
+include '../functions/mostrar_alimentacion.php';
 
 $alimentacion = new Alimentacion();
-$programaciones = $alimentacion->obtener_alimentacion(); // Llama al método y almacena el resultado en $programaciones
+$programaciones = $alimentacion->obtener_alimentacion();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,7 +15,6 @@ $programaciones = $alimentacion->obtener_alimentacion(); // Llama al método y a
     <title>Tabla alimentación</title>   
 </head>    
 <body>
-
     <?php include 'layout/header.php'; ?>
     <div class="contenido">
         <div class="aside">
@@ -23,11 +22,10 @@ $programaciones = $alimentacion->obtener_alimentacion(); // Llama al método y a
         </div>
         
         <div class="tabla">
-        <h2>REGISTRO DE ALIMENTACION</h2><br>
-        <div>
-        <a href="../fpdf/reporte_alimentacion.php" target="_blank">Generar reporte</a>
-        </div>
-        <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
+            <h2>REGISTRO DE ALIMENTACION</h2><br>
+            <div>
+                <a href="../fpdf/reporte_alimentacion.php" target="_blank">Generar reporte</a>
+            </div>
             <table>
                 <tr>
                     <th>Registro</th>
@@ -47,9 +45,9 @@ $programaciones = $alimentacion->obtener_alimentacion(); // Llama al método y a
                             <td><?php echo $programacion['descripcion']; ?></td>
                             <td><?php echo $programacion['hora']; ?></td>
                             <td><?php echo $programacion['fecha']; ?></td>
-                            <td><?php echo $programacion['fk_area']; ?></td>
-                            <td><?php echo $programacion['fk_especie']; ?></td>
-                            <td><?php echo $programacion['fk_inventario']; ?></td>
+                            <td><?php echo $programacion['nombre_area']; ?></td>
+                            <td><?php echo $programacion['nombre_especie']; ?></td>
+                            <td><?php echo $programacion['nombre_alimento']; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -60,8 +58,5 @@ $programaciones = $alimentacion->obtener_alimentacion(); // Llama al método y a
             </table>
         </div>
     </div>
-
 </body>
-
 </html>
-

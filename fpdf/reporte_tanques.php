@@ -83,7 +83,18 @@ $conn = new Conexion();
 $db = $conn->conectar(); // Asegúrate de que este método esté definido en tu clase de conexión
 
 // Consulta para obtener los datos de la calidad del agua
-$sql = "SELECT pk_tanque, capacidad, temperatura, iluminacion, filtracion, fk_area, fk_especie, fecha FROM tanque"; // Cambia 'calidad_agua' a la tabla correcta si es necesario
+$sql = "SELECT 
+            t.pk_tanque, 
+            t.capacidad, 
+            t.temperatura, 
+            t.iluminacion, 
+            t.filtracion, 
+            a.nombre as nombre_area, 
+            e.nombre as nombre_especie, 
+            t.fecha 
+        FROM tanque t
+        INNER JOIN area a ON a.pk_area = t.fk_area 
+        INNER JOIN especie e ON t.fk_especie = e.pk_especie"; // Cambia 'calidad_agua' a la tabla correcta si es necesario
 $result = $db->query($sql);
 
 // Comprobar si hay resultados y mostrarlos en el PDF
@@ -94,8 +105,8 @@ if ($result && $result->num_rows > 0) {
       $pdf->Cell(25, 10, utf8_decode($row['temperatura']), 1, 0, 'C', 0);
       $pdf->Cell(30, 10, utf8_decode($row['iluminacion']), 1, 0, 'C', 0);
       $pdf->Cell(20, 10, utf8_decode($row['filtracion']), 1, 0, 'C', 0);
-      $pdf->Cell(20, 10, utf8_decode($row['fk_area']), 1, 0, 'C', 0);
-      $pdf->Cell(20, 10, utf8_decode($row['fk_especie']), 1, 0, 'C', 0);
+      $pdf->Cell(20, 10, utf8_decode($row['nombre_area']), 1, 0, 'C', 0);
+      $pdf->Cell(20, 10, utf8_decode($row['nombre_especie']), 1, 0, 'C', 0);
       $pdf->Cell(25, 10, utf8_decode($row['fecha']), 1, 1, 'C', 0);
    }
 } else {
@@ -103,4 +114,3 @@ if ($result && $result->num_rows > 0) {
 }
 
 $pdf->Output('Prueba.pdf', 'I');
-?>
