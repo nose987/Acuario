@@ -11,7 +11,7 @@
             box-sizing: border-box;
         }
         header{
-            background-color: whitesmoke;
+            background-color: rgb(0, 128, 200);
             padding: 0;
             margin:0;
         }
@@ -19,7 +19,7 @@
 </head>
 <body>
     <header>
-        <img src="../Storage/icono.png" alt="logo" height="100px">
+        <img src="../Storage/logo.jpg" alt="logo" height="100px" width="180px">
     </header>
 </body>
 </html>

@@ -30,6 +30,10 @@ $especies = $especie->mostrar();
                 <a href="../fpdf/reporte_especies.php" target="_blank">Generar reporte</a>
             </div>
             <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
+            <form method="get" action="" class="buscador">
+                <input type="text" name="busqueda" id="busqueda" value="" placeholder="Buscar" class="input" onkeyup="buscarEspecie()">
+                
+            </form>
             <table>
                 <thead>
                     <tr>
@@ -43,7 +47,7 @@ $especies = $especie->mostrar();
                         <th>Imagen</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabla-resultados">
                     <?php foreach ($especies as $especie): ?>
                         <tr>
                             <td><?= htmlspecialchars($especie['nombre']) ?></td>
@@ -70,5 +74,6 @@ $especies = $especie->mostrar();
     -->
 
 </body>
+<script src="../functions/buscador.js"></script>
 
 </html>

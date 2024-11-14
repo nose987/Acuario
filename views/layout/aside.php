@@ -9,7 +9,7 @@
         .container-nav {
             width: 100%;
             height: 100%;
-            background-color: whitesmoke;
+            background-color: rgb(0, 128, 200);
             
         }
 
@@ -25,14 +25,14 @@
             text-decoration: none;
             width: 100%;
             padding: 10px;
-            color: black;
+            color: white;
             border-left: 5px solid transparent;
             transition: all 500ms ease;
             cursor: pointer;
         }
 
         .container-nav nav a:hover {
-            background-color: grey;
+            background-color: rgb(30, 144, 255);
             color: white;
             border-left: 5px solid white;
         }

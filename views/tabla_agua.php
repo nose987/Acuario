@@ -25,10 +25,10 @@ $calidades = $agua->obtener_calidad_agua();
         <div class="tabla">
             <h2>REGISTRO DE TANQUES</h2><br>
             <div>
-                <a href="../fpdf/reporte_agua.php" target="_blank">Generar reporte</a>
+                <a  href="../fpdf/reporte_agua.php" target="_blank">Generar reporte</a>
             </div>
             <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
-            <table border="1">
+            <table >
                 <tr>
                     <th>Registro</th>
                     <th>pH</th>
