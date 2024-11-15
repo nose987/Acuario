@@ -23,7 +23,7 @@ $calidades = $agua->obtener_calidad_agua();
             <?php include("layout/aside.php") ?>
         </div>
         <div class="tabla">
-            <h2>REGISTRO DE TANQUES</h2><br>
+            <h2>REGISTRO DE LA CALIDAD DEL AGUA</h2><br>
             <div>
                 <a  href="../fpdf/reporte_agua.php" target="_blank">Generar reporte</a>
             </div>

@@ -25,9 +25,9 @@ $empleados = $empleado->mostrar();
             <?php include("layout/aside.php") ?>
         </div>
         <div class="tabla">
-            <h2>Lista empleados</h2><br>
+            <h2>REGISTRO DE USUARIOS</h2><br>
             <div>
-                <a href="../fpdf/reporte_especies.php" target="_blank">Generar reporte</a>
+                <a href="../fpdf/reporte_usuario.php" target="_blank">Generar reporte</a>
             </div>
             <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS
             <form method="get" action="" class="buscador">

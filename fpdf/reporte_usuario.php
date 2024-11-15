@@ -16,31 +16,31 @@ class PDF extends FPDF
       $this->SetTextColor(103);
 
       /* Información adicional */
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(96, 10, utf8_decode("Ubicación : "), 0, 0, '', 0);
+      $this->Cell(96, 10, utf8_decode("Ubicación : Puerto Vallarta, Jalisco"), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(59, 10, utf8_decode("Teléfono : "), 0, 0, '', 0);
+      $this->Cell(59, 10, utf8_decode("Teléfono : 322 227 0603 "), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(85, 10, utf8_decode("Correo : "), 0, 0, '', 0);
+      $this->Cell(85, 10, utf8_decode("Correo : reino1acuatico@gmail.com "), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(85, 10, utf8_decode("Sucursal : "), 0, 0, '', 0);
+      $this->Cell(85, 10, utf8_decode("Sucursal : Las Glorias, 48333 Puerto Vallarta, Jal. "), 0, 0, '', 0);
       $this->Ln(10);
 
       /* Título del reporte */
       $this->SetTextColor(0, 128, 200);
       $this->Cell(50);
       $this->SetFont('Arial', 'B', 15);
-      $this->Cell(175, 10, utf8_decode("REPORTE DEL REGISTRO DE DIAGNOSTICO DE ESPECIES "), 0, 1, 'C', 0);
+      $this->Cell(175, 10, utf8_decode("REPORTE DEL REGISTRO DE USUARIOS "), 0, 1, 'C', 0);
       $this->Ln(7);
 
       /* Campos de la tabla */
@@ -48,14 +48,14 @@ class PDF extends FPDF
       $this->SetTextColor(255, 255, 255);
       $this->SetDrawColor(163, 163, 163);
       $this->SetFont('Arial', 'B', 11);
-      $this->Cell(35, 10, utf8_decode('Fecha Diag.'), 1, 0, 'C', 1);
-      $this->Cell(53, 10, utf8_decode('Especie'), 1, 0, 'C', 1);
-      $this->Cell(40, 10, utf8_decode('Fecha Rev.'), 1, 0, 'C', 1);
-      $this->Cell(30, 10, utf8_decode('Estado Gral.'), 1, 0, 'C', 1);
-      $this->Cell(50, 10, utf8_decode('Gravedad'), 1, 0, 'C', 1);
-      $this->Cell(35, 10, utf8_decode('Descripción'), 1, 0, 'C', 1);
-      $this->Cell(35, 10, utf8_decode('Veterinario'), 1, 1, 'C', 1);
-        
+      $this->Cell(37, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
+      $this->Cell(52, 10, utf8_decode('Correo'), 1, 0, 'C', 1);
+      $this->Cell(28, 10, utf8_decode('Fecha Nac.'), 1, 0, 'C', 1);
+      $this->Cell(28, 10, utf8_decode('Num. Tel.'), 1, 0, 'C', 1);
+      $this->Cell(22, 10, utf8_decode('Género'), 1, 0, 'C', 1);
+      $this->Cell(40, 10, utf8_decode('Dirección'), 1, 0, 'C', 1);
+      $this->Cell(35, 10, utf8_decode('Rol'), 1, 0, 'C', 1);
+      $this->Cell(35, 10, utf8_decode('area'), 1, 1, 'C', 1);
    }
 
    // Pie de página
@@ -83,21 +83,20 @@ $conn = new Conexion();
 $db = $conn->conectar(); // Asegúrate de que este método esté definido en tu clase de conexión
 
 // Consulta para obtener los datos de la calidad del agua
-$sql = "SELECT * FROM whjvfbhjerdiagnostico"; // Cambia 'calidad_agua' a la tabla correcta si es necesario
+$sql = "SELECT * FROM persona"; // Cambia 'calidad_agua' a la tabla correcta si es necesario
 $result = $db->query($sql);
 
 // Comprobar si hay resultados y mostrarlos en el PDF
 if ($result && $result->num_rows > 0) {
    while ($row = $result->fetch_assoc()) {
-      $pdf->Cell(35, 10, utf8_decode($row['fecha_diagnostico']), 1, 0, 'C', 0);
-      $pdf->Cell(53, 10, utf8_decode($row['fk_salud_especie']), 1, 0, 'C', 0);
-      $pdf->Cell(40, 10, utf8_decode($row['fecha_revision']), 1, 0, 'C', 0);
-      $pdf->Cell(30, 10, utf8_decode($row['estado_general']), 1, 0, 'C', 0);
-      $pdf->Cell(50, 10, utf8_decode($row['gravedad']), 1, 0, 'C', 0);
-      $pdf->Cell(35, 10, utf8_decode($row['descripcion']), 1, 0, 'C', 0);
-      $pdf->Cell(35, 10, utf8_decode($row['fk_persona']), 1, 1, 'C', 0);
-      
-      
+      $pdf->Cell(37, 10, utf8_decode($row['nombre']), 1, 0, 'C', 0);
+      $pdf->Cell(52, 10, utf8_decode($row['correo']), 1, 0, 'C', 0);
+      $pdf->Cell(28, 10, utf8_decode($row['fecha_nac']), 1, 0, 'C', 0);
+      $pdf->Cell(28, 10, utf8_decode($row['telefono']), 1, 0, 'C', 0);
+      $pdf->Cell(22, 10, utf8_decode($row['genero']), 1, 0, 'C', 0);
+      $pdf->Cell(40, 10, utf8_decode($row['direccion']), 1, 0, 'C', 0);
+      $pdf->Cell(35, 10, utf8_decode($row['fk_roles']), 1, 0, 'C', 0);
+      $pdf->Cell(35, 10, utf8_decode($row['fk_area']), 1, 1, 'C', 0);
    }
 } else {
    $pdf->Cell(0, 10, utf8_decode("No se encontraron datos."), 1, 1, 'C', 0);
