@@ -53,7 +53,8 @@
         <a href="panel_tanque.php">Tanques</a>
         <a href="panel_agua.php">Control del agua</a>
         <a href="panel_de_especies.php">Especies</a>
-        <a href="">Equipos</a>
+        <a href="panel_equipos.php">Equipos</a>
+        <a href="panel_mantenimiento_equipo.php">Mantenimiento de equipos</a>
         <a href="panel_empleados.php">Empleados</a>
         <a href="panel_salud_especies.php">Salud especies</a>
     </nav>
