@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    min-height: 100vh;
+}
+
+.contenido {
+    display: flex;
+    min-height: calc(100vh - 100px);
+}
+
+/* Aside Navigation */
+.aside {
+    width: 280px;
+    background-color: #0080c8;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+
+
+/* Main Container */
+.container {
+    flex: 1;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-content: start;
+}
+
+.section-title {
+    grid-column: 1 / -1;
+    color: #333;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #0080c8;
+}
+
+.tarjeta {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.imagen {
+    position: relative;
+    padding-top: 60%;
+    background-color: #f8f9fa;
+}
+
+.imagen img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cont {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cont h2 {
+    color: #333;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.cont p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.card-footer {
+    padding: 1rem 1.5rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #eee;
+}
+
+/* Contenedores de Tarjetas */
+.cards-container {
+    display: none;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.cards-container.active {
+    display: grid;
+}
+
+@media (max-width: 768px) {
+    .contenido {
+        flex-direction: column;
+    }
+
+    .aside {
+        width: 100%;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+}
+
+a{
+    text-decoration: none;
+}

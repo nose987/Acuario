@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Storage/logo.jpg">
-    <link rel="stylesheet" href="../Styles/inventario/registro_medicamento.css">
+    <link rel="stylesheet" href="../Styles/formulario.css">
     <title>Registro de Detalle de Tratamiento</title>
 </head>
 <body>

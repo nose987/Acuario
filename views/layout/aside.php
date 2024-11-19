@@ -6,55 +6,77 @@
             z-index: 1;
         }
 
-        .container-nav {
-            width: 100%;
-            height: 100%;
-            background-color: rgb(0, 128, 200);
-            
-        }
-
-        .container-nav nav {
+        .nav-link {
             display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 1px;
-        }
-
-        .container-nav nav a {
-            display: block;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            color: white;
             text-decoration: none;
-            width: 100%;
-            padding: 10px;
-            color: white;
-            border-left: 5px solid transparent;
-            transition: all 500ms ease;
-            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            gap: 0.75rem;
         }
 
-        .container-nav nav a:hover {
-            background-color: rgb(30, 144, 255);
-            color: white;
-            border-left: 5px solid white;
+        .nav-link:hover,
+        .nav-link.active {
+            background-color: #1e90ff;
+            border-left-color: white;
+            padding-left: 2rem;
         }
 
-       
+        .icon, svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        
     </style>
 
 </head>
 
 
 
-<div class="container-nav">
-   
-    <nav>
-        <a href="">Inicio</a>
-        <a href="panel_alimentacion.php">Alimentacion</a>
-        <a href="panel_inventario.php">Inventario</a>
-        <a href="panel_tanque.php">Tanques</a>
-        <a href="panel_agua.php">Control del agua</a>
-        <a href="panel_de_especies.php">Especies</a>
-        <a href="">Equipos</a>
-        <a href="panel_empleados.php">Empleados</a>
-        <a href="panel_salud_especies.php">Salud especies</a>
-    </nav>
-</div>
+
+<nav>
+    <a href="panel.php" class="nav-link" data-section="inicio"><img src="../Storage/iconos/home-icon.png" alt="" class="icon">Inicio</a>
+    <a href="panel.php" class="nav-link" data-section="inventario"><img src="../Storage/iconos/inventory-icon.png" alt="" class="icon">Inventario</a>
+    <a href="panel.php" class="nav-link" data-section="agua"><img src="../Storage/iconos/water-icon2.png" alt="" class="icon">Control de agua</a>
+    <a href="panel.php" class="nav-link" data-section="alimentacion"><img src="../Storage/iconos/food-icon.png" alt="" class="icon">Alimentación</a>
+    <a href="panel.php" class="nav-link" data-section="tanque"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base del tanque -->
+  <rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+  
+  <!-- Pez simple -->
+  <path d="M8 13 C8 13, 10 10, 12 13 C14 10, 16 13, 16 13" fill="none" stroke="currentColor" stroke-width="2"/>
+  
+  <!-- Plantas simples -->
+  <path d="M5 18 C5 18, 6 15, 7 18" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M17 18 C17 18, 18 15, 19 18" stroke="currentColor" stroke-width="2" fill="none"/>
+</svg>Tanque</a>
+    <a href="panel.php" class="nav-link" data-section="salud"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pez estilizado -->
+  <path 
+    d="M12 6
+    C 15 6, 18 8, 18 12
+    C 18 16, 15 18, 12 18
+    C 9 18, 6 16, 6 12
+    C 6 8, 9 6, 12 6"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  />
+  
+  <!-- Cruz médica -->
+  <path 
+    d="M12 9 L12 15 M9 12 L15 12" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    stroke-linecap="round"
+  />
+</svg>Salud de especies</a>
+    <a href="panel.php" class="nav-link" data-section="empleado"><img src="../Storage/iconos/users-icon.png" alt="" class="icon">Empleados</a>
+    <a href="panel.php" class="nav-link" data-section="especie"><img src="../Storage/iconos/fish-icon.png" alt="" class="icon">Especies</a>
+    
+</nav>
+
+<script src="../../functions/aside.js"></script>

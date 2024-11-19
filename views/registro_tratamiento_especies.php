@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Storage/logo.jpg">
-    <link rel="stylesheet" href="../Styles/inventario/registro_medicamento.css">
+    <link rel="stylesheet" href="../Styles/formulario.css">
     <title>Registro de Tratamiento</title>
 </head>
 <body>
     <?php include("layout/header.php") ?>
     <div class="contenido">
-        <aside>
-            <?php include("layout/aside.php") ?>
-        </aside>
+        <!--<aside>
+            <?php //include("layout/aside.php") ?>
+        </aside>-->
         <div class="container">
             <div class="titulo">
                 <h1>Registro de Tratamiento</h1>
@@ -76,7 +76,7 @@
 
                     <div class="btn_formulario">
                         <input type="submit" value="Guardar" class="btn">
-                        <a class="btn" type="button" onclick="window.location.href='panel_salud_especies.php'">Cancelar</a>
+                        <a class="btn" type="button" onclick="window.location.href='panel.php'">Cancelar</a>
                     </div>
                 </div>
             </form>

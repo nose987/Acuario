@@ -10,7 +10,7 @@ $saludEspecies = new SaludEspecies();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Storage/logo.jpg">
-    <link rel="stylesheet" href="../Styles/inventario/registro_medicamento.css">
+    <link rel="stylesheet" href="../Styles/formulario.css">
     <title>Registro Salud Especies</title>
 </head>
 
@@ -20,9 +20,9 @@ $saludEspecies = new SaludEspecies();
 
 
     <div class="contenido">
-        <aside>
-            <?php include("layout/aside.php") ?>
-        </aside>
+        <!--<aside>
+            <?php //include("layout/aside.php") ?>
+        </aside>-->
         <div class="container">
             <div class="titulo">
                 <h1>Revisión de especies</h1>
@@ -83,7 +83,7 @@ $saludEspecies = new SaludEspecies();
 
                     <div class="btn_formulario">
                         <input type="submit" value="Guardar" class="btn" onclick="">
-                        <a class="btn" type="button" onclick="window.location.href='panel_salud_especies.php'">cancelar</a>
+                        <a class="btn" type="button" onclick="window.location.href='panel.php'">Cancelar</a>
                     </div>
                 </div>
             </form>
