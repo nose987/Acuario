@@ -1,3 +1,17 @@
+<?php
+include("../Class/Clase_salud_especies.php");
+$saludEspecies = new SaludEspecies();
+$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+$porPagina = 3;
+
+if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
+    $busqueda = $_GET['busqueda'];
+    $resultado = $saludEspecies->buscarPaginado($busqueda, $pagina, $porPagina);
+} else {
+    $resultado = $saludEspecies->mostrarPaginado($pagina, $porPagina);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,18 +27,27 @@
 <body>
     <?php include("layout/header.php") ?>
     <div class="contenido">
-        <div class="aside"><?php include("layout/aside.php") ?></div>
-        
+        <!--<div class="aside"><?php //include("layout/aside.php") 
+                                ?></div>-->
+
         <div class="tabla">
-        <h2>REGISTRO DE SALUD DE LAS ESPECIES</h2>
-            <form method="get" action="" class="buscador">
-                <input type="text" name="busqueda" id="busqueda" value="" placeholder="Buscar" class="input" onkeyup="buscarSalud()">
-            </form>
-            
-            <div>
-                <a href="../fpdf/reporte_salud_especies.php" target="_blank">Generar reporte</a>
+            <div class="controles">
+                <a onclick="window.location.href='panel.php'" class="btn">Regresar</a>
+                <h2>REGISTRO DE SALUD DE LAS ESPECIES</h2>
+                <a href="../fpdf/reporte_salud_especies.php" target="_blank" class="generar-reporte">Generar reporte</a>
+
             </div>
-            <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
+
+           <!--<form method="get" action="" class="buscador">
+                <div class="search-content">
+                    <img src="../Storage/iconos/search-icon.png" class="search-icon">
+                    <input type="text" name="busqueda" id="busqueda" value="" placeholder="Buscar" class="input" onkeyup="buscarSalud()">
+
+                </div>
+            </form>
+
+
+            LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
             <table>
                 <thead>
                     <tr>
@@ -42,13 +65,10 @@
                 </thead>
                 <tbody id="tabla-resultados">
                     <?php
-                    include("../Class/Clase_salud_especies.php");
-                    $saludEspecies = new SaludEspecies();
-                    $datos = $saludEspecies->mostrar();
-                    if ($datos->num_rows === 0) {
-                        echo "No se encontraron datos";
+                    if ($resultado['datos']->num_rows === 0) {
+                        echo "<tr><td colspan='10' style='text-align: center;'>No se encontraron datos</td></tr>";
                     } else {
-                        while ($fila = $datos->fetch_assoc()) {
+                        while ($fila = $resultado['datos']->fetch_assoc()) {
                     ?>
                             <tr>
                                 <td><?php echo date('Y-m-d H:i', strtotime($fila['fecha_revision'])); ?></td>
@@ -68,8 +88,14 @@
                     ?>
                 </tbody>
             </table>
+
+            <?php
+            $busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
+            echo generarPaginacion($resultado['totalPaginas'], $resultado['paginaActual'], $busqueda);
+            ?>
         </div>
     </div>
 </body>
 <script src="../functions/buscador_salud.js"></script>
+
 </html>

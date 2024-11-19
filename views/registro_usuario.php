@@ -9,7 +9,7 @@ $opcionesFormulario = new OpcionesFormulario();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/inventario/registro_medicamento.css">
+    <link rel="stylesheet" href="../Styles/formulario.css">
     <link rel="icon" href="../Storage/logo.jpg">
     <title>Registro de Usuario</title>
 </head>
@@ -18,9 +18,9 @@ $opcionesFormulario = new OpcionesFormulario();
 <?php include("layout/header.php")?>
 
 <div class="contenido">
-    <aside>
-    <?php include("layout/aside.php") ?>
-    </aside>
+    <!--<aside>
+    <?php //include("layout/aside.php") ?>
+    </aside>-->
     <div class="container">
         <div class="titulo">
 
@@ -76,6 +76,7 @@ $opcionesFormulario = new OpcionesFormulario();
                 <div class="btn_formulario">
 
                     <input type="submit" value="Registrar" class="btn">
+                    <a class="btn" type="button" onclick="window.location.href='panel.php'">Cancelar</a>
                 </div>
             </div>
         </form>

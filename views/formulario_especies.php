@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/inventario/registro_medicamento.css">
+    <link rel="stylesheet" href="../Styles/formulario.css">
     <title>Formulario de especies</title>
 </head>
 
@@ -12,9 +12,9 @@
 
     <?php include("layout/header.php") ?>
     <div class="contenido">
-        <aside>
-            <?php include("layout/aside.php") ?>
-        </aside>
+        <!--<aside>
+            <?php //include("layout/aside.php") ?>
+        </aside>-->
         <div class="container">
             <div class="titulo">
                 <h2>Nueva Especie</h2>
@@ -61,8 +61,8 @@
                     <div class="btn_formulario">
 
                         <input class="btn" type="submit" value="Guardar">
-                        <a  class="btn" type="button" onclick="window.location.href='panel_de_especies.php'">
-                            cancelar
+                        <a  class="btn" type="button" onclick="window.location.href='panel.php'">
+                            Cancelar
                         </a>
                     </div>
 
