@@ -11,36 +11,36 @@ class PDF extends FPDF
       $this->SetFont('Arial', 'B', 19);
       $this->Cell(45);
       $this->SetTextColor(0, 128, 200);
-      $this->Cell(110, 15, utf8_decode('REINO ACUATICO'), 1, 1, 'C', 0);
+      $this->Cell(190, 15, utf8_decode('REINO ACUATICO'), 1, 1, 'C', 0);
       $this->Ln(3);
       $this->SetTextColor(103);
 
       /* Información adicional */
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(96, 10, utf8_decode("Ubicación : "), 0, 0, '', 0);
+      $this->Cell(96, 10, utf8_decode("Ubicación : Puerto Vallarta, Jalisco"), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(59, 10, utf8_decode("Teléfono : "), 0, 0, '', 0);
+      $this->Cell(59, 10, utf8_decode("Teléfono : 322 227 0603 "), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(85, 10, utf8_decode("Correo : "), 0, 0, '', 0);
+      $this->Cell(85, 10, utf8_decode("Correo : reino1acuatico@gmail.com "), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(85, 10, utf8_decode("Sucursal : "), 0, 0, '', 0);
+      $this->Cell(85, 10, utf8_decode("Sucursal : Las Glorias, 48333 Puerto Vallarta, Jal. "), 0, 0, '', 0);
       $this->Ln(10);
 
       /* Título del reporte */
       $this->SetTextColor(0, 128, 200);
       $this->Cell(50);
       $this->SetFont('Arial', 'B', 15);
-      $this->Cell(100, 10, utf8_decode("REPORTE DEL REGISTRO DE ALIMENTACION "), 0, 1, 'C', 0);
+      $this->Cell(175, 10, utf8_decode("REPORTE DEL REGISTRO DE ALIMENTACION "), 0, 1, 'C', 0);
       $this->Ln(7);
 
       /* Campos de la tabla */
@@ -49,13 +49,13 @@ class PDF extends FPDF
       $this->SetDrawColor(163, 163, 163);
       $this->SetFont('Arial', 'B', 11);
       $this->Cell(18, 10, utf8_decode('Registro'), 1, 0, 'C', 1);
-      $this->Cell(20, 10, utf8_decode('Cantidad'), 1, 0, 'C', 1);
-      $this->Cell(52, 10, utf8_decode('Descripción'), 1, 0, 'C', 1);
-      $this->Cell(20, 10, utf8_decode('Hora'), 1, 0, 'C', 1);
-      $this->Cell(25, 10, utf8_decode('Fecha'), 1, 0, 'C', 1);
-      $this->Cell(18, 10, utf8_decode('Área'), 1, 0, 'C', 1);
-      $this->Cell(18, 10, utf8_decode('Especie'), 1, 0, 'C', 1);
-      $this->Cell(20, 10, utf8_decode('Alimento'), 1, 1, 'C', 1);
+      $this->Cell(23, 10, utf8_decode('Cantidad'), 1, 0, 'C', 1);
+      $this->Cell(55, 10, utf8_decode('Descripción'), 1, 0, 'C', 1);
+      $this->Cell(27, 10, utf8_decode('Hora'), 1, 0, 'C', 1);
+      $this->Cell(28, 10, utf8_decode('Fecha'), 1, 0, 'C', 1);
+      $this->Cell(42, 10, utf8_decode('Área'), 1, 0, 'C', 1);
+      $this->Cell(40, 10, utf8_decode('Especie'), 1, 0, 'C', 1);
+      $this->Cell(45, 10, utf8_decode('Alimento'), 1, 1, 'C', 1);
    }
 
    // Pie de página
@@ -73,7 +73,7 @@ class PDF extends FPDF
 }
 
 $pdf = new PDF();
-$pdf->AddPage();
+$pdf->AddPage('L');
 $pdf->AliasNbPages();
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetDrawColor(163, 163, 163);
@@ -98,13 +98,13 @@ $result = $db->query($sql);
 if ($result && $result->num_rows > 0) {
    while ($row = $result->fetch_assoc()) {
       $pdf->Cell(18, 10, utf8_decode($row['pk_alimentacion']), 1, 0, 'C', 0);
-      $pdf->Cell(20, 10, utf8_decode($row['cantidad']), 1, 0, 'C', 0);
-      $pdf->Cell(52, 10, utf8_decode($row['descripcion']), 1, 0, 'C', 0);
-      $pdf->Cell(20, 10, utf8_decode($row['hora']), 1, 0, 'C', 0);
-      $pdf->Cell(25, 10, utf8_decode($row['fecha']), 1, 0, 'C', 0);
-      $pdf->Cell(18, 10, utf8_decode($row['nombre_area']), 1, 0, 'C', 0);
-      $pdf->Cell(18, 10, utf8_decode($row['nombre_especie']), 1, 0, 'C', 0);
-      $pdf->Cell(20, 10, utf8_decode($row['nombre_alimento']), 1, 1, 'C', 0);
+      $pdf->Cell(23, 10, utf8_decode($row['cantidad']), 1, 0, 'C', 0);
+      $pdf->Cell(55, 10, utf8_decode($row['descripcion']), 1, 0, 'C', 0);
+      $pdf->Cell(27, 10, utf8_decode($row['hora']), 1, 0, 'C', 0);
+      $pdf->Cell(28, 10, utf8_decode($row['fecha']), 1, 0, 'C', 0);
+      $pdf->Cell(42, 10, utf8_decode($row['nombre_area']), 1, 0, 'C', 0);
+      $pdf->Cell(40, 10, utf8_decode($row['nombre_especie']), 1, 0, 'C', 0);
+      $pdf->Cell(45, 10, utf8_decode($row['nombre_alimento']), 1, 1, 'C', 0);
    }
 } else {
    $pdf->Cell(0, 10, utf8_decode("No se encontraron datos."), 1, 1, 'C', 0);
