@@ -1,7 +1,7 @@
 
 <?php
-include_once '../Class/conexion.php'; 
-include '../Class/clases.php';
+include_once '../Class/clase_conexion.php'; 
+include_once '../Class/clases.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifica si se completan todos los campos requeridos
