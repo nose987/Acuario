@@ -33,12 +33,14 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     <?php include("layout/header.php") ?>
     <div class="contenido">
         <div class="tabla">
+
             <div class="controles">
                 <a onclick="window.location.href='panel.php'" class="btn">Regresar</a>
                 <h2>LISTA DE EMPLEADOS</h2><br>
                 <div>
                     <a href="../fpdf/reporte_empleados.php" target="_blank" class="generar-reporte">Generar reporte</a>
                 </div>
+
             </div>
 
             <!--<form method="get" action="" class="buscador">

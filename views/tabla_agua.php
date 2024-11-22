@@ -27,12 +27,14 @@ $resultado = $agua->obtener_calidad_agua_paginado($pagina, $porPagina);
     <?php include("layout/header.php") ?>
     <div class="contenido">
         <div class="tabla">
+
             <div class="controles">
                 <a onclick="window.location.href='panel.php'" type="button" class="btn">Regresar</a>
                 <h2>REGISTRO DE CALIDAD DEL AGUA</h2><br>
                 <div>
                     <a href="../fpdf/reporte_agua.php" target="_blank" class="generar-reporte">Generar reporte</a>
                 </div>
+
             </div>
 
             <table>
