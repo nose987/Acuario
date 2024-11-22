@@ -1,4 +1,9 @@
 <?php
+require_once '../Class/clase_login.php';
+$login = new Login();
+$login->protegerPagina();
+?>
+<?php
 include("../Class/clase_tratamiento_especie.php");
 $tratamientos = new Tratamientos();
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;

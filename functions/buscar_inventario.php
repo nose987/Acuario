@@ -1,5 +1,5 @@
 <?php
-include("../Class/clase_inventario.php");
+include_once("../Class/clase_inventario.php");
 $inventario = new Inventario();
 
 $busqueda = $_GET['busqueda'] ?? '';

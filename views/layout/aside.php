@@ -76,6 +76,24 @@
 </svg>Salud de especies</a>
     <a href="panel.php" class="nav-link" data-section="empleado"><img src="../Storage/iconos/users-icon.png" alt="" class="icon">Empleados</a>
     <a href="panel.php" class="nav-link" data-section="especie"><img src="../Storage/iconos/fish-icon.png" alt="" class="icon">Especies</a>
+    <a href="panel.php" class="nav-link" data-section="equipo"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cuerpo principal del filtro -->
+  <rect x="6" y="4" width="12" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+  
+  <!-- Tubo de entrada -->
+  <path d="M4 8 L6 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Tubo de salida -->
+  <path d="M18 8 L20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Símbolo de agua/flujo -->
+  <path d="M10 12 C10 12, 12 10, 14 12" fill="none" stroke="currentColor" stroke-width="2"/>
+  
+  <!-- Burbujas -->
+  <circle cx="20" cy="10" r="1" fill="currentColor"/>
+  <circle cx="20" cy="12" r="1" fill="currentColor"/>
+</svg>Equipos</a>
+    <a href="panel.php" class="nav-link" data-section="mantenimiento"><img src="../Storage/iconos/maintenance-icon.png" alt="" class="icon">Mantenimiento equipos</a>
     
 </nav>
 

@@ -1,0 +1,308 @@
+===Base de datos ges_acuario3
+
+== Estructura de tabla para la tabla agua
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_agua**//|smallint(6)|No|
+|ph|text|No|
+|amoniaco|text|No|
+|nitrato|text|No|
+|nitritos|text|No|
+|fk_tanque|smallint(6)|No|
+|fecha|datetime|No|
+== Volcado de datos para la tabla agua
+
+|1|23|23|32|23|14|2024-11-21 00:00:00
+|2|12|123|123|123|10|2024-11-04 20:17:00
+== Estructura de tabla para la tabla alimentacion
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_alimentacion**//|smallint(6)|No|
+|fk_especie|smallint(6)|No|
+|cantidad|int(11)|No|
+|descripcion|varchar(255)|No|
+|fk_inventario|smallint(6)|No|
+|fecha|date|No|
+|hora|time|No|
+|fk_area|smallint(6)|No|
+== Volcado de datos para la tabla alimentacion
+
+|2|1|40|esparcir poco a poco |2|2024-11-29|09:06:00|1
+|3|1|50|meter la bolsa a la pecera|2|2024-11-05|10:22:00|1
+|4|1|50|meter la bolsa a la pecera|2|2024-11-05|10:22:00|1
+|5|1|50|meter la bolsa a la pecera|2|2024-11-05|10:22:00|1
+|6|1|30|meter la bolsa a la pecera|1|2024-10-30|12:28:00|1
+|7|1|30|meter la bolsa a la pecera|1|2024-10-30|12:28:00|1
+|8|1|40|esparcir poco a poco |1|2024-11-05|20:34:00|1
+|9|1|1|arrojar a la alberca|2|2024-11-04|07:36:00|1
+|10|1|34|asdsgfdb|1|2024-11-07|22:55:00|1
+== Estructura de tabla para la tabla area
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_area**//|smallint(6)|No|
+|nombre|varchar(45)|No|
+|zona|varchar(100)|No|
+|lugar|varchar(150)|No|
+|piso|smallint(6)|No|
+== Volcado de datos para la tabla area
+
+|1|Recepción y Taquilla|fauna de agua dulce|Entrada principal|1
+== Estructura de tabla para la tabla categoria
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_categoria**//|smallint(6)|No|
+|nombre|varchar(45)|No|
+|estatus|smallint(6)|No|
+== Volcado de datos para la tabla categoria
+
+|1|alimento|1
+|2|piezas|1
+|3|medicamento|1
+== Estructura de tabla para la tabla detalle_tratamiento
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_detalle_tratamiento**//|smallint(6)|No|
+|fk_tratamiento|smallint(6)|No|
+|fk_inventario|smallint(6)|No|
+|dosis|varchar(100)|Sí|NULL
+|frecuencia|varchar(100)|Sí|NULL
+|fecha_aplicacion|datetime|No|
+|notas|text|Sí|NULL
+|fk_persona|smallint(6)|No|
+== Volcado de datos para la tabla detalle_tratamiento
+
+== Estructura de tabla para la tabla diagnostico
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_diagnostico**//|smallint(6)|No|
+|fk_salud_especie|smallint(6)|No|
+|fecha_diagnostico|datetime|No|
+|descripcion|text|No|
+|gravedad|enum(&#039;Leve&#039;, &#039;Moderado&#039;, &#039;Grave&#039;, &#039;Crítico&#039;)|No|
+|fk_persona|smallint(6)|No|
+== Volcado de datos para la tabla diagnostico
+
+|1|1|2024-11-07 03:30:07|problemas en las branquias|Leve|16
+|2|1|2024-11-07 03:30:42|problemas en las branquias|Leve|16
+|3|3|2024-11-07 05:08:01|asdaskujndsivnksd|Leve|16
+|4|4|2024-11-14 01:40:30|n b|Leve|16
+== Estructura de tabla para la tabla equipo
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_equipo**//|smallint(6)|No|
+|nombre|varchar(200)|No|
+|fk_tipo_equipo|smallint(6)|No|
+|estado|text|No|
+|fk_tanque|smallint(6)|No|
+|fecha|datetime|No|
+== Volcado de datos para la tabla equipo
+
+== Estructura de tabla para la tabla especie
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_especie**//|smallint(6)|No|
+|nombre|varchar(50)|No|
+|descripcion|text|Sí|NULL
+|habitad|text|No|
+|temperatura|varchar(30)|No|
+|cuidados|text|No|
+|img_especie|text|Sí|NULL
+|fk_tipo_especie|smallint(6)|No|
+|fk_alimento|smallint(11)|No|
+== Volcado de datos para la tabla especie
+
+|1|mojarra|pez|ewrf|30 grados|efc|NULL|1|0
+|2|asfadsv|asd|sdf|34|asd| |1|0
+|3|asd|asd|sdf|2|sdf| |2|0
+== Estructura de tabla para la tabla inventario
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_inventario**//|smallint(6)|No|
+|codigo|varchar(45)|No|
+|nombre|varchar(50)|No|
+|stock|varchar(45)|No|
+|descripcion|varchar(200)|No|
+|fecha|datetime|No|
+|fk_categoria|smallint(6)|No|
+|estatus|smallint(6)|No|
+== Volcado de datos para la tabla inventario
+
+|1|2134124|alimento para peces|424|alimento para peces|2024-11-05 02:31:11|1|1
+|2|87654|alimento para tortugas|5|alimento para tortugas|2024-11-05 02:31:12|1|1
+|3|23r45|medicamento|5|medicamento|2024-11-14 20:24:01|3|1
+== Estructura de tabla para la tabla mantenimiento_equipo
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_mantenimiento_equipo**//|smallint(6)|No|
+|fk_equipo|smallint(6)|No|
+|fecha|datetime|No|
+|fk_tipo_mantenimiento|smallint(6)|No|
+|descripcion|text|No|
+== Volcado de datos para la tabla mantenimiento_equipo
+
+== Estructura de tabla para la tabla persona
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_persona**//|smallint(6)|No|
+|nombre|varchar(100)|No|
+|apaterno|varchar(100)|No|
+|amaterno|varchar(100)|Sí|NULL
+|**correo**|varchar(100)|No|
+|edad|int(11)|Sí|NULL
+|fecha_nac|date|Sí|NULL
+|telefono|varchar(15)|Sí|NULL
+|genero|text|No|
+|direccion|text|No|
+|contrasena|varchar(255)|No|
+|fk_roles|smallint(6)|Sí|NULL
+|fk_area|smallint(6)|Sí|NULL
+== Volcado de datos para la tabla persona
+
+|15|Angel Guadalupe|Coyac|Morales|angelcoyacmo@gmail.com|20|2003-12-12|3251146332|Masculino|Margarita #23|12345678|2|1
+|16|juan|Zapata|Silva|juan@gmail.com|13|2024-11-27|1234567890|Masculino|una calle cualquiera|juan|1|1
+== Estructura de tabla para la tabla roles
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_roles**//|smallint(6)|No|
+|roles|varchar(45)|No|
+|estatus|smallint(6)|No|
+== Volcado de datos para la tabla roles
+
+|1|Veterinario|1
+|2|Cuidador|1
+|3|Administrador|1
+|4|Técnico acuático|1
+|5|Técnico en mantenimiento|1
+== Estructura de tabla para la tabla salud_especie
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_salud_especie**//|smallint(6)|No|
+|fk_especie|smallint(6)|No|
+|fecha_revision|datetime|No|
+|peso|decimal(10,2)|Sí|NULL
+|longitud|decimal(10,2)|Sí|NULL
+|temperatura|decimal(5,2)|Sí|NULL
+|estado_general|enum(&#039;Saludable&#039;, &#039;En tratamiento&#039;, &#039;Crítico&#039;, &#039;En observación&#039;)|No|
+|comportamiento|text|Sí|NULL
+|sintomas|text|Sí|NULL
+|observaciones|text|Sí|NULL
+|fk_persona|smallint(6)|No|
+== Volcado de datos para la tabla salud_especie
+
+|1|1|2024-11-05 00:00:00|12.22|12.23|23.00|Saludable|se comporta bien|nada fuera de lo normal|se mira en perfectas condiciones|16
+|2|1|2024-11-06 22:51:00|23.23|23.23|2.30|Saludable|sdf|sdf|sdf|16
+|3|1|2024-11-08 21:08:00|12.12|12.12|12.20|Crítico|asdasd|asdas|ewrte|15
+|4|1|2024-11-20 20:42:00|12.23|23.23|23.20|Crítico|anda comportandose mas o menos|asdsd|asdasd|16
+== Estructura de tabla para la tabla tanque
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_tanque**//|smallint(6)|No|
+|capacidad|text|No|
+|temperatura|text|No|
+|iluminacion|text|No|
+|filtracion|text|No|
+|fk_area|smallint(6)|No|
+|fk_especie|smallint(6)|No|
+|fecha|datetime|No|
+== Volcado de datos para la tabla tanque
+
+|8|30 litros|30 grados|100 lumenes|si|1|1|2024-10-30 00:00:00
+|9|80 litros|30 grados|100 lumenes|si|1|1|2024-11-04 00:00:00
+|10|20 litros|20 grados|100 lumenes|si|1|1|2024-11-04 00:00:00
+|11|300 litros|10 grados|100 lumenes|si|1|1|2024-11-04 00:00:00
+|12|130 litros|30 grados|100 lumenes|no|1|1|2024-11-04 00:00:00
+|13|20 litros|10 grados|300 lumenes|no|1|1|2024-12-07 00:00:00
+|14|2|2|234|si|1|1|2024-11-21 00:00:00
+|15|2|2|234|si|1|1|2024-11-21 00:00:00
+|16|asd|asd|asd|si|1|3|2024-11-29 00:00:00
+== Estructura de tabla para la tabla tipo_equipo
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_tipo_equipo**//|smallint(6)|No|
+|nombre|varchar(200)|No|
+|estatus|smallint(6)|No|
+== Volcado de datos para la tabla tipo_equipo
+
+== Estructura de tabla para la tabla tipo_especie
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_tipo_especie**//|smallint(6)|No|
+|tipo|varchar(50)|No|
+|estatus|int(11)|Sí|NULL
+== Volcado de datos para la tabla tipo_especie
+
+|1|pez|1
+|2|nose|NULL
+|3|pepe|NULL
+|4|pepe|NULL
+== Estructura de tabla para la tabla tipo_mantenimiento
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_tipo_mantenimiento**//|smallint(6)|No|
+|tipo|varchar(200)|No|
+== Volcado de datos para la tabla tipo_mantenimiento
+
+== Estructura de tabla para la tabla tratamiento
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_tratamiento**//|smallint(6)|No|
+|fk_diagnostico|smallint(6)|No|
+|fecha_inicio|datetime|No|
+|fecha_fin|datetime|Sí|NULL
+|descripcion|text|No|
+|estado|enum(&#039;En curso&#039;, &#039;Completado&#039;, &#039;Suspendido&#039;, &#039;Programado&#039;)|No|
+|instrucciones|text|Sí|NULL
+|observaciones|text|Sí|NULL
+|fk_persona|smallint(6)|No|
+== Volcado de datos para la tabla tratamiento
+
+|1|2|2024-11-13 22:48:00|2024-11-19 19:52:00|asdasd|En curso|asdasd|asdasd|16
+|2|3|2024-11-08 12:09:00|2024-11-15 21:12:00|asd|En curso|asd|NULL|16
+== Estructura de tabla para la tabla usuario
+
+|------
+|Columna|Tipo|Nulo|Predeterminado
+|------
+|//**pk_usuario**//|smallint(6)|No|
+|nombre|varchar(45)|No|
+|password|varchar(200)|No|
+|fk_persona|smallint(6)|No|
+|fk_rol|smallint(6)|No|
+== Volcado de datos para la tabla usuario
+

@@ -1,6 +1,6 @@
 
 <?php
-include '../Class/conexion.php'; 
+include_once '../Class/conexion.php'; 
 include '../Class/clases.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

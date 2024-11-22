@@ -1,5 +1,5 @@
 <?php
-include '../Class/conexion.php';
+include_once '../Class/conexion.php';
 
 class Alimentacion {
     private $conn;

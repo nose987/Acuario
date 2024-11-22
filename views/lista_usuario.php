@@ -1,4 +1,9 @@
 <?php
+require_once '../Class/clase_login.php';
+$login = new Login();
+$login->protegerPagina();
+?>
+<?php
 include("../functions/mostrar_empleados.php");
 $empleado = new mostrarEmpleados();
 

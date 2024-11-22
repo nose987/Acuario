@@ -1,9 +1,9 @@
 <?php 
+require_once("../acuario/clases/conexion.php");
 class Tipo 
 {
     function __construct() 
     {
-        require_once("../acuario/clases/conexion.php");
         $this->conexion=new Conexion();
     }
 
