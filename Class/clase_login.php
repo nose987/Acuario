@@ -1,5 +1,5 @@
 <?php 
-require_once("conexion.php");
+require_once("clase_conexion.php");
 
 class Login{
     private $conexion;
