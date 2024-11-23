@@ -1,12 +1,11 @@
 <?php
-include_once '../Class/conexion.php'; 
+include_once '../Class/clase_conexion.php'; 
 
 class Mantenimiento {
     private $conn;
 
     public function __construct() {
-        $conexion = new Conexion();
-        $this->conn = $conexion->conn;
+        $this->conn = Conexion::conectar();
     }
 
     public function mostrar_mante() {

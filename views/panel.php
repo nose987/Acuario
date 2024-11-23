@@ -24,9 +24,9 @@ if(!isset($_SESSION["usuario_id"])){
 <body>
     <?php include("layout/header.php");
     
-    print_r($_SESSION);
+    /*print_r($_SESSION);*/
     ?>
-    <a href="../functions/cerrarsesion.php">cerrar sesion</a>
+    
     
 
     <div class="contenido">

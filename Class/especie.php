@@ -1,12 +1,12 @@
 <?php 
 class Especie 
 {
-
+    private $conexion;
     
     function __construct() 
     {
-        require_once("../acuario/clases/conexion.php");
-        $this->conexion=new Conexion();
+        require_once("clase_conexion.php");
+        $this->conexion = Conexion::conectar();
     }
 
     function insertar($nombre,$descripcion,$habitad,$temperatura,$cuidados,$img_especie,$fk_tipo_especie,$fk_alimento)

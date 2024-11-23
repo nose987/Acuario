@@ -15,7 +15,7 @@ body {
     min-height: calc(100vh - 100px);
 }
 
-/* Aside Navigation */
+
 .aside {
     width: 280px;
     background-color: #0080c8;
@@ -24,7 +24,7 @@ body {
 
 
 
-/* Main Container */
+
 .container {
     flex: 1;
     padding: 2rem;
@@ -88,17 +88,7 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.cont p {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
 
-.card-footer {
-    padding: 1rem 1.5rem;
-    background-color: #f8f9fa;
-    border-top: 1px solid #eee;
-}
 
 /* Contenedores de Tarjetas */
 .cards-container {
