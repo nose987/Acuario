@@ -1,5 +1,5 @@
 <?php
-include '../Class/clases.php';
+include_once '../Class/clases.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ph = $_POST['ph'];

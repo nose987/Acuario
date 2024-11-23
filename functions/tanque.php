@@ -1,5 +1,5 @@
 <?php
-require_once '../Class/conexion.php';
+require_once '../Class/clase_conexion.php';
 
 class Tanque
 {
@@ -7,8 +7,7 @@ class Tanque
 
     public function __construct()
     {
-        $conexion = new Conexion();
-        $this->conn = $conexion->conn;
+        $this->conn = Conexion::conectar();
     }
     public function obtener_tanques()
     {

@@ -1,10 +1,12 @@
 <?php 
+require_once("clase_conexion.php");
 class Tipo 
 {
+
+    private $conexion;
     function __construct() 
     {
-        require_once("../acuario/clases/conexion.php");
-        $this->conexion=new Conexion();
+        $this->conexion = Conexion::conectar();
     }
 
     function insertar($tipo)

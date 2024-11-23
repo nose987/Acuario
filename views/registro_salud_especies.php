@@ -1,4 +1,9 @@
 <?php
+require_once '../Class/clase_login.php';
+$login = new Login();
+$login->protegerPagina();
+?>
+<?php
 include_once("../Class/Clase_salud_especies.php");
 $saludEspecies = new SaludEspecies();
 ?>

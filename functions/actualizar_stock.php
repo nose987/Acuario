@@ -1,5 +1,5 @@
 <?php
-include("../Class/clase_conexion.php");
+include_once("../Class/clase_conexion.php");
 class ActualizarStock {
     private $conexion;
 

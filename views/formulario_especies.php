@@ -1,3 +1,8 @@
+<?php
+require_once '../Class/clase_login.php';
+$login = new Login();
+$login->protegerPagina();
+?>
 <!DOCTYPE html>
 <html lang="es">
 

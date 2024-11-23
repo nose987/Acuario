@@ -1,5 +1,10 @@
 <?php
-include '../functions/mostrar_agua.php';
+require_once '../Class/clase_login.php';
+$login = new Login();
+$login->protegerPagina();
+?>
+<?php
+include_once '../functions/mostrar_agua.php';
 
 $agua = new Agua();
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;

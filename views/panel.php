@@ -1,3 +1,15 @@
+<?php 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if(!isset($_SESSION["usuario_id"])){
+    header("Location: login.php");
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,7 +22,12 @@
 </head>
 
 <body>
-    <?php include("layout/header.php") ?>
+    <?php include("layout/header.php");
+    
+    /*print_r($_SESSION);*/
+    ?>
+    
+    
 
     <div class="contenido">
         <div class="aside"><?php include("layout/aside.php") ?></div>
@@ -251,6 +268,57 @@
                         </div>
                         <div class="cont">
                             <h2>Registrar tipo de especies</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+            <!-- Sección de equipos -->
+            <div class="cards-container" id="equipo-section">
+                <h1 class="section-title">Gestión de equipos</h1>
+                <a href="formulario_equipo.php">
+                    <div class="tarjeta"> 
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Registrar equipos</h2>
+                        </div>
+                    </div>
+                </a>
+                <a href="tabla_equipo.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Lista de equipos</h2>
+                        </div>
+                    </div>
+                </a>
+                
+
+            </div>
+            <!-- Sección de mantenimiento -->
+            <div class="cards-container" id="mantenimiento-section">
+                <h1 class="section-title">Mantenimiento de equipos</h1>
+                <a href="formulario_mantenimiento.php">
+                    <div class="tarjeta"> 
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Registrar mantenimiento</h2>
+                        </div>
+                    </div>
+                </a>
+                <a href="tabla_mantenimiento.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Lista de mantenimientos</h2>
                         </div>
                     </div>
                 </a>

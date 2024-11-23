@@ -1,11 +1,11 @@
 <?php
-include_once 'conexion.php'; // Cambiar a include_once para evitar múltiples inclusiones
+include_once 'clase_conexion.php'; // Cambiar a include_once para evitar múltiples inclusiones
 
 class OpcionesFormulario {
     private $conn;
 
     public function __construct() {
-        $this->conn = new Conexion(); 
+        $this->conn = Conexion::conectar();
     }
 
     public function obtenerOpcionesAreas() {
@@ -93,8 +93,7 @@ class ValidarUsuario {
     private $conn;
 
     public function __construct() {
-        $conexion = new Conexion();
-        $this->conn = $conexion->conn;
+        $this->conn = Conexion::conectar();
     }
 
     // Método para registrar un usuario
@@ -186,8 +185,7 @@ class Tanque {
     private $conn;
 
     public function __construct() {
-        $conexion = new Conexion();  // Crea una instancia de la clase Conexion
-        $this->conn = $conexion->conn;  // Obtiene la conexión
+        $this->conn = Conexion::conectar();
     }
 
     public function registrar_tanque($capacidad, $temperatura, $iluminacion, $filtracion, $fk_area, $fk_especie, $fecha) {
@@ -215,8 +213,7 @@ class Inventario {
     private $conn;
 
     public function __construct() {
-        $conexion = new Conexion();  // Crea una instancia de la clase Conexion
-        $this->conn = $conexion->conn;  // Obtiene la conexión
+        $this->conn = Conexion::conectar();
     }
 
     public function registrar_alimentacion($cantidad, $descripcion, $hora, $fecha, $fk_area, $fk_especie, $fk_inventario) {
@@ -238,8 +235,7 @@ class CalidadAgua {
     private $conn;
 
     public function __construct() {
-        $conexion = new Conexion();
-        $this->conn = $conexion->conn;
+        $this->conn = Conexion::conectar();
     }
 
     public function registrarCalidadAgua($ph, $amoniaco, $nitrato, $nitritos, $fk_tanque, $fecha) {
