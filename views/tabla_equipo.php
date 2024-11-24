@@ -50,6 +50,7 @@ $equipo = $equipo->mostrar();
                                 <td><?php echo $equipo['estado']; ?></td>
                                 <td><?php echo $equipo['fk_tanque']; ?></td>
                                 <td><?php echo $equipo['fecha']; ?></td>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
