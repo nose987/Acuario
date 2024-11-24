@@ -16,31 +16,31 @@ class PDF extends FPDF
       $this->SetTextColor(103);
 
       /* Información adicional */
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(96, 10, utf8_decode("Ubicación : "), 0, 0, '', 0);
+      $this->Cell(96, 10, utf8_decode("Ubicación : Puerto Vallarta, Jalisco"), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(59, 10, utf8_decode("Teléfono : "), 0, 0, '', 0);
+      $this->Cell(59, 10, utf8_decode("Teléfono : 322 227 0603 "), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(85, 10, utf8_decode("Correo : "), 0, 0, '', 0);
+      $this->Cell(85, 10, utf8_decode("Correo : reino1acuatico@gmail.com "), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(85, 10, utf8_decode("Sucursal : "), 0, 0, '', 0);
+      $this->Cell(85, 10, utf8_decode("Sucursal : Las Glorias, 48333 Puerto Vallarta, Jal. "), 0, 0, '', 0);
       $this->Ln(10);
 
       /* Título del reporte */
       $this->SetTextColor(0, 128, 200);
       $this->Cell(50);
       $this->SetFont('Arial', 'B', 15);
-      $this->Cell(175, 10, utf8_decode("REPORTE DEL REGISTRO DE DIAGNOSTICO DE ESPECIES "), 0, 1, 'C', 0);
+      $this->Cell(175, 10, utf8_decode("REPORTE DEL REGISTRO DE INVENTARIO "), 0, 1, 'C', 0);
       $this->Ln(7);
 
       /* Campos de la tabla */
@@ -48,14 +48,12 @@ class PDF extends FPDF
       $this->SetTextColor(255, 255, 255);
       $this->SetDrawColor(163, 163, 163);
       $this->SetFont('Arial', 'B', 11);
-      $this->Cell(35, 10, utf8_decode('Fecha Diag.'), 1, 0, 'C', 1);
-      $this->Cell(53, 10, utf8_decode('Especie'), 1, 0, 'C', 1);
-      $this->Cell(40, 10, utf8_decode('Fecha Rev.'), 1, 0, 'C', 1);
-      $this->Cell(30, 10, utf8_decode('Estado Gral.'), 1, 0, 'C', 1);
-      $this->Cell(50, 10, utf8_decode('Gravedad'), 1, 0, 'C', 1);
-      $this->Cell(35, 10, utf8_decode('Descripción'), 1, 0, 'C', 1);
-      $this->Cell(35, 10, utf8_decode('Veterinario'), 1, 1, 'C', 1);
-        
+      $this->Cell(75, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
+      $this->Cell(65, 10, utf8_decode('Estado'), 1, 0, 'C', 1);
+      $this->Cell(62, 10, utf8_decode('Tanque'), 1, 0, 'C', 1);
+      $this->Cell(75, 10, utf8_decode('Fecha '), 1, 1, 'C', 1);
+      
+
    }
 
    // Pie de página
@@ -82,38 +80,21 @@ $pdf->SetDrawColor(163, 163, 163);
 $conn = new Conexion();
 $db = $conn->conectar(); // Asegúrate de que este método esté definido en tu clase de conexión
 
-// Consulta para obtener los datos del diagnóstico
-$sql = "SELECT d.fecha_diagnostico, 
-               se.fecha_revision, 
-               se.estado_general, 
-               d.gravedad, 
-               d.descripcion, 
-               e.nombre AS nombre_especie, 
-               p.nombre AS veterinario
-        FROM diagnostico d
-        INNER JOIN salud_especie se ON d.fk_salud_especie = se.pk_salud_especie
-        INNER JOIN especie e ON se.fk_especie = e.pk_especie
-        INNER JOIN persona p ON d.fk_persona = p.pk_persona";
-
-
-
+// Consulta para obtener los datos de la calidad del agua
+$sql = "SELECT  nombre, estado, fk_tanque, fecha FROM equipo";
 $result = $db->query($sql);
+
 // Comprobar si hay resultados y mostrarlos en el PDF
 if ($result && $result->num_rows > 0) {
    while ($row = $result->fetch_assoc()) {
-       $pdf->Cell(35, 10, utf8_decode($row['fecha_diagnostico']), 1, 0, 'C', 0);
-       $pdf->Cell(53, 10, utf8_decode($row['nombre_especie']), 1, 0, 'C', 0); // Nombre de la especie
-       $pdf->Cell(40, 10, utf8_decode($row['fecha_revision']), 1, 0, 'C', 0);
-       $pdf->Cell(30, 10, utf8_decode($row['estado_general']), 1, 0, 'C', 0);
-       $pdf->Cell(50, 10, utf8_decode($row['gravedad']), 1, 0, 'C', 0);
-       $pdf->Cell(35, 10, utf8_decode($row['descripcion']), 1, 0, 'C', 0);
-       $pdf->Cell(35, 10, utf8_decode($row['veterinario']), 1, 1, 'C', 0);
+      $pdf->Cell(75, 10, utf8_decode($row['nombre']), 1, 0, 'C', 0);
+      $pdf->Cell(65, 10, utf8_decode($row['estado']), 1, 0, 'C', 0);
+      $pdf->Cell(62, 10, utf8_decode($row['fk_tanque']), 1, 0, 'C', 0);
+      $pdf->Cell(75, 10, utf8_decode($row['fecha']), 1, 1, 'C', 0);
    }
 } else {
    $pdf->Cell(0, 10, utf8_decode("No se encontraron datos."), 1, 1, 'C', 0);
 }
-
-
 
 $pdf->Output('Prueba.pdf', 'I');
 ?>

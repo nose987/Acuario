@@ -82,25 +82,43 @@ $pdf->SetDrawColor(163, 163, 163);
 $conn = new Conexion();
 $db = $conn->conectar(); // Asegúrate de que este método esté definido en tu clase de conexión
 
-// Consulta para obtener los datos de la calidad del agua
-$sql = "SELECT * FROM especie e inner join tipo_especie te on e.fk_tipo_especie=te.pk_tipo_especie"; // Cambia 'calidad_agua' a la tabla correcta si es necesario
+// Consulta para obtener los datos de la especie y su relación con el tipo de especie
+$sql = "SELECT 
+            e.nombre, 
+            e.descripcion, 
+            e.habitad, 
+            e.temperatura, 
+            e.cuidados, 
+            te.tipo AS nombre_tipo_especie, 
+            e.fk_alimento 
+        FROM especie e 
+        INNER JOIN tipo_especie te 
+        ON e.fk_tipo_especie = te.pk_tipo_especie";
+
+// Ejecutar la consulta
 $result = $db->query($sql);
 
-// Comprobar si hay resultados y mostrarlos en el PDF
-if ($result && $result->num_rows > 0) {
-   while ($row = $result->fetch_assoc()) {
-      $pdf->Cell(30, 10, utf8_decode($row['nombre']), 1, 0, 'C', 0);
-      $pdf->Cell(53, 10, utf8_decode($row['descripcion']), 1, 0, 'C', 0);
-      $pdf->Cell(35, 10, utf8_decode($row['habitad']), 1, 0, 'C', 0);
-      $pdf->Cell(30, 10, utf8_decode($row['temperatura']), 1, 0, 'C', 0);
-      $pdf->Cell(65, 10, utf8_decode($row['cuidados']), 1, 0, 'C', 0);
-      $pdf->Cell(35, 10, utf8_decode($row['fk_tipo_especie']), 1, 0, 'C', 0);
-      $pdf->Cell(30, 10, utf8_decode($row['fk_alimento']), 1, 1, 'C', 0);
-      
-      
-   }
+// Verificar si la consulta se ejecutó correctamente
+if ($result) {
+    // Comprobar si hay resultados y mostrarlos en el PDF
+    if ($result->num_rows > 0) {
+        // Iterar sobre los resultados y agregarlos al PDF
+        while ($row = $result->fetch_assoc()) {
+            $pdf->Cell(30, 10, utf8_decode($row['nombre']), 1, 0, 'C');
+            $pdf->Cell(53, 10, utf8_decode($row['descripcion']), 1, 0, 'C');
+            $pdf->Cell(35, 10, utf8_decode($row['habitad']), 1, 0, 'C');
+            $pdf->Cell(30, 10, utf8_decode($row['temperatura']), 1, 0, 'C');
+            $pdf->Cell(65, 10, utf8_decode($row['cuidados']), 1, 0, 'C');
+            $pdf->Cell(35, 10, utf8_decode($row['nombre_tipo_especie']), 1, 0, 'C');
+            $pdf->Cell(30, 10, utf8_decode($row['fk_alimento']), 1, 1, 'C'); // Última celda en la fila
+        }
+    } else {
+        // Si no hay resultados, agregar un mensaje al PDF
+        $pdf->Cell(0, 10, utf8_decode("No se encontraron datos."), 1, 1, 'C');
+    }
 } else {
-   $pdf->Cell(0, 10, utf8_decode("No se encontraron datos."), 1, 1, 'C', 0);
+    // Mostrar un mensaje en caso de error en la consulta
+    $pdf->Cell(0, 10, utf8_decode("Error al ejecutar la consulta."), 1, 1, 'C');
 }
 
 $pdf->Output('Prueba.pdf', 'I');
