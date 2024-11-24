@@ -11,11 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $registroExitoso = $equipo->insertar($nombre, $estado, $fk_tanque);
 
     if ($registroExitoso === true) {
-        header("Location: ../views/tabla_equipo.php");
+        header("Location: ../views/panel.php");
         exit;                               
     } else {
        
         echo $registroExitoso;   
-    } 
+    }
 }
 ?>
