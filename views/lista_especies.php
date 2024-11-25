@@ -74,7 +74,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                                 <td><?= htmlspecialchars($especie['cuidados']) ?></td>
                                 <td><?= htmlspecialchars($especie['tipo']) ?></td>
                                 <td><?= htmlspecialchars($especie['fk_alimento']) ?></td>
-                                <td><img src="img/<?= htmlspecialchars($especie['img_especie']) ?>" alt="Imagen de <?= htmlspecialchars($especie['nombre']) ?>" width="100"></td>
+                                <td><img src="../Storage/<?= htmlspecialchars($especie['img_especie']) ?>" alt="Imagen de <?= htmlspecialchars($especie['nombre']) ?>" width="100"></td>
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
