@@ -23,11 +23,11 @@ if(!isset($_SESSION["usuario_id"])){
 
 <body>
     <?php include("layout/header.php");
-    
+
     /*print_r($_SESSION);*/
     ?>
-    
-    
+
+
 
     <div class="contenido">
         <div class="aside"><?php include("layout/aside.php") ?></div>
@@ -40,7 +40,402 @@ if(!isset($_SESSION["usuario_id"])){
 
             </div>-->
 
-            <!-- Sección de inventario -->
+
+            <?php
+
+            if ($_SESSION['rol_id'] == 1) {////////VETERINARIO
+            ?>
+                <div class="cards-container" id="agua-section">
+                    <h1 class="section-title">Control del agua</h1>
+
+                    <a href="tabla_agua.php">
+                        <div class="tarjeta">
+                            <div class="imagen">
+                                <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                            </div>
+                            <div class="cont">
+                                <h2>Calidad del agua</h2>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Sección de alimentación -->
+                <div class="cards-container" id="alimentacion-section">
+                    <h1 class="section-title">Gestión de alimentación</h1>
+
+                    <a href="tabla_alimentacion.php">
+                        <div class="tarjeta">
+                            <div class="imagen">
+                                <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                            </div>
+                            <div class="cont">
+                                <h2>Programación alimentación</h2>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Sección de salud -->
+                <div class="cards-container" id="salud-section">
+                    <h1 class="section-title">Gestión de salud de las especies</h1>
+                    <a href="registro_salud_especies.php">
+                        <div class="tarjeta">
+                            <div class="imagen">
+                                <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                            </div>
+                            <div class="cont">
+                                <h2>Salud especies</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="registro_diagnostico_especies.php">
+                        <div class="tarjeta">
+                            <div class="imagen">
+                                <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                            </div>
+                            <div class="cont">
+                                <h2>Diagnostico</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="registro_tratamiento_especies.php">
+                        <div class="tarjeta">
+                            <div class="imagen">
+                                <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                            </div>
+                            <div class="cont">
+                                <h2>Tratamiento</h2>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="lista_salud_especies.php">
+                        <div class="tarjeta">
+                            <div class="imagen">
+                                <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                            </div>
+                            <div class="cont">
+                                <h2>Ver salud de especies</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="lista_diagnostico_especies.php">
+                        <div class="tarjeta">
+                            <div class="imagen">
+                                <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                            </div>
+                            <div class="cont">
+                                <h2>Ver diagnosticos</h2>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="lista_tratamiento_especies.php">
+                        <div class="tarjeta">
+                            <div class="imagen">
+                                <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                            </div>
+                            <div class="cont">
+                                <h2>Ver tratamientos</h2>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Sección de especies -->
+            <div class="cards-container" id="especie-section">
+                <h1 class="section-title">Gestión de especies</h1>
+                <a href="lista_especies.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Especies</h2>
+                        </div>
+                    </div>
+                </a>
+                
+
+            </div>
+
+
+
+            <?php
+            }else if($_SESSION['rol_id'] == 2){//////////CUIDADOR
+                ?>
+                <div class="cards-container" id="agua-section">
+                    <h1 class="section-title">Control del agua</h1>
+
+                    <a href="tabla_agua.php">
+                        <div class="tarjeta">
+                            <div class="imagen">
+                                <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                            </div>
+                            <div class="cont">
+                                <h2>Calidad del agua</h2>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Sección de alimentación -->
+            <div class="cards-container" id="alimentacion-section">
+                <h1 class="section-title">Gestión de alimentación</h1>
+                <a href="alimentacion.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Registro alimentación</h2>
+                        </div>
+                    </div>
+                </a>
+                <a href="tabla_alimentacion.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Programación alimentación</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="cards-container" id="tanque-section">
+                <h1 class="section-title">Gestión de tanques</h1>
+                
+                <a href="tabla_tanques.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Tanques</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Sección de salud -->
+            <div class="cards-container" id="salud-section">
+                <h1 class="section-title">Gestión de salud de las especies</h1>
+                
+
+                <a href="lista_salud_especies.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Ver salud de especies</h2>
+                        </div>
+                    </div>
+                </a>
+                <a href="lista_diagnostico_especies.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Ver diagnosticos</h2>
+                        </div>
+                    </div>
+                </a>
+                <a href="lista_tratamiento_especies.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Ver tratamientos</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Sección de especies -->
+            <div class="cards-container" id="especie-section">
+                <h1 class="section-title">Gestión de especies</h1>
+                <a href="lista_especies.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Especies</h2>
+                        </div>
+                    </div>
+                </a>
+                
+
+            </div>
+
+
+<?php
+            }else if($_SESSION['rol_id'] == 4){////////TECNICO ACUATICO
+                ?>
+
+                <!-- Sección de agua -->
+            <div class="cards-container" id="agua-section">
+                <h1 class="section-title">Control del agua</h1>
+                <a href="formulario_agua.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Registrar calidad del agua</h2>
+                        </div>
+                    </div>
+                </a>
+                <a href="tabla_agua.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Calidad del agua</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+             <!-- Sección de tanque -->
+             <div class="cards-container" id="tanque-section">
+                <h1 class="section-title">Gestión de tanques</h1>
+                
+                <a href="tabla_tanques.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Tanques</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Sección de salud -->
+            <div class="cards-container" id="salud-section">
+                <h1 class="section-title">Gestión de salud de las especies</h1>
+                
+                <a href="lista_diagnostico_especies.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Ver diagnosticos</h2>
+                        </div>
+                    </div>
+                </a>
+                
+
+            </div>
+
+            <!-- Sección de especies -->
+            <div class="cards-container" id="especie-section">
+                <h1 class="section-title">Gestión de especies</h1>
+                <a href="lista_especies.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Especies</h2>
+                        </div>
+                    </div>
+                </a>
+                
+
+            </div>
+
+            <div class="cards-container" id="equipo-section">
+                <h1 class="section-title">Gestión de equipos</h1>
+                
+                <a href="tabla_equipo.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Lista de equipos</h2>
+                        </div>
+                    </div>
+                </a>
+                
+
+            </div>
+
+
+<?php
+            }else if($_SESSION['rol_id'] == 5){//////TECNICO EN MANTENIMIENTO
+                ?>
+                <!-- Sección de equipos -->
+            <div class="cards-container" id="equipo-section">
+                <h1 class="section-title">Gestión de equipos</h1>
+                
+                <a href="tabla_equipo.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Lista de equipos</h2>
+                        </div>
+                    </div>
+                </a>
+                
+
+            </div>
+
+            <!-- Sección de mantenimiento -->
+            <div class="cards-container" id="mantenimiento-section">
+                <h1 class="section-title">Mantenimiento de equipos</h1>
+                <a href="formulario_mantenimiento.php">
+                    <div class="tarjeta"> 
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Registrar mantenimiento</h2>
+                        </div>
+                    </div>
+                </a>
+                <a href="tabla_mantenimiento.php">
+                    <div class="tarjeta">
+                        <div class="imagen">
+                            <img src="../Storage/logo.jpg" alt="logo" height="150px" width="290px">
+                        </div>
+                        <div class="cont">
+                            <h2>Lista de mantenimientos</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+
+
+
+
+<?php
+            }else if ($_SESSION['rol_id'] == 3){
+                ?>  
+                 <!-- Sección de inventario -->
             <div class="cards-container" id="inventario-section">
                 <h1 class="section-title">Gestión de Inventario</h1>
                 <a href="registro_inventario.php">
@@ -324,6 +719,19 @@ if(!isset($_SESSION["usuario_id"])){
                 </a>
 
             </div>
+                
+
+<?php
+            }else{
+                header('Location: login.php');
+            }
+
+
+            ?>
+
+
+
+
         </div>
     </div>
 </body>
