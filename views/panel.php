@@ -33,12 +33,12 @@ if(!isset($_SESSION["usuario_id"])){
         <div class="aside"><?php include("layout/aside.php") ?></div>
 
         <div class="container">
-            <!-- Sección de inicio -->
+            <!-- Sección de inicio 
             <div class="cards-container active" id="inicio-section">
                 <h1 class="section-title">Panel Principal</h1>
-                <!-- Agregar tarjetas de inicio -->
+                Agregar tarjetas de inicio 
 
-            </div>
+            </div>-->
 
             <!-- Sección de inventario -->
             <div class="cards-container" id="inventario-section">

@@ -41,7 +41,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                 <a href="../fpdf/reporte_tratamientos.php" target="_blank" class="generar-reporte">Generar reporte</a>
 
             </div>
-            <!--<form method="get" action="" class="buscador">
+           <form method="get" action="" class="buscador">
                     <div class="search-content">
                         <img src="../Storage/iconos/search-icon.png" class="search-icon">
                         <input type="text" name="busqueda" id="busqueda" value="" placeholder="Buscar" class="input" onkeyup="buscarTratamiento()">
@@ -49,7 +49,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                 </div>
             </form>
             
-            LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
+             <!--LE PUSE ENCABEZADO A LAS TABLAS, EL BUSCADOR PONLO ABAJO DE AQUÍ (ANTES DE LA ETIQUETA "TABLE") Y AGREGA BOTONES DE CANCELAR EN LOS REGISTROS-->
             <table>
                 <thead>
                     <tr>
@@ -93,6 +93,6 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
         </div>
     </div>
 </body>
-<script src="../functions/buscador_tratamiento.js"></script>
+<script src="../functions/buscador.js"></script>
 
 </html>

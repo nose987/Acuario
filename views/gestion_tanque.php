@@ -44,8 +44,11 @@ $opcionesFormulario = new OpcionesFormulario();
                     <input type="text" class="input" id="iluminacion" name="iluminacion" placeholder="Ingrese la Iluminación" required>
     
                     <label for="filtracion">Filtración:</label>
-                    <input type="text" class="input" id="filtracion" name="filtracion" placeholder="Ingrese si cuenta con filtración (si/no)" required>
-    
+                    <select class="input" id="filtracion" name="filtracion" placeholder="Ingrese si cuenta con filtración (si/no)" required>
+                        <option value="">Elija si lleva filtración o no.</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
                     <label for="fecha">Fecha:</label>
                     <input type="date" class="input" id="fecha" name="fecha" required>
     

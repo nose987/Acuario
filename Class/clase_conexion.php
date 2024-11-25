@@ -5,7 +5,7 @@ class Conexion {
         $servidor = "localhost";
         $usuario = "root";
         $contraseña = "";
-        $nom_base_datos = "ges_acuario5";
+        $nom_base_datos = "ges_acuario6";
 
         $conectar = new mysqli($servidor, $usuario, $contraseña, $nom_base_datos);
 

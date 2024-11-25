@@ -1,12 +1,11 @@
 <?php
-require_once '../Class/conexion.php';  // Usamos require_once en lugar de include
+require_once '../Class/clase_conexion.php';  // Usamos require_once en lugar de include
 require_once '../functions/tanque.php';
 
 if (isset($_GET['busqueda'])) {
     $busqueda = $_GET['busqueda'];
     
-    $conexion = new Conexion();
-    $conn = $conexion->conn;
+    $conexion = Conexion::conectar();
     
     // Preparar la consulta SQL con búsqueda en área y especie
     $sql = "SELECT t.pk_tanque, t.capacidad, t.temperatura, t.iluminacion, 
@@ -17,7 +16,7 @@ if (isset($_GET['busqueda'])) {
             JOIN especie e ON t.fk_especie = e.pk_especie 
             WHERE a.nombre LIKE ? OR e.nombre LIKE ?";
             
-    $stmt = $conn->prepare($sql);
+    $stmt = $conexion->prepare($sql);
     $busquedaParam = "%" . $busqueda . "%";
     $stmt->bind_param("ss", $busquedaParam, $busquedaParam);
     $stmt->execute();
@@ -41,6 +40,6 @@ if (isset($_GET['busqueda'])) {
     }
     
     $stmt->close();
-    $conn->close();
+    $conexion->close();
 }
 ?>

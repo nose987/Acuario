@@ -18,8 +18,15 @@ class Especie
 
     function mostrar()
     {
-        $consulta="SELECT * FROM especie e inner join tipo_especie te on e.fk_tipo_especie=te.pk_tipo_especie";
+        $consulta="SELECT *, i.nombre as alimento FROM inventario i INNER JOIN especie e ON i.pk_inventario=e.fk_alimento
+         inner join tipo_especie te on e.fk_tipo_especie=te.pk_tipo_especie";
         $respuesta=$this->conexion->query($consulta);
+        return $respuesta;
+    }
+
+    function mostrarAlimentacion(){
+        $consulta = "SELECT pk_inventario, nombre FROM inventario WHERE fk_categoria = 1";
+        $respuesta = $this->conexion->query($consulta);
         return $respuesta;
     }
 
@@ -47,9 +54,11 @@ class Especie
         $resultTotal = $this->conexion->query($sqlTotal);
         $total = $resultTotal->fetch_assoc()['total'];
 
-        // Consulta paginada
-        $consulta = "SELECT * FROM especie e 
-                    INNER JOIN tipo_especie te ON e.fk_tipo_especie=te.pk_tipo_especie 
+        // Consulta paginada con JOIN a inventario
+        $consulta = "SELECT e.*, te.tipo, i.nombre as alimento 
+                    FROM especie e 
+                    INNER JOIN tipo_especie te ON e.fk_tipo_especie = te.pk_tipo_especie 
+                    LEFT JOIN inventario i ON e.fk_alimento = i.pk_inventario
                     LIMIT {$porPagina} OFFSET {$offset}";
         
         $respuesta = $this->conexion->query($consulta);
@@ -69,22 +78,27 @@ class Especie
         // Obtener total de resultados de búsqueda
         $sqlTotal = "SELECT COUNT(*) as total 
                      FROM especie e 
-                     INNER JOIN tipo_especie te ON e.fk_tipo_especie=te.pk_tipo_especie
+                     INNER JOIN tipo_especie te ON e.fk_tipo_especie = te.pk_tipo_especie
+                     LEFT JOIN inventario i ON e.fk_alimento = i.pk_inventario
                      WHERE e.nombre LIKE '%{$busqueda}%' 
                      OR e.descripcion LIKE '%{$busqueda}%' 
                      OR e.habitad LIKE '%{$busqueda}%'
-                     OR te.tipo LIKE '%{$busqueda}%'";
+                     OR te.tipo LIKE '%{$busqueda}%'
+                     OR i.nombre LIKE '%{$busqueda}%'";
         
         $resultTotal = $this->conexion->query($sqlTotal);
         $total = $resultTotal->fetch_assoc()['total'];
 
         // Consulta paginada con búsqueda
-        $consulta = "SELECT * FROM especie e 
-                    INNER JOIN tipo_especie te ON e.fk_tipo_especie=te.pk_tipo_especie
+        $consulta = "SELECT e.*, te.tipo, i.nombre as alimento 
+                    FROM especie e 
+                    INNER JOIN tipo_especie te ON e.fk_tipo_especie = te.pk_tipo_especie
+                    LEFT JOIN inventario i ON e.fk_alimento = i.pk_inventario
                     WHERE e.nombre LIKE '%{$busqueda}%' 
                     OR e.descripcion LIKE '%{$busqueda}%' 
                     OR e.habitad LIKE '%{$busqueda}%'
                     OR te.tipo LIKE '%{$busqueda}%'
+                    OR i.nombre LIKE '%{$busqueda}%'
                     LIMIT {$porPagina} OFFSET {$offset}";
 
         $respuesta = $this->conexion->query($consulta);
@@ -129,5 +143,3 @@ function generarPaginacionEspecies($totalPaginas, $paginaActual, $busqueda = '')
     $html .= '</div>';
     return $html;
 }
-
-?>

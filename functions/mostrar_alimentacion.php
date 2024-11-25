@@ -28,6 +28,26 @@ class Alimentacion {
         }
     }
 
+    public function buscar($busqueda) {
+        $sql = "SELECT a.pk_alimentacion, a.cantidad, a.descripcion, a.hora, a.fecha,
+                ar.nombre as nombre_area, e.nombre as nombre_especie, i.nombre as nombre_alimento
+                FROM alimentacion a
+                INNER JOIN area ar ON a.fk_area = ar.pk_area
+                INNER JOIN especie e ON a.fk_especie = e.pk_especie
+                INNER JOIN inventario i ON a.fk_inventario = i.pk_inventario
+                WHERE a.fecha LIKE ? 
+                OR a.hora LIKE ?
+                OR ar.nombre LIKE ?
+                OR e.nombre LIKE ?
+                OR i.nombre LIKE ?";
+                
+        $stmt = $this->conn->prepare($sql);
+        $param = '%' . $busqueda . '%';
+        $stmt->bind_param("sssss", $param, $param, $param, $param, $param);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+
     public function obtener_alimentacion_paginado($pagina = 1, $porPagina = 30) {
         // Calcular el offset
         $offset = ($pagina - 1) * $porPagina;

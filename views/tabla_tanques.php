@@ -9,8 +9,6 @@ include '../functions/tanque.php';
 $tanque = new Tanque();
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 $porPagina = 30;
-
-// Manejar búsqueda y paginación
 if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     $busqueda = $_GET['busqueda'];
     $resultado = $tanque->buscar_tanques($busqueda, $pagina, $porPagina);

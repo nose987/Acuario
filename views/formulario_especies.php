@@ -10,6 +10,7 @@ $login->protegerPagina();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/formulario.css">
+    <link rel="icon" href="../Storage/logo.jpg">
     <title>Formulario de especies</title>
 </head>
 
@@ -33,8 +34,18 @@ $login->protegerPagina();
                     <label for="descripcion">Descripción:</label>
                     <textarea name="descripcion" class="input" id="descripcion" required></textarea>
 
-                    <label for="alimentacion">Alimentación:</label>
-                    <input type="text" class="input" name="alimentacion" id="alimentacion" required>
+                    <label for="fk_alimento">Alimentación:</label>
+                    <select class="input" name="fk_alimento" id="fk_alimento" required>
+                        <option value="">Seleccione el alimento</option>
+                        <?php 
+                        include_once('../Class/especie.php');
+                        $especie = new Especie();
+                        $alimento = $especie->mostrarAlimentacion();
+                        while ($item = mysqli_fetch_array($alimento)) {
+                            echo "<option value='". $item['pk_inventario']. "'>". $item['nombre']. "</option>";
+                        }
+                        ?>
+                    </select>
 
                     <label for="habitad">Hábitat:</label>
                     <input type="text" class="input" name="habitad" id="habitad" required>

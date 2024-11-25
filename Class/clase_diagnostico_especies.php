@@ -69,6 +69,32 @@ class Diagnosticos
             exit();
         }
     }
+    public function buscarDiagnostico($busqueda) {
+        $sql = "SELECT d.fecha_diagnostico, 
+                       e.nombre as especie,
+                       se.fecha_revision,
+                       se.estado_general,
+                       d.gravedad,
+                       d.descripcion,
+                       CONCAT(p.nombre, ' ', p.apaterno) as veterinario
+                FROM diagnostico d
+                INNER JOIN salud_especie se ON d.fk_salud_especie = se.pk_salud_especie
+                INNER JOIN especie e ON se.fk_especie = e.pk_especie
+                INNER JOIN persona p ON d.fk_persona = p.pk_persona
+                WHERE DATE_FORMAT(d.fecha_diagnostico, '%d/%m/%Y') LIKE ? 
+                   OR e.nombre LIKE ?
+                   OR DATE_FORMAT(se.fecha_revision, '%d/%m/%Y') LIKE ?
+                   OR se.estado_general LIKE ?
+                   OR d.gravedad LIKE ?
+                   OR d.descripcion LIKE ?
+                   OR CONCAT(p.nombre, ' ', p.apaterno) LIKE ?";
+    
+        $stmt = $this->conexion->prepare($sql);
+        $param = '%' . $busqueda . '%';
+        $stmt->bind_param("sssssss", $param, $param, $param, $param, $param, $param, $param);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
 
     // Mostrar diagnósticos
     public function mostrar()

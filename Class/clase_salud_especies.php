@@ -18,6 +18,25 @@ class SaludEspecies
         return $result;
     }
 
+    public function buscarSalud($busqueda) {
+        $sql = "SELECT s.fecha_revision, e.nombre as especie, s.peso, s.longitud, 
+                       s.temperatura, s.estado_general, s.comportamiento, s.sintomas, 
+                       s.observaciones, CONCAT(p.nombre, ' ', p.apaterno) as encargado 
+                FROM salud_especie s 
+                INNER JOIN especie e ON s.fk_especie = e.pk_especie 
+                INNER JOIN persona p ON s.fk_persona = p.pk_persona 
+                WHERE DATE(s.fecha_revision) LIKE ? OR 
+                      e.nombre LIKE ? OR 
+                      s.estado_general LIKE ? OR 
+                      CONCAT(p.nombre, ' ', p.apaterno) LIKE ?";
+    
+        $stmt = $this->conexion->prepare($sql);
+        $param = '%' . $busqueda . '%';
+        $stmt->bind_param("ssss", $param, $param, $param, $param);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+
     // Método para obtener personal autorizado (cuidadores y veterinarios)
     public function obtenerPersonal()
     {

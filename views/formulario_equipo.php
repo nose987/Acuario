@@ -36,7 +36,13 @@ $opcionesFormulario = new OpcionesFormulario();
                     <input class="input" type="text" id="nombre" name="nombre" required>
 
                     <label for="estado">Estado:</label>
-                    <input class="input" type="text" id="estado" name="estado" required>
+                    <select class="input" id="estado" name="estado" required>
+                        <option value="">Seleccione un estado</option>
+                        <option value="Bueno">Bueno</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Malo">Malo</option>
+                        
+                    </select>
 
                     <label for="fk_tanque">Tanque:</label>
                     <select class="input" id="fk_tanque" name="fk_tanque" required>

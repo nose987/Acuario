@@ -19,6 +19,14 @@ class Agua {
             return []; 
         }
     }
+    public function buscar($busqueda) {
+        $sql = "SELECT * FROM agua WHERE fk_tanque LIKE ?";
+        $stmt = $this->conn->prepare($sql);
+        $param = '%' . $busqueda . '%';
+        $stmt->bind_param("s", $param);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
 
     public function obtener_calidad_agua_paginado($pagina = 1, $porPagina = 30) {
         // Calcular el offset
@@ -75,5 +83,7 @@ function generarPaginacionAgua($totalPaginas, $paginaActual) {
     
     $html .= '</div>';
     return $html;
+
+    
 }
 ?>

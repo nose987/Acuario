@@ -15,6 +15,7 @@ $resultado = $agua->obtener_calidad_agua_paginado($pagina, $porPagina);
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +37,13 @@ $resultado = $agua->obtener_calidad_agua_paginado($pagina, $porPagina);
                 </div>
 
             </div>
+            <form method="get" action="" class="buscador">
+                <div class="search-content">
+                    <img src="../Storage/iconos/search-icon.png" class="search-icon">
+                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar" class="input" onkeyup="buscarAgua()">
+
+                </div>
+            </form>
 
             <table>
                 <thead>
@@ -49,24 +57,24 @@ $resultado = $agua->obtener_calidad_agua_paginado($pagina, $porPagina);
                         <th>Fecha</th>
                     </tr>
                 </thead>
-                <tbody>
-                <?php if (!empty($resultado['datos'])): ?>
-                    <?php foreach ($resultado['datos'] as $calidad): ?>
+                <tbody id="tabla-resultados">
+                    <?php if (!empty($resultado['datos'])): ?>
+                        <?php foreach ($resultado['datos'] as $calidad): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($calidad['pk_agua']); ?></td>
+                                <td><?php echo htmlspecialchars($calidad['ph']); ?></td>
+                                <td><?php echo htmlspecialchars($calidad['amoniaco']); ?></td>
+                                <td><?php echo htmlspecialchars($calidad['nitrato']); ?></td>
+                                <td><?php echo htmlspecialchars($calidad['nitritos']); ?></td>
+                                <td><?php echo htmlspecialchars($calidad['fk_tanque']); ?></td>
+                                <td><?php echo htmlspecialchars($calidad['fecha']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($calidad['pk_agua']); ?></td>
-                            <td><?php echo htmlspecialchars($calidad['ph']); ?></td>
-                            <td><?php echo htmlspecialchars($calidad['amoniaco']); ?></td>
-                            <td><?php echo htmlspecialchars($calidad['nitrato']); ?></td>
-                            <td><?php echo htmlspecialchars($calidad['nitritos']); ?></td>
-                            <td><?php echo htmlspecialchars($calidad['fk_tanque']); ?></td>
-                            <td><?php echo htmlspecialchars($calidad['fecha']); ?></td>
+                            <td colspan="7">No hay registros de calidad de agua.</td>
                         </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="7">No hay registros de calidad de agua.</td>
-                    </tr>
-                <?php endif; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
 
@@ -74,4 +82,7 @@ $resultado = $agua->obtener_calidad_agua_paginado($pagina, $porPagina);
         </div>
     </div>
 </body>
+
+<script src="../functions/buscador.js"></script>
+
 </html>
