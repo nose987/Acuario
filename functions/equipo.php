@@ -5,6 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
     $estado = $_POST['estado'];
     $fk_tanque = $_POST['fk_tanque'];
+    
 
     $equipo = new Equipo();
     
@@ -16,6 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
        
         echo $registroExitoso;   
-    } 
+    }
 }
 ?>
