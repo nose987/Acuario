@@ -4,7 +4,7 @@ $login = new Login();
 $login->protegerPagina();
 ?>
 <?php
-/*include '../Class/mantenimiento.php';*/
+include '../Class/mantenimiento.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -37,7 +37,7 @@ $login->protegerPagina();
                         <?php
                         include("../Class/equipo.php");
                         $mante = new Equipo();
-                        $tipos = $mante->mostrar();
+                        $tipos = $mante->mostraar();
                         while ($item = mysqli_fetch_array($tipos)) {
                         ?>
                             <option value="<?= $item['pk_equipo'] ?>"><?= $item["nombre"] ?></option>

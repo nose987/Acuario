@@ -16,6 +16,12 @@ class Equipo
         return $this->conexion->insert_id;
     }
 
+    function mostraar(){
+        $consulta = "SELECT pk_equipo, nombre FROM equipo";
+        $respuesta = $this->conexion->query($consulta);
+        return $respuesta;
+    }
+
     function mostrar($offset, $limit)
     {
         $consulta = "SELECT * FROM equipo e INNER JOIN tanque t ON e.fk_tanque = t.pk_tanque LIMIT {$offset}, {$limit}";

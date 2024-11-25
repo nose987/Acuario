@@ -7,7 +7,7 @@ $login->protegerPagina();
 include("../functions/mostrar_empleados.php");
 $empleado = new mostrarEmpleados();
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-$porPagina = 3;
+$porPagina = 30;
 if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     $busqueda = $_GET['busqueda'];
     $resultado = $empleado->buscar_empleados($busqueda, $pagina, $porPagina);
