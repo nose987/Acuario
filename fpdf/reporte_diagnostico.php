@@ -16,31 +16,31 @@ class PDF extends FPDF
       $this->SetTextColor(103);
 
       /* Información adicional */
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(96, 10, utf8_decode("Ubicación : "), 0, 0, '', 0);
+      $this->Cell(96, 10, utf8_decode("Ubicación : Puerto Vallarta, Jalisco"), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(59, 10, utf8_decode("Teléfono : "), 0, 0, '', 0);
+      $this->Cell(59, 10, utf8_decode("Teléfono : 322 227 0603 "), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(85, 10, utf8_decode("Correo : "), 0, 0, '', 0);
+      $this->Cell(85, 10, utf8_decode("Correo : reino1acuatico@gmail.com "), 0, 0, '', 0);
       $this->Ln(5);
 
-      $this->Cell(110);
+      $this->Cell(1);
       $this->SetFont('Arial', 'B', 10);
-      $this->Cell(85, 10, utf8_decode("Sucursal : "), 0, 0, '', 0);
+      $this->Cell(85, 10, utf8_decode("Sucursal : Las Glorias, 48333 Puerto Vallarta, Jal. "), 0, 0, '', 0);
       $this->Ln(10);
 
       /* Título del reporte */
       $this->SetTextColor(0, 128, 200);
       $this->Cell(50);
       $this->SetFont('Arial', 'B', 15);
-      $this->Cell(175, 10, utf8_decode("REPORTE DEL REGISTRO DE DIAGNOSTICO DE ESPECIES "), 0, 1, 'C', 0);
+      $this->Cell(175, 10, utf8_decode("REPORTE DEL REGISTRO DE DIAGNÓSTICOS "), 0, 1, 'C', 0);
       $this->Ln(7);
 
       /* Campos de la tabla */
