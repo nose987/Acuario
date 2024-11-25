@@ -239,7 +239,7 @@ if(!isset($_SESSION["usuario_id"])){
 
             <!-- Sección de especies -->
             <div class="cards-container" id="especie-section">
-                <h1 class="section-title">Gestión de empleados</h1>
+                <h1 class="section-title">Gestión de especies</h1>
                 <a href="lista_especies.php">
                     <div class="tarjeta">
                         <div class="imagen">

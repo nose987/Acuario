@@ -4,7 +4,7 @@ $login = new Login();
 $login->protegerPagina();
 ?>
 <?php
-include '../functions/mostrar_mantenimiento.php';
+include_once '../functions/mostrar_mantenimiento.php';
 
 $mantenimiento = new Mantenimiento();
 $mantenimiento = $mantenimiento->mostrar_mante();
@@ -43,13 +43,13 @@ $mantenimiento = $mantenimiento->mostrar_mante();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($equipo)): ?>
-                        <?php foreach ($equipo as $equipo): ?>
+                    <?php if (!empty($mantenimiento)): ?>
+                        <?php foreach ($mantenimiento as $mantenimiento): ?>
                             <tr>
-                                <td><?php echo $equipo['fk_equipo']; ?></td>
-                                <td><?php echo $equipo['fecha']; ?></td>
-                                <td><?php echo $equipo['tipo_mante']; ?></td>
-                                <td><?php echo $equipo['descripcion']; ?></td>
+                                <td><?php echo $mantenimiento['nombre']; ?></td>
+                                <td><?php echo $mantenimiento['fecha']; ?></td>
+                                <td><?php echo $mantenimiento['tipo_mante']; ?></td>
+                                <td><?php echo $mantenimiento['descripcion']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>

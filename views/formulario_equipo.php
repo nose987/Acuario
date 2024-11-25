@@ -4,8 +4,8 @@ $login = new Login();
 $login->protegerPagina();
 ?>
 <?php
-include '../Class/equipo.php';
-include '../Class/clases.php';
+/*require_once '../Class/equipo.php';*/
+require_once '../Class/clases.php';
 $opcionesFormulario = new OpcionesFormulario();
 ?>
 <!DOCTYPE html>

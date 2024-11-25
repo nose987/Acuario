@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $registroExitoso = $mantenimiento->insertar($fk_equipo,$tipo_mante,$descripcion);
 
-    if ($registroExitoso === true) {
+    if ($registroExitoso > 0) {
         header("Location: ../views/tabla_mantenimiento.php");
         exit;                               
     } else {

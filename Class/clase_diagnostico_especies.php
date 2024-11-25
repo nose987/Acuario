@@ -19,7 +19,8 @@ class Diagnosticos
                        se.estado_general 
                 FROM salud_especie se 
                 INNER JOIN especie e ON se.fk_especie = e.pk_especie 
-                ORDER BY se.fecha_revision DESC";
+                 WHERE se.estado_general = 'En tratamiento' OR se.estado_general = 'Crítico' OR 
+                se.estado_general = 'En observación' ORDER BY se.fecha_revision DESC";
         $result = $this->conexion->query($sql);
         return $result;
     }

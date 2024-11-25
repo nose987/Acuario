@@ -4,7 +4,7 @@ $login = new Login();
 $login->protegerPagina();
 ?>
 <?php
-include '../Class/mantenimiento.php';
+/*include '../Class/mantenimiento.php';*/
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -47,14 +47,19 @@ include '../Class/mantenimiento.php';
                     </select>
 
                     <label for="tipo_mante">Tipo de mantenimiento:</label>
-                    <input class="input" type="text" id="tipo_mante" name="tipo_mante" required>
+                    <select class="input" type="text" id="tipo_mante" name="tipo_mante" required>
+                        <option value="">Registrar tipo de mantenimiento</option>
+                        <option value="Limpieza">Limpieza</option>
+                        <option value="Cambio de piezas">Cambio de piezas</option>
+                        <option value="Revisión">Revisión</option>
+                    </select>
 
                     <label for="descripcion">Descripcion:</label>
                     <input class="input" type="text" id="descripcion" name="descripcion" required>
 
                     
                     <div class="btn_formulario">
-                        <input class="btn" type="submit" value="Registrar Equipo">
+                        <input class="btn" type="submit" value="Registrar mantenimiento">
                         <a onclick="window.location.href='panel.php'" class="btn" type="button">Cancelar</a>
                     </div>
                 </div>
