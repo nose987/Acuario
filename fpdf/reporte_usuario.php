@@ -83,7 +83,10 @@ $conn = new Conexion();
 $db = $conn->conectar(); // Asegúrate de que este método esté definido en tu clase de conexión
 
 // Consulta para obtener los datos de la calidad del agua
-$sql = "SELECT * FROM persona"; // Cambia 'calidad_agua' a la tabla correcta si es necesario
+$sql = "SELECT p.nombre, p.correo, p.fecha_nac, p.telefono, p.genero, p.direccion, r.roles, ar.nombre as area 
+        FROM persona p
+        INNER JOIN roles r ON p.fk_roles = r.pk_roles
+        INNER JOIN area ar ON p.fk_area = ar.pk_area";
 $result = $db->query($sql);
 
 // Comprobar si hay resultados y mostrarlos en el PDF
@@ -95,12 +98,12 @@ if ($result && $result->num_rows > 0) {
       $pdf->Cell(28, 10, utf8_decode($row['telefono']), 1, 0, 'C', 0);
       $pdf->Cell(22, 10, utf8_decode($row['genero']), 1, 0, 'C', 0);
       $pdf->Cell(40, 10, utf8_decode($row['direccion']), 1, 0, 'C', 0);
-      $pdf->Cell(35, 10, utf8_decode($row['fk_roles']), 1, 0, 'C', 0);
-      $pdf->Cell(35, 10, utf8_decode($row['fk_area']), 1, 1, 'C', 0);
+      $pdf->Cell(35, 10, utf8_decode($row['roles']), 1, 0, 'C', 0);
+      $pdf->Cell(35, 10, utf8_decode($row['area']), 1, 1, 'C', 0);
    }
 } else {
    $pdf->Cell(0, 10, utf8_decode("No se encontraron datos."), 1, 1, 'C', 0);
 }
-
+  
 $pdf->Output('Prueba.pdf', 'I');
 ?>

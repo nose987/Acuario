@@ -38,7 +38,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                 <a onclick="window.location.href='panel.php'" class="btn">Regresar</a>
                 <h2>LISTA DE EMPLEADOS</h2><br>
                 <div>
-                    <a href="../fpdf/reporte_empleados.php" target="_blank" class="generar-reporte">Generar reporte</a>
+                    <a href="../fpdf/reporte_usuario.php" target="_blank" class="generar-reporte">Generar reporte</a>
                 </div>
 
             </div>

@@ -29,7 +29,8 @@ $equipo = $equipo->mostrar();
             <div class="controles">
             <a onclick="window.location.href='panel.php'" class="btn" type="button">Regresar</a>
                 <h2>Equipos</h2>
-                <a href="" class="generar-reporte">Generar reporte</a>
+              
+                <a href="../fpdf/reporte_equipo.php" target="_blank" class="generar-reporte">Generar reporte</a>
 
             </div>
             <table>
