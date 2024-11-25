@@ -79,6 +79,29 @@ class Tratamientos
         }
     }
 
+    public function buscarTratamiento($busqueda) {
+        $sql = "SELECT t.fecha_inicio, t.fecha_fin, e.nombre as especie, 
+                       t.estado, t.descripcion, t.instrucciones, 
+                       CONCAT(p.nombre, ' ', p.apaterno) as veterinario, 
+                       t.observaciones
+                FROM tratamiento t
+                INNER JOIN diagnostico d ON t.fk_diagnostico = d.pk_diagnostico
+                INNER JOIN salud_especie s ON d.fk_salud_especie = s.pk_salud_especie
+                INNER JOIN especie e ON s.fk_especie = e.pk_especie
+                INNER JOIN persona p ON t.fk_persona = p.pk_persona
+                WHERE DATE_FORMAT(t.fecha_inicio, '%d/%m/%Y') LIKE ? 
+                OR DATE_FORMAT(t.fecha_fin, '%d/%m/%Y') LIKE ?
+                OR e.nombre LIKE ?
+                OR t.estado LIKE ?
+                OR CONCAT(p.nombre, ' ', p.apaterno) LIKE ?";
+    
+        $stmt = $this->conexion->prepare($sql);
+        $param = '%' . $busqueda . '%';
+        $stmt->bind_param("sssss", $param, $param, $param, $param, $param);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+
     // Mostrar tratamientos
     public function mostrar()
     {

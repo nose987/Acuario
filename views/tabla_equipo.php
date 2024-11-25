@@ -4,14 +4,19 @@ $login = new Login();
 $login->protegerPagina();
 ?>
 <?php
-include '../functions/mostrar_equipo.php';
+require_once '../functions/mostrar_equipo.php';
 
 $equipo = new Equipo();
-$equipo = $equipo->mostrar();
+$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+$limite = 30;
+$offset = ($pagina - 1) * $limite;
+$equipos = $equipo->mostrar($offset, $limite);
+$totalEquipos = $equipo->contarTotal();
+$totalPaginas = ceil($totalEquipos / $limite);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -24,15 +29,23 @@ $equipo = $equipo->mostrar();
 <body>
     <?php include("layout/header.php") ?>
     <div class="contenido">
-       
+
         <div class="tabla">
             <div class="controles">
-            <a onclick="window.location.href='panel.php'" class="btn" type="button">Regresar</a>
+                <a onclick="window.location.href='panel.php'" class="btn" type="button">Regresar</a>
                 <h2>Equipos</h2>
-              
+
                 <a href="../fpdf/reporte_equipo.php" target="_blank" class="generar-reporte">Generar reporte</a>
 
             </div>
+
+            <form method="get" action="" class="buscador">
+                <div class="search-content">
+                    <img src="../Storage/iconos/search-icon.png" class="search-icon">
+                    <input type="text" name="busqueda" id="busqueda" placeholder="Buscar" class="input" onkeyup="buscarEquipo()">
+
+                </div>
+            </form>
             <table>
                 <thead>
                     <tr>
@@ -42,26 +55,34 @@ $equipo = $equipo->mostrar();
                         <th>Fecha</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php if (!empty($equipo)): ?>
-                        <?php foreach ($equipo as $equipo): ?>
+                <tbody id="tabla-resultados">
+                    <?php if (!empty($equipos)): ?>
+                        <?php foreach ($equipos as $equipo): ?>
                             <tr>
                                 <td><?php echo $equipo['nombre']; ?></td>
                                 <td><?php echo $equipo['estado']; ?></td>
                                 <td><?php echo $equipo['fk_tanque']; ?></td>
                                 <td><?php echo $equipo['fecha']; ?></td>
-                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="7">No hay registros de equipos.</td>
+                            <td colspan="4">No hay registros de equipos.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
+            <div class="pagination">
+                <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                    <a href="?pagina=<?php echo $i; ?>"
+                        class="page-link <?php echo $i == $pagina ? 'active' : ''; ?>">
+                        <?php echo $i; ?>
+                    </a>
+                <?php endfor; ?>
+            </div>
         </div>
     </div>
 </body>
+<script src="../functions/buscador.js"></script>
 
 </html>

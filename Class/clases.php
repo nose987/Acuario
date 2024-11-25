@@ -56,7 +56,7 @@ class OpcionesFormulario {
         return $opciones;
     }
     public function obtenerOpcionesInventario() {
-        $sql = "SELECT pk_inventario, nombre FROM inventario";
+        $sql = "SELECT pk_inventario, nombre FROM inventario where fk_categoria = 1";
         $result = $this->conn->query($sql);
         $opciones = "";
 

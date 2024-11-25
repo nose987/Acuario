@@ -6,12 +6,8 @@ $login->protegerPagina();
 <?php
 include("../functions/mostrar_empleados.php");
 $empleado = new mostrarEmpleados();
-
-// Obtener la página actual
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-$porPagina = 30;
-
-// Manejar búsqueda y paginación
+$porPagina = 3;
 if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     $busqueda = $_GET['busqueda'];
     $resultado = $empleado->buscar_empleados($busqueda, $pagina, $porPagina);
@@ -22,6 +18,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +26,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     <link rel="stylesheet" href="../Styles/tabla.css">
     <link rel="icon" href="../Storage/logo.jpg">
 </head>
+
 <body>
     <?php include("layout/header.php") ?>
     <div class="contenido">
@@ -43,14 +41,14 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
 
             </div>
 
-            <!--<form method="get" action="" class="buscador">
+            <form method="get" action="" class="buscador">
                 <div class="search-content">
                     <img src="../Storage/iconos/search-icon.png" class="search-icon">
-                    <input type="text" name="busqueda" id="busqueda" 
-                           value="<?php echo isset($_GET['busqueda']) ? htmlspecialchars($_GET['busqueda']) : ''; ?>" 
-                           placeholder="Buscar" class="input" onkeyup="buscarEmpleado()">
+                    <input type="text" name="busqueda" id="busqueda"
+                        value="<?php echo isset($_GET['busqueda']) ? htmlspecialchars($_GET['busqueda']) : ''; ?>"
+                        placeholder="Buscar" class="input" onkeyup="buscarUsuario()">
                 </div>
-            </form>-->
+            </form>
 
             <table>
                 <thead>
@@ -87,7 +85,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                 </tbody>
             </table>
 
-            <?php 
+            <?php
             $busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
             echo generarPaginacionEmpleados($resultado['totalPaginas'], $resultado['paginaActual'], $busqueda);
             ?>
@@ -95,4 +93,5 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     </div>
 </body>
 <script src="../functions/buscador.js"></script>
+
 </html>

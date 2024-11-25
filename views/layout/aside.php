@@ -38,7 +38,7 @@
 
 
 <nav>
-  <a href="panel.php" class="nav-link" data-section="inicio"><img src="../Storage/iconos/home-icon.png" alt="" class="icon">Inicio</a>
+  <!--<a href="panel.php" class="nav-link" data-section="inicio"><img src="../Storage/iconos/home-icon.png" alt="" class="icon">Inicio</a>-->
   <?php 
     
     if($_SESSION['rol_id'] === 1){

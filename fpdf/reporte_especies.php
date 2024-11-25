@@ -90,8 +90,11 @@ $sql = "SELECT
             e.temperatura, 
             e.cuidados, 
             te.tipo AS nombre_tipo_especie, 
-            e.fk_alimento 
-        FROM especie e 
+            i.nombre as alimentacion
+
+
+
+        FROM inventario i INNER JOIN especie e ON i.pk_inventario=e.fk_alimento 
         INNER JOIN tipo_especie te 
         ON e.fk_tipo_especie = te.pk_tipo_especie";
 
@@ -110,7 +113,7 @@ if ($result) {
             $pdf->Cell(30, 10, utf8_decode($row['temperatura']), 1, 0, 'C');
             $pdf->Cell(65, 10, utf8_decode($row['cuidados']), 1, 0, 'C');
             $pdf->Cell(35, 10, utf8_decode($row['nombre_tipo_especie']), 1, 0, 'C');
-            $pdf->Cell(30, 10, utf8_decode($row['fk_alimento']), 1, 1, 'C'); // Última celda en la fila
+            $pdf->Cell(30, 10, utf8_decode($row['alimentacion']), 1, 1, 'C'); // Última celda en la fila
         }
     } else {
         // Si no hay resultados, agregar un mensaje al PDF
