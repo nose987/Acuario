@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $registroExitoso = $equipo->insertar($nombre, $estado, $fk_tanque);
 
-    if ($registroExitoso === true) {
+    if ($registroExitoso > 0) {
         header("Location: ../views/tabla_equipo.php");
         exit;                               
     } else {

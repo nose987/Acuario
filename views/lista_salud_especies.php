@@ -7,7 +7,7 @@ $login->protegerPagina();
 include("../Class/Clase_salud_especies.php");
 $saludEspecies = new SaludEspecies();
 $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-$porPagina = 3;
+$porPagina = 30;
 
 if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     $busqueda = $_GET['busqueda'];

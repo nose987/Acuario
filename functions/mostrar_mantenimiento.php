@@ -9,7 +9,7 @@ class Mantenimiento {
     }
 
     public function mostrar_mante() {
-        $sql = "SELECT * FROM mantenimiento_equipo"; 
+        $sql = "SELECT *, e.nombre FROM mantenimiento_equipo m INNER JOIN equipo e ON m.fk_equipo = e.pk_equipo"; 
         $resultado = $this->conn->query($sql);
 
         if ($resultado && $resultado->num_rows > 0) {

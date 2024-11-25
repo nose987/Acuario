@@ -1,11 +1,17 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
+-- Tiempo de generación: 25-11-2024 a las 06:55:22
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
+=======
 -- Tiempo de generación: 25-11-2024 a las 01:29:31
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,8 +40,13 @@ CREATE TABLE `agua` (
   `nitrato` text NOT NULL,
   `nitritos` text NOT NULL,
   `fk_tanque` smallint(6) NOT NULL,
+<<<<<<< HEAD
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+=======
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 --
 -- Volcado de datos para la tabla `agua`
@@ -61,7 +72,7 @@ CREATE TABLE `alimentacion` (
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `fk_area` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `alimentacion`
@@ -85,7 +96,7 @@ CREATE TABLE `area` (
   `zona` varchar(100) NOT NULL,
   `lugar` varchar(150) NOT NULL,
   `piso` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `area`
@@ -105,7 +116,7 @@ CREATE TABLE `categoria` (
   `pk_categoria` smallint(6) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `estatus` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -126,10 +137,17 @@ CREATE TABLE `detalle_tratamiento` (
   `pk_detalle_tratamiento` smallint(6) NOT NULL,
   `fk_tratamiento` smallint(6) NOT NULL,
   `fk_inventario` smallint(6) NOT NULL,
+<<<<<<< HEAD
+  `dosis` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `frecuencia` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fecha_aplicacion` datetime NOT NULL,
+  `notas` text COLLATE utf8_spanish_ci DEFAULT NULL,
+=======
   `dosis` varchar(100) DEFAULT NULL,
   `frecuencia` varchar(100) DEFAULT NULL,
   `fecha_aplicacion` date NOT NULL,
   `notas` text DEFAULT NULL,
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
   `fk_persona` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -142,9 +160,15 @@ CREATE TABLE `detalle_tratamiento` (
 CREATE TABLE `diagnostico` (
   `pk_diagnostico` smallint(6) NOT NULL,
   `fk_salud_especie` smallint(6) NOT NULL,
+<<<<<<< HEAD
+  `fecha_diagnostico` datetime NOT NULL,
+  `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
+  `gravedad` enum('Leve','Moderado','Grave','Crítico') COLLATE utf8_spanish_ci NOT NULL,
+=======
   `fecha_diagnostico` date NOT NULL,
   `descripcion` text NOT NULL,
   `gravedad` enum('Leve','Moderado','Grave','Crítico') NOT NULL,
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
   `fk_persona` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -171,18 +195,32 @@ CREATE TABLE `equipo` (
   `estado` varchar(250) NOT NULL,
   `fk_tanque` smallint(6) NOT NULL,
   `fecha` date NOT NULL
+<<<<<<< HEAD
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 --
 -- Volcado de datos para la tabla `equipo`
 --
 
 INSERT INTO `equipo` (`pk_equipo`, `nombre`, `estado`, `fk_tanque`, `fecha`) VALUES
+<<<<<<< HEAD
+(1, 'equipo 1', 'en orden ', 13, '2024-11-24'),
+(2, 'equipo 2', 'mal ', 14, '2024-11-24'),
+(3, 'equipo 3', 'mal', 13, '2024-11-24'),
+(4, 'equipo 3', 'mal', 13, '2024-11-24'),
+(5, 'equis', 'bien', 17, '2024-11-24'),
+(6, 'equis', 'bien', 17, '2024-11-24'),
+(7, 'equis 3', 'jsdmnce', 13, '2024-11-24');
+=======
 (5, 'equis', 'bien', 17, '2024-11-24'),
 (12, 'filtro', 'bien', 10, '2024-11-24'),
 (13, 'calentador', 'roto', 11, '2024-11-24'),
 (14, 'coral', 'bien', 13, '2024-11-24'),
 (15, 'q', 'roto', 10, '2024-11-24');
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 -- --------------------------------------------------------
 
@@ -200,7 +238,7 @@ CREATE TABLE `especie` (
   `img_especie` text DEFAULT NULL,
   `fk_tipo_especie` smallint(6) NOT NULL,
   `fk_alimento` smallint(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `especie`
@@ -227,7 +265,7 @@ CREATE TABLE `inventario` (
   `fecha` date NOT NULL,
   `fk_categoria` smallint(6) NOT NULL,
   `estatus` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `inventario`
@@ -251,7 +289,18 @@ CREATE TABLE `mantenimiento_equipo` (
   `descripcion` varchar(250) NOT NULL,
   `fk_equipo` smallint(6) NOT NULL,
   `fecha` date NOT NULL
+<<<<<<< HEAD
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mantenimiento_equipo`
+--
+
+INSERT INTO `mantenimiento_equipo` (`pk_mantenimiento_equipo`, `tipo_mante`, `descripcion`, `fk_equipo`, `fecha`) VALUES
+(1, 'cambioi', 'equis queis ', 6, '2024-11-24');
+=======
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 --
 -- Volcado de datos para la tabla `mantenimiento_equipo`
@@ -281,7 +330,7 @@ CREATE TABLE `persona` (
   `contrasena` varchar(255) NOT NULL,
   `fk_roles` smallint(6) DEFAULT NULL,
   `fk_area` smallint(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `persona`
@@ -305,7 +354,7 @@ CREATE TABLE `roles` (
   `pk_roles` smallint(6) NOT NULL,
   `roles` varchar(45) NOT NULL,
   `estatus` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `roles`
@@ -327,6 +376,16 @@ INSERT INTO `roles` (`pk_roles`, `roles`, `estatus`) VALUES
 CREATE TABLE `salud_especie` (
   `pk_salud_especie` smallint(6) NOT NULL,
   `fk_especie` smallint(6) NOT NULL,
+<<<<<<< HEAD
+  `fecha_revision` datetime NOT NULL,
+  `peso` decimal(10,2) DEFAULT NULL,
+  `longitud` decimal(10,2) DEFAULT NULL,
+  `temperatura` decimal(5,2) DEFAULT NULL,
+  `estado_general` enum('Saludable','En tratamiento','Crítico','En observación') COLLATE utf8_spanish_ci NOT NULL,
+  `comportamiento` text COLLATE utf8_spanish_ci DEFAULT NULL,
+  `sintomas` text COLLATE utf8_spanish_ci DEFAULT NULL,
+  `observaciones` text COLLATE utf8_spanish_ci DEFAULT NULL,
+=======
   `fecha_revision` date NOT NULL,
   `peso` text DEFAULT NULL,
   `longitud` text DEFAULT NULL,
@@ -335,6 +394,7 @@ CREATE TABLE `salud_especie` (
   `comportamiento` text DEFAULT NULL,
   `sintomas` text DEFAULT NULL,
   `observaciones` text DEFAULT NULL,
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
   `fk_persona` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -343,7 +403,14 @@ CREATE TABLE `salud_especie` (
 --
 
 INSERT INTO `salud_especie` (`pk_salud_especie`, `fk_especie`, `fecha_revision`, `peso`, `longitud`, `temperatura`, `estado_general`, `comportamiento`, `sintomas`, `observaciones`, `fk_persona`) VALUES
+<<<<<<< HEAD
+(1, 1, '2024-11-05 00:00:00', '12.22', '12.23', '23.00', 'Saludable', 'se comporta bien', 'nada fuera de lo normal', 'se mira en perfectas condiciones', 16),
+(2, 1, '2024-11-06 22:51:00', '23.23', '23.23', '2.30', 'Saludable', 'sdf', 'sdf', 'sdf', 16),
+(3, 1, '2024-11-08 21:08:00', '12.12', '12.12', '12.20', 'Crítico', 'asdasd', 'asdas', 'ewrte', 15),
+(4, 1, '2024-11-20 20:42:00', '12.23', '23.23', '23.20', 'Crítico', 'anda comportandose mas o menos', 'asdsd', 'asdasd', 16);
+=======
 (5, 4, '1212-12-12', '30', '23', '21', 'En tratamiento', 'brusco', 'gripa', 'fiebre', 16);
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 -- --------------------------------------------------------
 
@@ -359,20 +426,38 @@ CREATE TABLE `tanque` (
   `filtracion` text NOT NULL,
   `fk_area` smallint(6) NOT NULL,
   `fk_especie` smallint(6) NOT NULL,
+<<<<<<< HEAD
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+=======
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 --
 -- Volcado de datos para la tabla `tanque`
 --
 
 INSERT INTO `tanque` (`pk_tanque`, `capacidad`, `temperatura`, `iluminacion`, `filtracion`, `fk_area`, `fk_especie`, `fecha`) VALUES
+<<<<<<< HEAD
+(8, '30 litros', '30 grados', '100 lumenes', 'si', 1, 1, '2024-10-30 00:00:00'),
+(9, '80 litros', '30 grados', '100 lumenes', 'si', 1, 1, '2024-11-04 00:00:00'),
+(10, '20 litros', '20 grados', '100 lumenes', 'si', 1, 1, '2024-11-04 00:00:00'),
+(11, '300 litros', '10 grados', '100 lumenes', 'si', 1, 1, '2024-11-04 00:00:00'),
+(12, '130 litros', '30 grados', '100 lumenes', 'no', 1, 1, '2024-11-04 00:00:00'),
+(13, '20 litros', '10 grados', '300 lumenes', 'no', 1, 1, '2024-12-07 00:00:00'),
+(14, '2', '2', '234', 'si', 1, 1, '2024-11-21 00:00:00'),
+(15, '2', '2', '234', 'si', 1, 1, '2024-11-21 00:00:00'),
+(16, 'asd', 'asd', 'asd', 'si', 1, 3, '2024-11-29 00:00:00'),
+(17, '23', '234', '23', 'si', 1, 1, '2024-11-27 00:00:00');
+=======
 (8, '30 litros', '30 grados', '100 lumenes', 'si', 1, 1, '2024-10-30'),
 (9, '80 litros', '30 grados', '100 lumenes', 'si', 1, 1, '2024-11-04'),
 (10, '20 litros', '20 grados', '100 lumenes', 'si', 1, 1, '2024-11-04'),
 (11, '300 litros', '10 grados', '100 lumenes', 'si', 1, 1, '2024-11-04'),
 (12, '130 litros', '30 grados', '100 lumenes', 'no', 1, 1, '2024-11-04'),
 (13, '20 litros', '10 grados', '300 lumenes', 'no', 1, 1, '2024-12-07');
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 -- --------------------------------------------------------
 
@@ -384,7 +469,7 @@ CREATE TABLE `tipo_especie` (
   `pk_tipo_especie` smallint(6) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `estatus` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tipo_especie`
@@ -408,12 +493,21 @@ INSERT INTO `tipo_especie` (`pk_tipo_especie`, `tipo`, `estatus`) VALUES
 CREATE TABLE `tratamiento` (
   `pk_tratamiento` smallint(6) NOT NULL,
   `fk_diagnostico` smallint(6) NOT NULL,
+<<<<<<< HEAD
+  `fecha_inicio` datetime NOT NULL,
+  `fecha_fin` datetime DEFAULT NULL,
+  `descripcion` text COLLATE utf8_spanish_ci NOT NULL,
+  `estado` enum('En curso','Completado','Suspendido','Programado') COLLATE utf8_spanish_ci NOT NULL,
+  `instrucciones` text COLLATE utf8_spanish_ci DEFAULT NULL,
+  `observaciones` text COLLATE utf8_spanish_ci DEFAULT NULL,
+=======
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date DEFAULT NULL,
   `descripcion` text NOT NULL,
   `estado` enum('En curso','Completado','Suspendido','Programado') NOT NULL,
   `instrucciones` text DEFAULT NULL,
   `observaciones` text DEFAULT NULL,
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
   `fk_persona` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -438,7 +532,7 @@ CREATE TABLE `usuario` (
   `password` varchar(200) NOT NULL,
   `fk_persona` smallint(6) NOT NULL,
   `fk_rol` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -614,7 +708,11 @@ ALTER TABLE `diagnostico`
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
+<<<<<<< HEAD
+  MODIFY `pk_equipo` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+=======
   MODIFY `pk_equipo` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 --
 -- AUTO_INCREMENT de la tabla `especie`
@@ -632,7 +730,11 @@ ALTER TABLE `inventario`
 -- AUTO_INCREMENT de la tabla `mantenimiento_equipo`
 --
 ALTER TABLE `mantenimiento_equipo`
+<<<<<<< HEAD
+  MODIFY `pk_mantenimiento_equipo` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+=======
   MODIFY `pk_mantenimiento_equipo` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+>>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
