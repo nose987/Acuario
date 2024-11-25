@@ -11,7 +11,7 @@ $login->protegerPagina();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Storage/logo.jpg">
     <link rel="stylesheet" href="../Styles/formulario.css">
-    <title>Registro Medicamento</title>
+    <title>Registro Inventario</title>
 </head>
 
 <body>
