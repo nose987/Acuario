@@ -2,19 +2,12 @@
 require_once '../Class/clase_login.php';
 $login = new Login();
 $login->protegerPagina();
-<<<<<<< HEAD
 ?>
 <?php
 include_once '../functions/mostrar_mantenimiento.php';
-=======
-
-require_once '../functions/mostrar_mantenimiento.php';
->>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
-
 $mantenimiento = new Mantenimiento();
 $datosMantenimiento = $mantenimiento->mostrar_mante();
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -46,15 +39,6 @@ $datosMantenimiento = $mantenimiento->mostrar_mante();
                     </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
-                    <?php if (!empty($mantenimiento)): ?>
-                        <?php foreach ($mantenimiento as $mantenimiento): ?>
-                            <tr>
-                                <td><?php echo $mantenimiento['nombre']; ?></td>
-                                <td><?php echo $mantenimiento['fecha']; ?></td>
-                                <td><?php echo $mantenimiento['tipo_mante']; ?></td>
-                                <td><?php echo $mantenimiento['descripcion']; ?></td>
-=======
                     <?php if (!empty($datosMantenimiento) && is_array($datosMantenimiento)): ?>
                         <?php foreach ($datosMantenimiento as $mantenimiento): ?>
                             <tr>
@@ -62,7 +46,7 @@ $datosMantenimiento = $mantenimiento->mostrar_mante();
                                 <td><?php echo htmlspecialchars($mantenimiento['fecha']); ?></td>
                                 <td><?php echo htmlspecialchars($mantenimiento['tipo_mante']); ?></td>
                                 <td><?php echo htmlspecialchars($mantenimiento['descripcion']); ?></td>
->>>>>>> 5b54d59787997cbd3cd78257470aed641d740249
+
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -77,3 +61,4 @@ $datosMantenimiento = $mantenimiento->mostrar_mante();
 </body>
 
 </html>
+
