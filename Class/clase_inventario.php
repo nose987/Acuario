@@ -34,7 +34,7 @@ class Inventario
             $stmt = $this->conexion->prepare($sql);
             $stmt->bind_param("ssisdi", $codigo, $nombre, $stock, $descripcion, $fecha, $categoria);
             $stmt->execute();
-            header("location:../views/registro_inventario.php");
+            header("location:../views/inventario.php");
             $stmt->close();
             exit();
         }
