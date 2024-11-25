@@ -29,7 +29,8 @@ $equipo = $equipo->mostrar();
             <div class="controles">
             <a onclick="window.location.href='panel.php'" class="btn" type="button">Regresar</a>
                 <h2>Equipos</h2>
-                <a href="" class="generar-reporte">Generar reporte</a>
+              
+                <a href="../fpdf/reporte_equipo.php" target="_blank" class="generar-reporte">Generar reporte</a>
 
             </div>
             <table>
@@ -49,6 +50,7 @@ $equipo = $equipo->mostrar();
                                 <td><?php echo $equipo['estado']; ?></td>
                                 <td><?php echo $equipo['fk_tanque']; ?></td>
                                 <td><?php echo $equipo['fecha']; ?></td>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>

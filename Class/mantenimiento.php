@@ -11,7 +11,7 @@ class Mantenimiento
 
     function insertar($fk_equipo,$tipo_mante,$descripcion)
     {
-        $consulta="INSERT INTO mantenimiento_equipo (pk_mantenimiento_equipo, fk_equipo, fecha, tipo_mante, descripcion) VALUES (NULL, '{$fk_equipo}',NOW(),'{$tipo_mante}','{$descripcion}')";
+        $consulta="INSERT INTO mantenimiento_equipo (pk_mantenimiento_equipo, tipo_mante, descripcion, fk_equipo, fecha) VALUES (NULL, '{$tipo_mante}','{$descripcion}','{$fk_equipo}',now())";
         $respuesta=$this->conexion->query($consulta);
         return $this->conexion->insert_id;
     }
