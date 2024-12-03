@@ -33,7 +33,7 @@ class Tanque
     }
 
 
-    public function obtener_tanque_por_id($id) {
+    public function obtener_tanque_por_id() {
         $sql = "SELECT * FROM tanque WHERE pk_tanque = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("i", $id);

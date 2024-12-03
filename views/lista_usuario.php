@@ -24,6 +24,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Empleados</title>
     <link rel="stylesheet" href="../Styles/tabla.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="../Storage/logo.jpg">
 </head>
 
@@ -61,6 +62,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                         <th>Dirección</th>
                         <th>Rol</th>
                         <th>Area</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tabla-resultados">
@@ -75,6 +77,14 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                                 <td><?= htmlspecialchars($empleado['direccion']) ?></td>
                                 <td><?= htmlspecialchars($empleado['rol']) ?></td>
                                 <td><?= htmlspecialchars($empleado['area']) ?></td>
+                                <td class="acciones">
+                                    <!--<a href="editar_empleado.php?id=<?php echo $empleado['pk_persona']; ?>" class="btn-editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>-->
+                                    <a href="#" onclick="confirmarEliminar(<?php echo $empleado['pk_persona']; ?>)" class="btn-eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -92,6 +102,13 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
         </div>
     </div>
 </body>
+<script>
+    function confirmarEliminar(id) {
+        if (confirm('¿Estás seguro de que deseas eliminar a este usuario?')) {
+            window.location.href = '../functions/eliminar_empleado.php?id=' + id;
+        }
+    }
+    </script>
 <script src="../functions/buscador.js"></script>
 
 </html>
