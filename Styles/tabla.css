@@ -361,3 +361,44 @@ table tr:nth-child(even) {
         font-size: 12px;
     }
 }
+
+.acciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-editar,
+.btn-eliminar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-editar {
+    background-color: #0080c8;
+}
+
+.btn-editar:hover {
+    background-color: #1e90ff;
+}
+
+.btn-eliminar {
+    background-color: #dc3545;
+}
+
+.btn-eliminar:hover {
+    background-color: #c82333;
+}
+
+.btn-editar i,
+.btn-eliminar i {
+    font-size: 16px;
+}

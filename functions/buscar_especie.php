@@ -12,9 +12,9 @@ if (isset($_GET['busqueda'])) {
         FROM especie e 
         INNER JOIN tipo_especie te ON e.fk_tipo_especie = te.pk_tipo_especie 
         LEFT JOIN inventario i ON e.fk_alimento = i.pk_inventario
-        WHERE e.nombre LIKE ? 
+        WHERE (e.nombre LIKE ? 
         OR e.habitad LIKE ? 
-        OR te.tipo LIKE ?";
+        OR te.tipo LIKE ? ) AND e.estatus = 1";
 
     $stmt = $conexion->prepare($sql);
     $busquedaParam = "%" . $busqueda . "%";
@@ -33,7 +33,17 @@ if (isset($_GET['busqueda'])) {
             echo "<td>" . htmlspecialchars($especie['tipo']) . "</td>";
             echo "<td>" . htmlspecialchars($especie['alimento']) . "</td>"; ?>
             <td><img src="../Storage/<?= htmlspecialchars($especie['img_especie']) ?>" alt="Imagen de <?= htmlspecialchars($especie['nombre']) ?>" width="100"></td>
-<?php echo "</tr>";
+            <td>
+                <a href="editar_especie.php?id=<?php echo $especie['pk_especie']; ?>" class="btn-editar">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="#" onclick="confirmarEliminar(<?php echo $especie['pk_especie']; ?>)" class="btn-eliminar">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+            <?php echo "</tr>";
+            ?>
+<?php
         }
     } else {
         echo "<tr><td colspan='8'>No se encontraron resultados.</td></tr>";
