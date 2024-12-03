@@ -14,7 +14,7 @@ if (isset($_GET['busqueda'])) {
         LEFT JOIN inventario i ON e.fk_alimento = i.pk_inventario
         WHERE e.nombre LIKE ? 
         OR e.habitad LIKE ? 
-        OR te.tipo LIKE ?";
+        OR te.tipo LIKE ? ";
 
     $stmt = $conexion->prepare($sql);
     $busquedaParam = "%" . $busqueda . "%";

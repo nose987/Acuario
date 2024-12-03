@@ -19,7 +19,7 @@ class Especie
     function mostrar()
     {
         $consulta="SELECT *, i.nombre as alimento FROM inventario i INNER JOIN especie e ON i.pk_inventario=e.fk_alimento
-         inner join tipo_especie te on e.fk_tipo_especie=te.pk_tipo_especie";
+         inner join tipo_especie te on e.fk_tipo_especie=te.pk_tipo_especie WHERE e.estatus = 1";
         $respuesta=$this->conexion->query($consulta);
         return $respuesta;
     }
@@ -39,7 +39,7 @@ class Especie
 
     function buscarporid($pk_especie)
     {
-        $consulta="SELECT * FROM especie WHERE pk_especie='{$pk_especie}'";
+        $consulta="SELECT * FROM especie WHERE pk_especie='{$pk_especie}' WHERE estatus = 1";
         $respuesta=$this->conexion->query($consulta);
         return $respuesta; 
     }
@@ -50,7 +50,7 @@ class Especie
         $offset = ($pagina - 1) * $porPagina;
         
         // Obtener total de registros
-        $sqlTotal = "SELECT COUNT(*) as total FROM especie";
+        $sqlTotal = "SELECT COUNT(*) as total FROM especie WHERE estatus = 1";
         $resultTotal = $this->conexion->query($sqlTotal);
         $total = $resultTotal->fetch_assoc()['total'];
 
@@ -58,7 +58,7 @@ class Especie
         $consulta = "SELECT e.*, te.tipo, i.nombre as alimento 
                     FROM especie e 
                     INNER JOIN tipo_especie te ON e.fk_tipo_especie = te.pk_tipo_especie 
-                    LEFT JOIN inventario i ON e.fk_alimento = i.pk_inventario
+                    LEFT JOIN inventario i ON e.fk_alimento = i.pk_inventario WHERE e.estatus = 1
                     LIMIT {$porPagina} OFFSET {$offset}";
         
         $respuesta = $this->conexion->query($consulta);
@@ -84,7 +84,7 @@ class Especie
                      OR e.descripcion LIKE '%{$busqueda}%' 
                      OR e.habitad LIKE '%{$busqueda}%'
                      OR te.tipo LIKE '%{$busqueda}%'
-                     OR i.nombre LIKE '%{$busqueda}%'";
+                     OR i.nombre LIKE '%{$busqueda}%' WHERE e.estatus = 1";
         
         $resultTotal = $this->conexion->query($sqlTotal);
         $total = $resultTotal->fetch_assoc()['total'];
@@ -98,7 +98,7 @@ class Especie
                     OR e.descripcion LIKE '%{$busqueda}%' 
                     OR e.habitad LIKE '%{$busqueda}%'
                     OR te.tipo LIKE '%{$busqueda}%'
-                    OR i.nombre LIKE '%{$busqueda}%'
+                    OR i.nombre LIKE '%{$busqueda}%' WHERE e.estatus = 1
                     LIMIT {$porPagina} OFFSET {$offset}";
 
         $respuesta = $this->conexion->query($consulta);

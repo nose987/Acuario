@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $usuario = new Tanque();
     
-    $registroExitoso = $usuario->registrar_tanque($capacidad, $temperatura, $iluminacion, $filtracion, $fk_area, $fk_especie, $fecha);
+    $registroExitoso = $usuario->registrar_tanque($capacidad, $temperatura, $iluminacion, $filtracion, $fk_area, $fk_especie, $fecha, 1);
 
     if ($registroExitoso === true) {
         header("Location: ../views/tabla_tanques.php");

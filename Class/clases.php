@@ -194,8 +194,8 @@ class Tanque {
         }
     
         // Crear la consulta SQL (asegúrate de que los nombres sean correctos)
-        $sql = "INSERT INTO tanque (capacidad, temperatura, iluminacion, filtracion, fk_area, fk_especie, fecha) 
-                VALUES ('$capacidad', '$temperatura', '$iluminacion', '$filtracion', '$fk_area', '$fk_especie', '$fecha')";
+        $sql = "INSERT INTO tanque (capacidad, temperatura, iluminacion, filtracion, fk_area, fk_especie, fecha, estatus) 
+                VALUES ('$capacidad', '$temperatura', '$iluminacion', '$filtracion', '$fk_area', '$fk_especie', '$fecha', 1)";
     
         // Ejecutar la consulta
         if ($this->conn->query($sql)) {

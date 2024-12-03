@@ -24,6 +24,8 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Storage/logo.jpg">
     <link rel="stylesheet" href="../Styles/tabla.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <title>Lista de tanques</title>
 </head>
 <body>
@@ -58,6 +60,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                         <th>Área</th>
                         <th>Especie</th>
                         <th>Fecha</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tabla-resultados">
@@ -72,6 +75,14 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                                 <td><?php echo htmlspecialchars($tanque['nombre_area']); ?></td>
                                 <td><?php echo htmlspecialchars($tanque['nombre_especie']); ?></td>
                                 <td><?php echo htmlspecialchars($tanque['fecha']); ?></td>
+                                <td class="acciones">
+                                    <a href="editar_tanque.php?id=<?php echo $tanque['pk_tanque']; ?>" class="btn-editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="#" onclick="confirmarEliminar(<?php echo $tanque['pk_tanque']; ?>)" class="btn-eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -89,5 +100,12 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
         </div>
     </div>
 </body>
+<script>
+    function confirmarEliminar(id) {
+        if (confirm('¿Estás seguro de que deseas eliminar este tanque?')) {
+            window.location.href = '../functions/eliminar_tanque.php?id=' + id;
+        }
+    }
+    </script>
 <script src="../functions/buscador.js"></script>
 </html>
