@@ -51,7 +51,7 @@ $login->protegerPagina();
                     <input type="text" class="input" name="habitad" id="habitad" required>
 
                     <label for="temperatura">Temperatura (°C):</label>
-                    <input type="number" class="input" name="temperatura" id="temperatura" step="0.1" required>
+                    <input type="text" class="input" name="temperatura" id="temperatura" step="0.1" required>
 
                     <label for="cuidados">Cuidados:</label>
                     <textarea name="cuidados" class="input" id="cuidados" required></textarea>
