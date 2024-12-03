@@ -9,7 +9,7 @@ class mostrarEmpleados{
     }
 
     public function mostrar(){
-        $sql = "SELECT CONCAT(p.nombre, ' ', p.apaterno, ' ', p.amaterno) as nombrecompleto, p.correo, p.fecha_nac, p.telefono, p.genero, p.direccion, r.roles as rol, a.nombre as area FROM roles r INNER JOIN persona p ON r.pk_roles=p.fk_roles INNER JOIN area a on p.fk_area=a.pk_area";
+        $sql = "SELECT p.pk_persona, CONCAT(p.nombre, ' ', p.apaterno, ' ', p.amaterno) as nombrecompleto, p.correo, p.fecha_nac, p.telefono, p.genero, p.direccion, r.roles as rol, a.nombre as area FROM roles r INNER JOIN persona p ON r.pk_roles=p.fk_roles INNER JOIN area a on p.fk_area=a.pk_area WHERE estatus=1";
 
         $result = $this->conexion->query($sql);
         return $result;
@@ -20,12 +20,12 @@ class mostrarEmpleados{
         $offset = ($pagina - 1) * $porPagina;
         
         // Obtener total de registros
-        $sqlTotal = "SELECT COUNT(*) as total FROM persona";
+        $sqlTotal = "SELECT COUNT(*) as total FROM persona WHERE estatus = 1";
         $resultTotal = $this->conexion->query($sqlTotal);
         $total = $resultTotal->fetch_assoc()['total'];
 
         // Consulta paginada
-        $sql = "SELECT 
+        $sql = "SELECT p.pk_persona,
             CONCAT(p.nombre, ' ', p.apaterno, ' ', p.amaterno) as nombrecompleto, 
             p.correo, 
             p.fecha_nac, 
@@ -36,7 +36,7 @@ class mostrarEmpleados{
             a.nombre as area 
         FROM roles r 
         INNER JOIN persona p ON r.pk_roles=p.fk_roles 
-        INNER JOIN area a on p.fk_area=a.pk_area
+        INNER JOIN area a on p.fk_area=a.pk_area WHERE p.estatus = 1
         LIMIT ? OFFSET ?";
 
         $stmt = $this->conexion->prepare($sql);
@@ -51,6 +51,7 @@ class mostrarEmpleados{
             'paginaActual' => $pagina
         ];
     }
+    
 
     public function buscar_empleados($busqueda, $pagina = 1, $porPagina = 30) {
         $offset = ($pagina - 1) * $porPagina;
@@ -61,11 +62,11 @@ class mostrarEmpleados{
                      FROM roles r 
                      INNER JOIN persona p ON r.pk_roles=p.fk_roles 
                      INNER JOIN area a on p.fk_area=a.pk_area
-                     WHERE CONCAT(p.nombre, ' ', p.apaterno, ' ', p.amaterno) LIKE ? 
+                     WHERE ( CONCAT(p.nombre, ' ', p.apaterno, ' ', p.amaterno) LIKE ? 
                      OR p.correo LIKE ? 
                      OR p.telefono LIKE ?
                      OR r.roles LIKE ?
-                     OR a.nombre LIKE ?";
+                     OR a.nombre LIKE ?) AND estatus = 1";
         
         $stmtTotal = $this->conexion->prepare($sqlTotal);
         $stmtTotal->bind_param("sssss", $param, $param, $param, $param, $param);
@@ -73,8 +74,8 @@ class mostrarEmpleados{
         $total = $stmtTotal->get_result()->fetch_assoc()['total'];
 
         // Consulta paginada con búsqueda
-        $sql = "SELECT 
-            CONCAT(p.nombre, ' ', p.apaterno, ' ', p.amaterno) as nombrecompleto,
+        $sql = "SELECT p.pk_persona,
+            CONCAT (p.nombre, ' ', p.apaterno, ' ', p.amaterno) as nombrecompleto,
             p.correo, 
             p.fecha_nac, 
             p.telefono, 
@@ -85,12 +86,12 @@ class mostrarEmpleados{
         FROM roles r 
         INNER JOIN persona p ON r.pk_roles=p.fk_roles 
         INNER JOIN area a on p.fk_area=a.pk_area
-        WHERE CONCAT(p.nombre, ' ', p.apaterno, ' ', p.amaterno) LIKE ? 
+        WHERE ( CONCAT(p.nombre, ' ', p.apaterno, ' ', p.amaterno) LIKE ? 
         OR p.correo LIKE ? 
         OR p.telefono LIKE ?
         OR r.roles LIKE ?
         OR a.nombre LIKE ?
-        LIMIT ? OFFSET ?";
+        LIMIT ? OFFSET ?) AND WHERE estatus = 1";
 
         $stmt = $this->conexion->prepare($sql);
         $stmt->bind_param("sssssii", $param, $param, $param, $param, $param, $porPagina, $offset);

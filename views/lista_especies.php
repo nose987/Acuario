@@ -27,6 +27,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Especies</title>
     <link rel="stylesheet" href="../Styles/tabla.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="../Storage/logo.jpg">
 </head>
 <body>
@@ -61,6 +62,7 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                         <th>Tipo de Especie</th>
                         <th>Alimento</th>
                         <th>Imagen</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tabla-resultados">
@@ -75,6 +77,14 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                                 <td><?= htmlspecialchars($especie['tipo']) ?></td>
                                 <td><?= htmlspecialchars($especie['alimento']) ?></td>
                                 <td><img src="../Storage/<?= htmlspecialchars($especie['img_especie']) ?>" alt="Imagen de <?= htmlspecialchars($especie['nombre']) ?>" width="100"></td>
+                                <td >
+                                    <a href="editar_especie.php?id=<?php echo $especie['pk_especie']; ?>" class="btn-editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="#" onclick="confirmarEliminar(<?php echo $especie['pk_especie']; ?>)" class="btn-eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
@@ -92,5 +102,12 @@ if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
         </div>
     </div>
 </body>
+<script>
+    function confirmarEliminar(id) {
+        if (confirm('¿Estás seguro de que deseas eliminar esta especie?')) {
+            window.location.href = '../functions/eliminar_especie.php?id=' + id;
+        }
+    }
+    </script>
 <script src="../functions/buscador.js"></script>
 </html>

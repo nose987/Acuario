@@ -9,7 +9,7 @@ class Equipo {
     }
 
     public function mostrar($offset, $limit) {
-        $sql = "SELECT * FROM equipo LIMIT ?, ?";
+        $sql = "SELECT * FROM equipo WHERE estatus = 1 LIMIT ?, ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ii", $offset, $limit);
         $stmt->execute();
@@ -23,7 +23,7 @@ class Equipo {
     }
 
     public function contarTotal() {
-        $sql = "SELECT COUNT(*) AS total FROM equipo";
+        $sql = "SELECT COUNT(*) AS total FROM equipo WHERE estatus = 1";
         $resultado = $this->conn->query($sql);
         if ($resultado) {
             $fila = $resultado->fetch_assoc();

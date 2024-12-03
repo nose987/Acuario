@@ -40,6 +40,33 @@ class OpcionesFormulario {
         return $opciones;
     }
 
+    public function eliminarEmpleado($id) {
+        $sql = "UPDATE persona SET estatus = 0 WHERE pk_persona = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_Param('i', $id);
+        return $stmt->execute();
+    }
+    
+    public function obtenerEmpleadoPorId($id) {
+        $sql = "SELECT * FROM persona WHERE pk_persona = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_Param('i', $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+    }
+    
+    public function actualizarEmpleado($datos) {
+        $sql = "UPDATE persona 
+                SET nombre = :nombre, apaterno = :apaterno, amaterno = :amaterno, fecha_nac = :fecha_nac,
+                    direccion = :direccion, correo = :correo, telefono = :telefono, genero = :genero,
+                    fk_roles = :fk_roles, fk_area = :fk_area
+                WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute($datos);
+    }
+    
+
     public function obtenerOpcionesEspecies() {
         $sql = "SELECT pk_especie, nombre FROM especie";
         $result = $this->conn->query($sql);
@@ -85,6 +112,32 @@ class OpcionesFormulario {
         }
     
         return $opciones;
+    }
+
+    public function obtenerEquipoPorId($id) {
+        
+        $sql = "SELECT * FROM equipo WHERE pk_equipo = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        return $resultado->fetch_assoc();
+    }
+    
+    public function actualizar($id, $nombre, $estado, $fk_tanque, $fecha) {
+        
+        $sql = "UPDATE equipo SET nombre = ?, estado = ?, fk_tanque = ?, fecha = ? WHERE pk_equipo = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ssssi", $nombre, $estado, $fk_tanque, $fecha, $id);
+        return $stmt->execute();
+    }
+    
+    public function eliminar($id) {
+        
+        $sql = "UPDATE equipo SET estatus = 0 WHERE pk_equipo = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
     }
     
 }
@@ -194,8 +247,8 @@ class Tanque {
         }
     
         // Crear la consulta SQL (asegúrate de que los nombres sean correctos)
-        $sql = "INSERT INTO tanque (capacidad, temperatura, iluminacion, filtracion, fk_area, fk_especie, fecha) 
-                VALUES ('$capacidad', '$temperatura', '$iluminacion', '$filtracion', '$fk_area', '$fk_especie', '$fecha')";
+        $sql = "INSERT INTO tanque (capacidad, temperatura, iluminacion, filtracion, fk_area, fk_especie, fecha, estatus) 
+                VALUES ('$capacidad', '$temperatura', '$iluminacion', '$filtracion', '$fk_area', '$fk_especie', '$fecha', 1)";
     
         // Ejecutar la consulta
         if ($this->conn->query($sql)) {
@@ -248,5 +301,23 @@ if ($this->conn->query($sql)) {
     return "Error en la consulta: " . $this->conn->error;
 }
 }
+}
+
+class Nose {
+    private $conn;
+
+    public function __construct() {
+        $this->conn = Conexion::conectar();
+    }
+
+    public function obtenerEquipoPorId($equipo_id){
+        $sql = "SELECT * FROM tanque WHERE pk_tanque = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $equipo_id);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        return $resultado->fetch_assoc();
+    }
+
 }
 ?>

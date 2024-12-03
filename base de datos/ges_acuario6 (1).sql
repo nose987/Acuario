@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2024 a las 09:33:18
+-- Tiempo de generación: 03-12-2024 a las 04:21:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `ges_acuario5`
+-- Base de datos: `ges_acuario6`
 --
 
 -- --------------------------------------------------------
@@ -45,7 +45,8 @@ INSERT INTO `agua` (`pk_agua`, `ph`, `amoniaco`, `nitrato`, `nitritos`, `fk_tanq
 (1, '23', '23', '32', '23', 14, '2024-11-21'),
 (2, '12', '123', '123', '123', 10, '2024-11-04'),
 (3, '23', '23', '23', '23', 11, '2024-11-18'),
-(4, '1', '1', '1', '1', 8, '2024-11-29');
+(4, '1', '1', '1', '1', 8, '2024-11-29'),
+(5, '5', '5', '5', '5', 18, '2024-11-28');
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,9 @@ INSERT INTO `alimentacion` (`pk_alimentacion`, `fk_especie`, `cantidad`, `descri
 (7, 1, '30', 'meter la bolsa a la pecera', 1, '2024-10-30', '12:28:00', 1),
 (8, 1, '40', 'esparcir poco a poco ', 1, '2024-11-05', '20:34:00', 1),
 (9, 1, '1', 'arrojar a la alberca', 2, '2024-11-04', '07:36:00', 1),
-(10, 1, '34', 'asdsgfdb', 1, '2024-11-07', '22:55:00', 1);
+(10, 1, '34', 'asdsgfdb', 1, '2024-11-07', '22:55:00', 1),
+(11, 1, '23', 'darles de comer de manera delicada', 1, '2024-11-19', '22:53:00', 1),
+(12, 4, '23', 'darles de comer de manera delicada', 1, '2024-11-13', '06:01:00', 1);
 
 -- --------------------------------------------------------
 
@@ -99,7 +102,7 @@ CREATE TABLE `area` (
 
 INSERT INTO `area` (`pk_area`, `nombre`, `zona`, `lugar`, `piso`) VALUES
 (1, 'Recepción y Taquilla', 'fauna de agua dulce', 'Entrada principal', 1),
-(2, 'restaurante', 'planta alta', 'frente al tanque principal', 2);
+(2, 'nose', ' osle', 'nose', 2);
 
 -- --------------------------------------------------------
 
@@ -159,9 +162,9 @@ CREATE TABLE `diagnostico` (
 --
 
 INSERT INTO `diagnostico` (`pk_diagnostico`, `fk_salud_especie`, `fecha_diagnostico`, `descripcion`, `gravedad`, `fk_persona`) VALUES
-(1, 1, '2024-11-07', 'no come', 'Leve', 16),
-(2, 1, '2024-11-07', 'sangrado', 'Leve', 16),
-(3, 3, '2024-11-07', 'dfcv', 'Leve', 16),
+(1, 1, '2024-11-07', 'problemas en las branquias', 'Leve', 16),
+(2, 1, '2024-11-07', 'problemas en las branquias', 'Leve', 16),
+(3, 3, '2024-11-07', 'asdaskujndsivnksd', 'Leve', 16),
 (4, 4, '2024-11-14', 'n b', 'Leve', 16);
 
 -- --------------------------------------------------------
@@ -189,7 +192,8 @@ INSERT INTO `equipo` (`pk_equipo`, `nombre`, `estado`, `fk_tanque`, `fecha`) VAL
 (4, 'equipo 3', 'mal', 13, '2024-11-24'),
 (5, 'equis', 'bien', 17, '2024-11-24'),
 (6, 'equis', 'bien', 17, '2024-11-24'),
-(7, 'equis 3', 'jsdmnce', 13, '2024-11-24');
+(7, 'equis 3', 'jsdmnce', 13, '2024-11-24'),
+(8, 'Filtro', 'Bueno', 18, '2024-11-25');
 
 -- --------------------------------------------------------
 
@@ -206,19 +210,24 @@ CREATE TABLE `especie` (
   `cuidados` text NOT NULL,
   `img_especie` text DEFAULT NULL,
   `fk_tipo_especie` smallint(6) NOT NULL,
-  `fk_alimento` smallint(11) NOT NULL
+  `fk_alimento` smallint(11) NOT NULL,
+  `estatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `especie`
 --
 
-INSERT INTO `especie` (`pk_especie`, `nombre`, `descripcion`, `habitad`, `temperatura`, `cuidados`, `img_especie`, `fk_tipo_especie`, `fk_alimento`) VALUES
-(1, 'mojarra', 'pez', 'ewrf', '30 grados', 'efc', NULL, 1, 0),
-(2, 'asfadsv', 'asd', 'sdf', '34', 'asd', '', 1, 0),
-(3, 'asd', 'asd', 'sdf', '2', 'sdf', '', 2, 0),
-(4, 'pecesito', 'payaso', 'pos una pecera', '23', 'tratarlo bonito', '', 7, 0),
-(5, 'Angel', 'qefd', 'islas', '30', 'tratar bonito', '1732523055_Captura de pantalla 2024-01-18 115346.png', 4, 0);
+INSERT INTO `especie` (`pk_especie`, `nombre`, `descripcion`, `habitad`, `temperatura`, `cuidados`, `img_especie`, `fk_tipo_especie`, `fk_alimento`, `estatus`) VALUES
+(1, 'mojarra', 'pez', 'ewrf', '30 grados', 'efc', NULL, 1, 0, 0),
+(2, 'asfadsv', 'asd', 'sdf', '34', 'asd', '', 1, 0, 0),
+(3, 'asd', 'asd', 'sdf', '2', 'sdf', '', 2, 0, 0),
+(4, 'pecesito', 'payaso', 'pos una pecera', '23', 'tratarlo bonito', '', 7, 0, 0),
+(5, 'Juan', 'es muy grande', 'el mar', '23', 'darle cariño', '1732526460_1732518324_coco.jpeg', 8, 2, 1),
+(6, 'pedro', 'ballena lider de las ballenas', 'el agua', '234', 'el se cuida solo', '1732527536_ballena.jpeg', 8, 2, 1),
+(7, 'Maria', 'la ballena capitana', 'el agua', '234', 'la cuida pedro', '1732527736_ballena.jpeg', 8, 5, 1),
+(8, 'Bonifacio', 'una ballena infante prodigio', 'el mar', '234', 'no ocupa cuidados porque no sale de su cueva ballenil', '1732527964_ballena.jpeg', 8, 5, 0),
+(9, 'wsdvsdv', 'sdvsd', 'sdvs', '323', 'sdvs', '1732534812_carrera de la muerte.jpeg', 5, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -245,7 +254,10 @@ INSERT INTO `inventario` (`pk_inventario`, `codigo`, `nombre`, `stock`, `descrip
 (1, '2134124', 'alimento para peces', '424', 'alimento para peces', '2024-11-05', 1, 1),
 (2, '87654', 'alimento para tortugas', '5', 'alimento para tortugas', '2024-11-05', 1, 1),
 (3, '23r45', 'medicamento', '5', 'medicamento', '2024-11-14', 3, 1),
-(4, '876', 'jarabe', '23', 'aonsda', '0000-00-00', 3, 1);
+(4, '876', 'jarabe', '23', 'aonsda', '0000-00-00', 3, 1),
+(5, '57543424356', 'alimento para ballenas', '23', 'este alimento es para las ballenas\r\n', '0000-00-00', 1, 1),
+(6, '159', 'paracetamol', '50', 'pastillas', '0000-00-00', 3, 1),
+(7, '345453', 'mantenimiento', '50', 'qwewfsdsd', '0000-00-00', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -266,7 +278,8 @@ CREATE TABLE `mantenimiento_equipo` (
 --
 
 INSERT INTO `mantenimiento_equipo` (`pk_mantenimiento_equipo`, `tipo_mante`, `descripcion`, `fk_equipo`, `fecha`) VALUES
-(1, 'cambioi', 'equis queis ', 6, '2024-11-24');
+(1, 'cambioi', 'equis queis ', 6, '2024-11-24'),
+(2, 'Revisión', 'cambiar una pieza a la bomba', 1, '2024-11-25');
 
 -- --------------------------------------------------------
 
@@ -287,20 +300,21 @@ CREATE TABLE `persona` (
   `direccion` text NOT NULL,
   `contrasena` varchar(255) NOT NULL,
   `fk_roles` smallint(6) DEFAULT NULL,
-  `fk_area` smallint(6) DEFAULT NULL
+  `fk_area` smallint(6) DEFAULT NULL,
+  `estatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`pk_persona`, `nombre`, `apaterno`, `amaterno`, `correo`, `edad`, `fecha_nac`, `telefono`, `genero`, `direccion`, `contrasena`, `fk_roles`, `fk_area`) VALUES
-(15, 'cuidador', 'cuidador', 'cuidador', 'cuidador@gmail.com', 20, '2003-12-12', '3251146332', 'Masculino', 'Margarita #23', 'cuidador', 2, 2),
-(16, 'veterinario', 'veterinario', 'veterinario', 'veterinario@gmail.com', 13, '2024-11-27', '1234567890', 'Masculino', 'una calle cualquiera', 'veterinario', 1, 2),
-(17, 'administrador', 'administrador', 'administrador', 'administrador@gmail.com', 12, '2024-11-12', '1234567890', 'Masculino', 'callee', 'administrador', 3, 2),
-(18, 'acuatico', 'acuatico', 'acuatico', 'acuatico@gmail.com', 13, '2024-11-06', '1234567890', 'Masculino', 'callee', 'acuatico', 4, 2),
-(19, 'mantenimiento', 'mantenimiento', 'mantenimiento', 'mantenimiento@gmail.com', 23, '2024-11-06', '1234567890', 'Masculino', 'callee', 'mantenimiento', 5, 2),
-(20, 'asda', 'asda', 'asd', 'nose@gmail.com', 23, '2024-11-05', '1234567890', 'Femenino', 'asdad', 'nsoe', 1, 2);
+INSERT INTO `persona` (`pk_persona`, `nombre`, `apaterno`, `amaterno`, `correo`, `edad`, `fecha_nac`, `telefono`, `genero`, `direccion`, `contrasena`, `fk_roles`, `fk_area`, `estatus`) VALUES
+(15, 'cuidador', 'cuidador', 'cuidador', 'cuidador@gmail.com', 20, '2003-12-12', '3251146332', 'Masculino', 'Margarita #23', 'cuidador', 2, 1, 1),
+(16, 'veterinario', 'veterinario', 'veterinario', 'veterinario@gmail.com', 13, '2024-11-27', '1234567890', 'Masculino', 'una calle cualquiera', 'veterinario', 1, 1, 1),
+(17, 'administrador', 'administrador', 'administrador', 'administrador@gmail.com', 12, '2024-11-12', '1234567890', 'Masculino', 'callee', 'administrador', 3, 1, 1),
+(18, 'acuatico', 'acuatico', 'acuatico', 'acuatico@gmail.com', 13, '2024-11-06', '1234567890', 'Masculino', 'callee', 'acuatico', 4, 1, 1),
+(19, 'mantenimiento', 'mantenimiento', 'mantenimiento', 'mantenimiento@gmail.com', 23, '2024-11-06', '1234567890', 'Masculino', 'callee', 'mantenimiento', 5, 1, 1),
+(20, 'asda', 'asda', 'asd', 'nose@gmail.com', 23, '2024-11-05', '1234567890', 'Femenino', 'asdad', 'nsoe', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -323,7 +337,7 @@ INSERT INTO `roles` (`pk_roles`, `roles`, `estatus`) VALUES
 (2, 'Cuidador', 1),
 (3, 'Administrador', 1),
 (4, 'Técnico acuático', 1),
-(5, 'Tec. mant.', 1);
+(5, 'Técnico en mantenimiento', 1);
 
 -- --------------------------------------------------------
 
@@ -350,10 +364,10 @@ CREATE TABLE `salud_especie` (
 --
 
 INSERT INTO `salud_especie` (`pk_salud_especie`, `fk_especie`, `fecha_revision`, `peso`, `longitud`, `temperatura`, `estado_general`, `comportamiento`, `sintomas`, `observaciones`, `fk_persona`) VALUES
-(1, 1, '2024-11-05', '12.22', '12.23', '23.00', 'Saludable', 'tranquilo', 'vomito', 'todo bien', 16),
+(1, 1, '2024-11-05', '12.22', '12.23', '23.00', 'Saludable', 'se comporta bien', 'nada fuera de lo normal', 'se mira en perfectas condiciones', 16),
 (2, 1, '2024-11-06', '23.23', '23.23', '2.30', 'Saludable', 'sdf', 'sdf', 'sdf', 16),
 (3, 1, '2024-11-08', '12.12', '12.12', '12.20', 'Crítico', 'asdasd', 'asdas', 'ewrte', 15),
-(4, 1, '2024-11-20', '12.23', '23.23', '23.20', 'Crítico', 'mas o menos', 'asdsd', 'asdasd', 16);
+(4, 1, '2024-11-20', '12.23', '23.23', '23.20', 'Crítico', 'anda comportandose mas o menos', 'asdsd', 'asdasd', 16);
 
 -- --------------------------------------------------------
 
@@ -369,20 +383,27 @@ CREATE TABLE `tanque` (
   `filtracion` text NOT NULL,
   `fk_area` smallint(6) NOT NULL,
   `fk_especie` smallint(6) NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL,
+  `estatus` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tanque`
 --
 
-INSERT INTO `tanque` (`pk_tanque`, `capacidad`, `temperatura`, `iluminacion`, `filtracion`, `fk_area`, `fk_especie`, `fecha`) VALUES
-(8, '30 litros', '30 grados', '100 lumenes', 'si', 1, 1, '2024-10-30'),
-(9, '80 litros', '30 grados', '100 lumenes', 'si', 1, 1, '2024-11-04'),
-(10, '20 litros', '20 grados', '100 lumenes', 'si', 1, 1, '2024-11-04'),
-(11, '300 litros', '10 grados', '100 lumenes', 'si', 1, 1, '2024-11-04'),
-(12, '130 litros', '30 grados', '100 lumenes', 'no', 1, 1, '2024-11-04'),
-(13, '20 litros', '10 grados', '300 lumenes', 'no', 1, 1, '2024-12-07');
+INSERT INTO `tanque` (`pk_tanque`, `capacidad`, `temperatura`, `iluminacion`, `filtracion`, `fk_area`, `fk_especie`, `fecha`, `estatus`) VALUES
+(8, '30 litros', '30 grados', '1012 lumenes', 'si', 1, 1, '2024-10-30', 0),
+(10, '20 litros', '20 grados', '100 lumenes', 'si', 1, 1, '2024-11-04', 0),
+(11, '300 litros', '10 grados', '100 lumenes', 'si', 1, 1, '2024-11-04', 0),
+(12, '130 litros', '30 grados', '100 lumenes', 'no', 1, 1, '2024-11-04', 0),
+(13, '20 litros', '10 grados', '300 lumenes', 'no', 1, 1, '2024-12-07', 0),
+(14, '2', '2', '234', 'si', 1, 1, '2024-11-21', 0),
+(15, '2', '2', '234', 'si', 1, 1, '2024-11-21', 0),
+(16, 'asd', 'asd', 'asd', 'si', 1, 3, '2024-11-29', 0),
+(17, '23', '234', '23', 'si', 1, 1, '2024-11-27', 0),
+(18, '14 litros', '234', '23', 'Si', 1, 8, '2024-11-02', 0),
+(20, '23', '234', '139 lumenes', 'Si', 1, 5, '2024-12-17', 0),
+(21, '14 litros', '234', '1012 lumenes', 'Si', 1, 8, '2024-12-13', 1);
 
 -- --------------------------------------------------------
 
@@ -407,7 +428,8 @@ INSERT INTO `tipo_especie` (`pk_tipo_especie`, `tipo`, `estatus`) VALUES
 (4, 'pepe', NULL),
 (5, 'pez payaso', NULL),
 (6, 'pez payaso', NULL),
-(7, 'pez payaso', NULL);
+(7, 'pez payaso', NULL),
+(8, 'ballena', NULL);
 
 -- --------------------------------------------------------
 
@@ -587,13 +609,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `agua`
 --
 ALTER TABLE `agua`
-  MODIFY `pk_agua` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pk_agua` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `alimentacion`
 --
 ALTER TABLE `alimentacion`
-  MODIFY `pk_alimentacion` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `pk_alimentacion` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `area`
@@ -623,25 +645,25 @@ ALTER TABLE `diagnostico`
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `pk_equipo` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `pk_equipo` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `especie`
 --
 ALTER TABLE `especie`
-  MODIFY `pk_especie` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pk_especie` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  MODIFY `pk_inventario` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pk_inventario` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento_equipo`
 --
 ALTER TABLE `mantenimiento_equipo`
-  MODIFY `pk_mantenimiento_equipo` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pk_mantenimiento_equipo` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
@@ -665,13 +687,13 @@ ALTER TABLE `salud_especie`
 -- AUTO_INCREMENT de la tabla `tanque`
 --
 ALTER TABLE `tanque`
-  MODIFY `pk_tanque` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `pk_tanque` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_especie`
 --
 ALTER TABLE `tipo_especie`
-  MODIFY `pk_tipo_especie` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `pk_tipo_especie` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tratamiento`

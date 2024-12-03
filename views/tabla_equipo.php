@@ -23,6 +23,7 @@ $totalPaginas = ceil($totalEquipos / $limite);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/tabla.css">
     <link rel="icon" href="../Storage/logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Equipos</title>
 </head>
 
@@ -53,6 +54,7 @@ $totalPaginas = ceil($totalEquipos / $limite);
                         <th>Estado</th>
                         <th>Tanque</th>
                         <th>Fecha</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tabla-resultados">
@@ -63,6 +65,14 @@ $totalPaginas = ceil($totalEquipos / $limite);
                                 <td><?php echo $equipo['estado']; ?></td>
                                 <td><?php echo $equipo['fk_tanque']; ?></td>
                                 <td><?php echo $equipo['fecha']; ?></td>
+                                <td class="acciones">
+                                    <a href="editar_equipo.php?id=<?php echo $equipo['pk_equipo']; ?>" class="btn-editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="#" onclick="confirmarEliminar(<?php echo $equipo['pk_equipo']; ?>)" class="btn-eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -83,6 +93,13 @@ $totalPaginas = ceil($totalEquipos / $limite);
         </div>
     </div>
 </body>
+<script>
+    function confirmarEliminar(id) {
+        if (confirm('¿Estás seguro de que deseas eliminar este equipo?')) {
+            window.location.href = '../functions/eliminar_equipo.php?id=' + id;
+        }
+    }
+    </script>
 <script src="../functions/buscador.js"></script>
 
 </html>

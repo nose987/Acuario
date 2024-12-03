@@ -22,7 +22,7 @@ class Tanque
             t.fecha 
         FROM tanque t
         INNER JOIN area a ON a.pk_area = t.fk_area 
-        INNER JOIN especie e ON t.fk_especie = e.pk_especie";
+        INNER JOIN especie e ON t.fk_especie = e.pk_especie WHERE estatus = 1";
         $resultado = $this->conn->query($sql);
 
         if ($resultado && $resultado->num_rows > 0) {
@@ -32,12 +32,68 @@ class Tanque
         }
     }
 
+
+    public function obtener_tanque_por_id() {
+        $sql = "SELECT * FROM tanque WHERE pk_tanque = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        return $resultado->fetch_assoc();
+    }
+    
+    public function obtener_areas() {
+        $sql = "SELECT pk_area, nombre FROM area";
+        $resultado = $this->conn->query($sql);
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    public function obtener_especies() {
+        $sql = "SELECT pk_especie, nombre FROM especie";
+        $resultado = $this->conn->query($sql);
+        return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
+    
+    public function actualizar_tanque($datos) {
+        $sql = "UPDATE tanque SET 
+                capacidad = ?, 
+                temperatura = ?, 
+                iluminacion = ?, 
+                filtracion = ?, 
+                fk_area = ?, 
+                fk_especie = ?, 
+                estatus = ? 
+                WHERE pk_tanque = ?";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param(
+            "ssssiiis", 
+            $datos['capacidad'], 
+            $datos['temperatura'], 
+            $datos['iluminacion'], 
+            $datos['filtracion'], 
+            $datos['fk_area'], 
+            $datos['fk_especie'], 
+            $datos['estatus'], 
+            $datos['pk_tanque']
+        );
+    
+        return $stmt->execute();
+    }
+    
+    public function eliminar_tanque($id) {
+        $sql = "UPDATE tanque SET estatus = 0 WHERE pk_tanque = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
     public function obtener_tanques_paginado($pagina = 1, $porPagina = 30) {
         // Calcular el offset
         $offset = ($pagina - 1) * $porPagina;
         
         // Obtener total de registros
-        $sqlTotal = "SELECT COUNT(*) as total FROM tanque";
+        $sqlTotal = "SELECT COUNT(*) as total FROM tanque WHERE estatus = 1";
         $resultTotal = $this->conn->query($sqlTotal);
         $total = $resultTotal->fetch_assoc()['total'];
 
@@ -53,7 +109,7 @@ class Tanque
             t.fecha 
         FROM tanque t
         INNER JOIN area a ON a.pk_area = t.fk_area 
-        INNER JOIN especie e ON t.fk_especie = e.pk_especie
+        INNER JOIN especie e ON t.fk_especie = e.pk_especie WHERE t.estatus = 1
         LIMIT ? OFFSET ?";
 
         $stmt = $this->conn->prepare($sql);
@@ -81,7 +137,7 @@ class Tanque
                      OR t.capacidad LIKE ? 
                      OR t.temperatura LIKE ?
                      OR a.nombre LIKE ?
-                     OR e.nombre LIKE ?";
+                     OR e.nombre LIKE ? WHERE t.estatus = 1";
         
         $stmtTotal = $this->conn->prepare($sqlTotal);
         $param = '%' . $busqueda . '%';
@@ -106,8 +162,8 @@ class Tanque
         OR t.capacidad LIKE ? 
         OR t.temperatura LIKE ?
         OR a.nombre LIKE ?
-        OR e.nombre LIKE ?
-        LIMIT ? OFFSET ?";
+        OR e.nombre LIKE ? WHERE estatus = 1
+        LIMIT ? OFFSET ? ";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("sssssii", $param, $param, $param, $param, $param, $porPagina, $offset);
@@ -153,4 +209,8 @@ function generarPaginacionTanques($totalPaginas, $paginaActual, $busqueda = '') 
     
     $html .= '</div>';
     return $html;
+
+
+
+
 }

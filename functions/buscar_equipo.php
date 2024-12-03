@@ -13,9 +13,17 @@ if ($datos->num_rows > 0) {
                 <td>{$fila['estado']}</td>
                 <td>{$fila['fk_tanque']}</td>
                 <td>{$fila['fecha']}</td>
+                <td class='acciones'>
+                    <a href='editar_equipo.php?id={$fila['pk_equipo']}' class='btn-editar'>
+                        <i class='fas fa-edit'></i>
+                    </a>
+                    <a href='#' onclick='confirmarEliminar({$fila['pk_equipo']})' class='btn-eliminar'>
+                        <i class='fas fa-trash'></i>
+                    </a>
+                </td>
               </tr>";
     }
 } else {
-    echo "<tr><td colspan='4'>No se encontraron datos</td></tr>";
+    echo "<tr><td colspan='5'>No se encontraron datos</td></tr>";
 }
 ?>

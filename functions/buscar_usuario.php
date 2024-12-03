@@ -18,13 +18,13 @@ function buscarUsuarios($busqueda) {
             FROM persona p 
             LEFT JOIN roles r ON p.fk_roles = r.pk_roles 
             LEFT JOIN area a ON p.fk_area = a.pk_area 
-            WHERE 
+            WHERE (
                 p.nombre LIKE ? OR 
                 p.apaterno LIKE ? OR 
                 p.amaterno LIKE ? OR 
                 p.correo LIKE ? OR 
                 r.roles LIKE ? OR 
-                a.nombre LIKE ?";
+                a.nombre LIKE ?) AND p.estatus = 1";
     
     $stmt = $conexion->prepare($sql);
     $param = '%' . $busqueda . '%';
